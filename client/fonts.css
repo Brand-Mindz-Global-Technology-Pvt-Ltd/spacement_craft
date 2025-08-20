@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuOKfMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuI6fMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuGKYMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Reem Kufi';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/reemkufi/v25/2sDPZGJLip7W2J7v7wQZZE1I0yCmYzzQtuZnEGE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Reem Kufi';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/reemkufi/v25/2sDPZGJLip7W2J7v7wQZZE1I0yCmYzzQttRnEGE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Reem Kufi';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/reemkufi/v25/2sDPZGJLip7W2J7v7wQZZE1I0yCmYzzQtjhgEGE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Reem Kufi';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/reemkufi/v25/2sDPZGJLip7W2J7v7wQZZE1I0yCmYzzQtgFgEGE.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Teachers';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/teachers/v5/H4c5BXKVncXVmUGsgTwx4E9oHx2xfjBr3powYw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Teachers';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/teachers/v5/H4c5BXKVncXVmUGsgTwx4E9oHx2xfjBr7JowYw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Teachers';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/teachers/v5/H4c5BXKVncXVmUGsgTwx4E9oHx2xfjBrAJ0wYw.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Teachers';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/teachers/v5/H4c5BXKVncXVmUGsgTwx4E9oHx2xfjBrOZ0wYw.ttf) format('truetype');
+}
