@@ -1,68 +1,78 @@
-import React, { useState } from 'react';
-// Use NavLink for automatic active-style handling
-import { NavLink } from 'react-router-dom'; 
-
-// Make sure you have an image for your logo
-import Logo from '/assets/01-logo.jpg'; 
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import Logo from "/assets/01-logo.jpg";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Reusable style for nav links for consistency
-  const navLinkClasses = "text-white text-base hover:text-gray-300 transition-colors pb-1";
-  const activeLinkClasses = "border-b-2 border-white font-semibold";
+  const navLinks = [
+    { path: "/", label: "Home" },
+    { path: "/product", label: "Product" },
+    { path: "/solution", label: "Solution" },
+    { path: "/mission", label: "Mission" },
+    { path: "/vision", label: "Vision" },
+    { path: "/about", label: "About us" },
+    { path: "/career", label: "Career" },
+  ];
+
+  const navBase =
+    "uppercase tracking-[0.12em] text-xs md:text-sm text-white/90 hover:text-white transition-colors pb-2";
+  const active = "border-b-2 border-white";
 
   return (
-    <header className="absolute top-0 left-0 w-full z-50 py-6">
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        <NavLink to="/">
-          {/* Using an imported logo is better practice */}
-          <img
-            src={Logo} 
-            alt="SpacemanCraft Logo"
-            className="w-auto h-12" // Adjusted size for a more standard header logo
-          />
+    <header className="w-full py-8 md:py-10">
+      <div className="mx-auto flex items-center justify-between px-6 md:px-8" style={{ maxWidth: 1280 }}>
+        {/* Logo (left) */}
+        <NavLink to="/" onClick={() => setIsMenuOpen(false)} aria-label="Home">
+          <img src={Logo} alt="SpacemanCraft Logo" className="h-8 md:h-10 w-auto" />
         </NavLink>
 
-        {/* Desktop Navigation */}
+        {/* Desktop nav (right) */}
         <nav className="hidden lg:flex items-center gap-8">
-          {/* Using NavLink to style the active route */}
-          <NavLink to="/" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-            Home
-          </NavLink>
-          <NavLink to="/product" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-            Product
-          </NavLink>
-          <NavLink to="/solution" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-            Solution
-          </NavLink>
-          <NavLink to="/mission" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-            Mission
-          </NavLink>
-          <NavLink to="/vision" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-            Vision
-          </NavLink>
-          <NavLink to="/about" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-            About us
-          </NavLink>
-          <NavLink to="/career" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-            Career
-          </NavLink>
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) => `${navBase} ${isActive ? active : ""}`}
+            >
+              {link.label}
+            </NavLink>
+          ))}
         </nav>
 
-        {/* Mobile Menu Button remains the same */}
+        {/* Mobile toggle */}
         <button
-          className="lg:hidden text-white p-2"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="lg:hidden text-white"
+          onClick={() => setIsMenuOpen((s) => !s)}
+          aria-label="Toggle menu"
         >
-          {/* SVG icon... */}
+          {isMenuOpen ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          )}
         </button>
       </div>
 
-      {/* Mobile Navigation can also be updated with NavLink if desired */}
+      {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-sm">
-          {/* Mobile nav links... */}
+        <div className="lg:hidden fixed inset-0 bg-black/95 pt-24 z-50">
+          <nav className="flex flex-col items-center gap-8">
+            {navLinks.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) => `text-2xl ${navBase} ${isActive ? active : ""}`}
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </nav>
         </div>
       )}
     </header>
