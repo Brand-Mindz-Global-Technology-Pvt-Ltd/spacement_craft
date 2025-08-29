@@ -10,6 +10,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import OurProductSection from "./pages/Ourproduct";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
@@ -26,7 +27,7 @@ const App = () => (
           <Route path="/solution" element={<PlaceholderPage title="Solution" description="Explore comprehensive solutions for space infrastructure and connectivity." />} />
           <Route path="/mission" element={<PlaceholderPage title="Mission" description="Learn about our mission to revolutionize space technology and lunar infrastructure." />} />
           <Route path="/vision" element={<PlaceholderPage title="Vision" description="Our vision for the future of space exploration and technology." />} />
-          <Route path="/about" element={<PlaceholderPage title="About Us" description="Meet the team behind SpacemanCraft and our journey to space." />} />
+          <Route path="/about" element={<About /> } />
           <Route path="/career" element={<PlaceholderPage title="Career" description="Join our mission and explore career opportunities at SpacemanCraft." />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

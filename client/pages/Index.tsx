@@ -64,33 +64,47 @@ const Header = () => {
 };
 
 const HeroSection = () => (
-  <section className="relative h-screen bg-black overflow-hidden">
-    <div className="absolute inset-0">
-      <div className="absolute top-[528px] left-[193px] w-[1544px] h-[1534px] transform rotate-90">
+  <section className="relative w-full min-h-screen flex justify-center items-center bg-black overflow-hidden">
+    {/* Background image (Earth from space) */}
         <img 
-          src="https://api.builder.io/api/v1/image/assets/TEMP/92b166596dc9a5a0f6529662d0b3b035a8623c06?width=4019" 
+      className="absolute inset-0 w-full h-full object-cover object-bottom z-0 select-none pointer-events-none"
+      src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1500&q=80"
           alt="Earth from space" 
-          className="w-[2010px] h-[2010px] absolute -left-[185px] -top-[314px] transform rotate-90"
-        />
-      </div>
-    </div>
-    
-    <Header />
-    
-    <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-      <h1 className="font-reem text-6xl md:text-7xl lg:text-[100px] font-normal text-white uppercase leading-[85.4px] max-w-6xl mb-8">
-        Revolutionizing Orbits
+      draggable={false}
+      style={{ userSelect: "none" }}
+    />
+
+    {/* Top gradient overlay for text contrast */}
+    <div className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent z-10 pointer-events-none" />
+
+    {/* Centered Content at the very top center */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 z-20 w-full flex flex-col items-center px-4 pt-24 md:pt-32">
+      <h1 className="font-reem text-white text-[2.2rem] md:text-[3.2rem] lg:text-[4rem] font-normal text-center tracking-wide mb-3 uppercase drop-shadow-lg">
+        REVOLUTIONIZING ORBITS
       </h1>
-      <p className="font-inter text-lg md:text-xl text-white max-w-4xl mb-12 leading-8">
+      <p className="max-w-[520px] text-center text-white/90 text-sm md:text-base font-inter mb-6 leading-relaxed drop-shadow">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </p>
-      <button className="border border-white px-6 py-4 rounded-[5px] text-white font-inter text-lg hover:bg-white hover:text-black transition-all">
+      <button className="px-6 py-2.5 rounded bg-transparent border border-white text-white text-sm md:text-base font-inter font-medium hover:bg-white hover:text-black transition-colors shadow-lg">
         Discover Our Thruster
       </button>
     </div>
     
-    <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2">
+    {/* Bottom center arrow, no background color */}
+    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
+      <button
+        aria-label="Scroll to next section"
+        className="flex items-center justify-center w-12 h-12 rounded-full transition"
+        style={{ background: "none" }}
+        onClick={() => {
+          const nextSection = document.getElementById('our-product-section');
+          if (nextSection) {
+            nextSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+      >
       <ChevronDownIcon />
+      </button>
     </div>
   </section>
 );
@@ -98,141 +112,177 @@ const HeroSection = () => (
 
 export const OurProductSection = (): JSX.Element => {
   return (
-    <section className="bg-[#02060f] relative w-full min-h-[1020px] flex items-center justify-center">
-      <div className="relative w-full max-w-[1920px] min-h-[1020px] bg-[url(/assets/spaceman-craft-orbiting-earth-and-moon-2.png)] bg-cover bg-center">
+    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
+      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
+        {/* Background image */}
         <img
-          className="absolute w-full h-full top-0 left-0 object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
           alt="Spaceman craft orbiting earth and moon"
-          src="/figmaAssets/spaceman-craft-orbiting-earth-and-moon-2.png"
+          src="/assets/spaceman-craft-orbiting-earth-and-moon-2.png"
+          style={{ zIndex: 0 }}
         />
 
-        <div className="absolute top-0 left-0 w-full h-[492px] bg-gradient-to-b from-black to-transparent" />
+        {/* Top gradient overlay */}
+        <div
+          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
+          style={{ zIndex: 1 }}
+        />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-start pt-[104px] px-4">
-          <h1 className="w-full max-w-[717px] h-[133px] [font-family:'Reem_Kufi',Helvetica] font-normal text-white text-[70px] text-center tracking-[2.00px] leading-[132.4px] mb-6">
+        {/* Content */}
+        <div
+          className="relative z-10 flex flex-col items-center w-full px-4"
+          style={{ marginTop: "60px" }}
+        >
+          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
             OUR PRODUCT
           </h1>
-
-          <p className="w-full max-w-[474px] h-[52px] [font-family:'Inter',Helvetica] font-normal text-white text-[25px] text-center tracking-[0] leading-7 mb-[25px]">
-            &quot; Powering the Future From the Moon &quot;
+          <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-2 leading-relaxed flex items-center gap-2">
+            <span>&quot; Powering the Future From the Moon &quot;</span>
+            <span>
+              <svg width="32" height="20" viewBox="0 0 32 20" fill="none" className="inline-block align-middle" xmlns="http://www.w3.org/2000/svg">
+                <path d="M31.5 10C31.5 15.2467 24.5081 19.5 16 19.5C7.49187 19.5 0.5 15.2467 0.5 10C0.5 4.75329 7.49187 0.5 16 0.5C24.5081 0.5 31.5 4.75329 31.5 10Z" stroke="#B6B6B6" />
+                <circle cx="24" cy="5" r="3" fill="#B6B6B6" />
+              </svg>
+            </span>
           </p>
-
-          <p className="w-full max-w-[986px] h-[52px] [font-family:'Inter',Helvetica] font-normal text-white text-xl text-center tracking-[0] leading-7">
-            SpacemanCraft is on a mission to build the first-ever lunar data
-            center—reshaping how the world thinks about infrastructure,
-            connectivity, and the cosmos. Welcome to the future of data, built
-            in space.
+          <p className="max-w-[600px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+            SpacemanCraft is on a mission to build the first-ever lunar data center—reshaping how the world thinks about infrastructure, connectivity, and the cosmos. Welcome to the future of data, built in space.
           </p>
         </div>
       </div>
     </section>
   );
 };
+const VideoObservationSection = () => {
+  const items = [
+    {
+      title: "Hyperspectral Vision",
+      img: "https://api.builder.io/api/v1/image/assets/TEMP/44d47a5d1658608c03887f3ffd188776125c7cf4?width=1051",
+      desc:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.",
+    },
+    {
+      title: "Defence Surveillance",
+      img: "https://api.builder.io/api/v1/image/assets/TEMP/3f1e84217d78a591e5fe172b0a9b8d3029537341?width=1009",
+      desc:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.",
+    },
+    {
+      title: "Ocean Net",
+      img: "https://api.builder.io/api/v1/image/assets/TEMP/46faf5a2fa5b4c6392659eaf48c4ad8540804c04?width=978",
+      desc:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.",
+    },
+  ];
 
-
-const VideoObservationSection = () => (
-  <section className="relative bg-[#030712] py-16 overflow-hidden">
-    <div className="absolute inset-0">
+  return (
+    <section className="relative w-full min-h-[700px] flex justify-center items-center bg-[#030712] overflow-hidden">
+      {/* Background stars and glow */}
+      <div className="absolute inset-0 pointer-events-none select-none">
       <img 
         src="https://api.builder.io/api/v1/image/assets/TEMP/b8b9acf6016a95d32435be71013b40ab7f911b8c?width=3760" 
-        alt="Star Animation" 
+          alt="Star field"
         className="w-[1880px] h-[1354px] absolute left-5 -top-[199px]"
+          draggable={false}
       />
-      <div className="absolute inset-0 bg-black opacity-20"></div>
-      <div className="absolute left-[196px] top-[275px] w-[531px] h-[513px] rounded-full bg-[#0BFFD3] opacity-30 blur-[200px]"></div>
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute left-[196px] top-[275px] w-[531px] h-[513px] rounded-full bg-[#0BFFD3] opacity-30 blur-[200px]" />
     </div>
     
-    <div className="relative z-10 container mx-auto px-6">
-      <div className="text-center mb-16">
-        <h2 className="font-reem text-5xl md:text-7xl font-normal text-white uppercase leading-12 mb-6">
-          Video based earth Observation
+      <div className="relative z-10 w-full max-w-[1320px] min-h-[700px] flex flex-col justify-center px-4 md:px-8">
+        {/* Centered Heading and CTA */}
+        <div className="w-full flex flex-col items-center justify-center mb-10 md:mb-14 relative">
+          <h2 className="font-reem text-[28px] md:text-[32px] lg:text-[36px] font-normal uppercase text-white leading-tight tracking-wide text-center">
+            VIDEO BASED EARTH OBSERVATION
         </h2>
-        <p className="font-inter text-xl text-white max-w-6xl mx-auto">
+          <p className="font-inter text-[12px] md:text-[13px] text-white/90 mt-2 md:mt-3 max-w-[600px] text-center">
           Break barriers in space. Unlock reliable, sustainable satellite operations.
         </p>
-        <button className="mt-8 border border-yellow-500/30 px-8 py-4 rounded-lg text-white font-inter text-lg hover:bg-yellow-500/10 transition-all">
+          {/* CTA Button in right corner, absolutely positioned */}
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
+            <button className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-[12px] hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]">
           Explore Full Archive
         </button>
       </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        <div className="bg-gray-700/50 border border-[#FEC053] rounded-2xl p-6 backdrop-blur-sm shadow-lg">
-          <div className="bg-white rounded-lg mb-6 h-64 overflow-hidden">
-            <img 
-              src="https://api.builder.io/api/v1/image/assets/TEMP/44d47a5d1658608c03887f3ffd188776125c7cf4?width=1051" 
-              alt="Hyperspectral vision" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <h3 className="font-reem text-2xl text-white mb-4">Hyperspectral vision</h3>
-          <p className="font-inter text-white mb-6 leading-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.
-          </p>
-          <button className="bg-gradient-to-r from-[#0BFFD3] to-[#3070DE] px-6 py-3 rounded-lg text-white font-inter border border-yellow-500/30">
-            View Details
-          </button>
         </div>
         
-        <div className="bg-black/60 border border-yellow-500/10 rounded-2xl p-6 backdrop-blur-sm">
-          <div className="bg-white rounded-lg mb-6 h-64 overflow-hidden">
-            <img 
-              src="https://api.builder.io/api/v1/image/assets/TEMP/3f1e84217d78a591e5fe172b0a9b8d3029537341?width=1009" 
-              alt="Defence surveillance" 
+        {/* Cards */}
+        <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center md:items-stretch">
+          {items.map((it, idx) => (
+            <a
+              key={idx}
+              href="#"
+              className="group relative bg-transparent rounded-[12px] overflow-hidden transition w-full max-w-[400px] min-w-[320px] min-h-[380px] shadow-none"
+              style={{
+                height: "380px",
+              }}
+            >
+              {/* Card surface */}
+              <div className="absolute inset-0 rounded-[12px] bg-black/60 border border-[#FEC053]/10 transition-all duration-300 group-hover:bg-gray-700/50 group-hover:border-[#FEC053] group-hover:shadow-[0_0_0_1px_rgba(254,192,83,0.35),0_12px_30px_rgba(0,0,0,0.5)]" />
+              <div className="relative flex flex-col h-full p-4">
+                <div className="rounded-[8px] w-full overflow-hidden shadow-inner transition-transform duration-300 group-hover:scale-[1.02]" style={{ height: "200px" }}>
+                  <img
+                    src={it.img}
+                    alt={it.title}
               className="w-full h-full object-cover"
+                    draggable={false}
             />
           </div>
-          <h3 className="font-reem text-2xl text-white mb-4">Defence surveillance</h3>
-          <p className="font-inter text-gray-300 mb-6 leading-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.
-          </p>
-          <button className="border border-yellow-500/30 px-6 py-3 rounded-lg text-white font-inter">
+                <h3 className="mt-4 font-reem text-[15px] text-white font-normal leading-tight">
+                  {it.title}
+                </h3>
+                <p className="mt-2 font-inter text-[11px] leading-[1.5] text-gray-300 line-clamp-3">
+                  {it.desc}
+                </p>
+                <div className="mt-auto flex items-end">
+                  <span className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FEC053] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto">
             View Details
-          </button>
+                  </span>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
         
-        <div className="bg-black/60 border border-yellow-500/10 rounded-2xl p-6 backdrop-blur-sm">
-          <div className="bg-white rounded-lg mb-6 h-64 overflow-hidden">
-            <img 
-              src="https://api.builder.io/api/v1/image/assets/TEMP/46faf5a2fa5b4c6392659eaf48c4ad8540804c04?width=978" 
-              alt="Ocean net" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <h3 className="font-reem text-2xl text-white mb-4">ocean net</h3>
-          <p className="font-inter text-gray-300 mb-6 leading-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.
-          </p>
-          <button className="border border-yellow-500/30 px-6 py-3 rounded-lg text-white font-inter">
-            View Details
+        {/* Mobile CTA */}
+        <div className="mt-8 md:hidden text-center">
+          <button className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-[12px] hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]">
+            Explore Full Archive
           </button>
-        </div>
       </div>
     </div>
   </section>
 );
+};
 
 export const VisionStatementSection = (): JSX.Element => {
   return (
-    <section className="relative w-full h-[1020px] bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(0,0,0,0)_100%)]">
-      <div className="relative w-full h-full max-w-[1920px] mx-auto">
+    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
+      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
+        {/* Background image */}
         <img
-          className="absolute w-full h-full top-0 left-0 object-cover"
+          className="absolute inset-0 w-full h-full object-cover"
           alt="Satellite orbit with planet earth background"
           src="/assets/08-satellite-orbit.jpg"
+          style={{ zIndex: 0 }}
         />
 
-        <div className="absolute top-0 left-0 w-full h-[629px] bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(0,0,0,0)_100%)]" />
+        {/* Top gradient overlay */}
+        <div
+          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
+          style={{ zIndex: 1 }}
+        />
 
-        <div className="absolute top-11 left-1/2 transform -translate-x-1/2 w-[717px] h-[133px]">
-          <h1 className="[font-family:'Reem_Kufi',Helvetica] font-normal text-white text-[70px] text-center tracking-[2.00px] leading-[132.4px]">
+        {/* Content */}
+        <div
+          className="relative z-10 flex flex-col items-center w-full px-4"
+          style={{ marginTop: "60px" }}
+        >
+          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
             OUR VISION
           </h1>
-        </div>
-
-        <div className="absolute top-[166px] left-1/2 transform -translate-x-1/2 w-[783px] h-[55px]">
-          <p className="[font-family:'Inter',Helvetica] font-normal text-white text-xl text-center leading-7 tracking-[0]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <p className="max-w-[700px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
         </div>
       </div>
@@ -243,31 +293,36 @@ export const VisionStatementSection = (): JSX.Element => {
 
 export const GoingToTheMoonSection = (): JSX.Element => {
   return (
-    <section className="relative w-full h-[1082px] bg-black">
-      <div className="relative w-full h-[1082px] max-w-[1920px] mx-auto">
+    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
+      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
+        {/* Background image */}
         <img
-          className="h-[1079px] top-[3px] object-cover absolute w-full left-0"
-          alt="Rectangle"
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Going to the moon background"
           src="/assets/frame-1597883628.png"
+          style={{ zIndex: 0 }}
         />
 
-        <div className="h-[307px] top-0 bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(0,0,0,0)_100%)] absolute w-full left-0" />
+        {/* Top gradient overlay */}
+        <div
+          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
+          style={{ zIndex: 1 }}
+        />
 
-        <div className="h-[492px] top-0 bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(0,0,0,0)_100%)] absolute w-full left-0" />
-
-        <div className="flex flex-col w-full max-w-[885px] items-center gap-[35px] absolute top-[94px] left-1/2 transform -translate-x-1/2 px-4">
-          <h1 className="text-center h-12 mt-[-1.00px] [font-family:'Reem_Kufi',Helvetica] font-normal text-white text-[70px] tracking-[0] leading-[48px] whitespace-nowrap">
+        {/* Content */}
+        <div
+          className="relative z-10 flex flex-col items-center w-full px-4"
+          style={{ marginTop: "60px" }}
+        >
+          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
           GOING TO THE MOON
           </h1>
-
-          <p className="w-full max-w-[783px] h-[55px] [font-family:'Inter',Helvetica] font-normal text-white text-xl text-center tracking-[0] leading-7">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-
           <Button
             variant="outline"
-            className="w-[154px] h-[45px] rounded-[5px] border border-solid border-white bg-transparent text-white hover:bg-white hover:text-black transition-colors h-auto"
+            className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
           >
             Explore Now
           </Button>
@@ -279,28 +334,39 @@ export const GoingToTheMoonSection = (): JSX.Element => {
 
 export const DataCenterSection = (): JSX.Element => {
   return (
-    <section className="relative w-full min-h-[1082px] overflow-hidden [background:url(../assets/10-data-center-moon.jpg)_50%_50%_/_cover,linear-gradient(0deg,rgba(0,0,0,1)_0%,rgba(0,0,0,1)_100%)]">
-      <div className="absolute inset-0 w-full h-[676px] bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(0,0,0,0)_100%)]">
-        <div className="flex justify-center items-start pt-[93px] px-4">
-          <Card className="w-full max-w-[800px] bg-transparent border-none shadow-none">
-            <CardContent className="flex flex-col items-center gap-[35px] p-0">
-              <h1 className="text-center [font-family:'Reem_Kufi',Helvetica] font-normal text-white text-[70px] leading-[48px] whitespace-nowrap">
+    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
+      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
+        {/* Background image */}
+        <img
+          className="absolute inset-0 w-full h-full object-cover"
+          alt="Data center on moon background"
+          src="/assets/10-data-center-moon.jpg"
+          style={{ zIndex: 0 }}
+        />
+
+        {/* Top gradient overlay */}
+        <div
+          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
+          style={{ zIndex: 1 }}
+        />
+
+        {/* Content */}
+        <div
+          className="relative z-10 flex flex-col items-center w-full px-4"
+          style={{ marginTop: "60px" }}
+        >
+          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
               DATA CENTER ON MOON
               </h1>
-
-              <p className="w-full max-w-[783px] [font-family:'Inter',Helvetica] font-normal text-white text-xl text-center tracking-[0] leading-7">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-
+          <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
               <Button
                 variant="outline"
-                className="w-[154px] h-[45px] rounded-[5px] border-white text-white bg-transparent hover:bg-white hover:text-black transition-colors"
+            className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
               >
                 Explore Now
               </Button>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>
@@ -309,29 +375,30 @@ export const DataCenterSection = (): JSX.Element => {
 
 export const SpaceTourismSection = (): JSX.Element => {
   return (
-    <section className="relative w-full h-[1082px] bg-black">
-      <div className="relative w-full h-[1082px]">
+    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
+      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
+        {/* Background image */}
         <img
-          className="h-[1079px] top-[3px] object-cover absolute w-full left-0"
+          className="absolute inset-0 w-full h-full object-cover"
           alt="Space background"
           src="/assets/11-space-tourism.jpg"
+          style={{ zIndex: 0 }}
         />
 
-        <div className="h-[492px] top-0 bg-[linear-gradient(180deg,rgba(0,0,0,1)_0%,rgba(0,0,0,0)_100%)] absolute w-full left-0" />
+        {/* Top gradient overlay */}
+        <div className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent" style={{ zIndex: 1 }} />
 
-        <div className="flex flex-col w-[885px] items-center gap-[35px] absolute top-[94px] left-1/2 transform -translate-x-1/2">
-          <h1 className="relative self-stretch h-12 mt-[-1.00px] [font-family:'Reem_Kufi',Helvetica] font-normal text-white text-[70px] text-center tracking-[0] leading-[48px] whitespace-nowrap">
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center w-full px-4" style={{ marginTop: "60px" }}>
+          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
             SPACE TOURISM
           </h1>
-
-          <p className="relative w-[783px] h-[55px] [font-family:'Inter',Helvetica] font-normal text-white text-xl text-center tracking-[0] leading-7">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-
           <Button
             variant="outline"
-            className="relative w-[154px] h-[45px] rounded-[5px] border border-solid border-white bg-transparent text-white hover:bg-white hover:text-black transition-colors"
+            className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
           >
             Explore Now
           </Button>
@@ -342,144 +409,219 @@ export const SpaceTourismSection = (): JSX.Element => {
 };
 
 const BlogsSection = () => (
-  <section className="relative bg-black py-24 overflow-hidden">
-    <div className="absolute left-[192px] top-[217px] w-[717px] h-[691px] rounded-full bg-[#0BFFD3] opacity-30 blur-[200px]"></div>
-    
-    <div className="relative z-10 container mx-auto px-6">
-      <div className="text-center mb-16">
-        <h2 className="font-reem text-5xl md:text-7xl font-normal text-white capitalize leading-12 mb-8">
-          The blogs
+  <section className="relative bg-black py-20 md:py-24 overflow-hidden">
+    {/* Subtle glow (smaller & darker than before) */}
+    <div className="pointer-events-none absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full bg-[#0BFFD3] opacity-20 blur-[140px]" />
+
+    <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8">
+      {/* Header — smaller like Image-1 */}
+      <div className="text-center mb-10 md:mb-14">
+        <h2 className="font-reem text-3xl md:text-4xl font-normal text-white leading-tight mb-3">
+          The Blogs
         </h2>
-        <p className="font-inter text-xl text-gray-300 max-w-4xl mx-auto leading-7">
-          A blog is like your brand's personal journal — but online, public, and packed with valuable content that educates, inspires, or connects with your audience.
+        <p className="font-inter text-sm md:text-base text-gray-300 max-w-[780px] mx-auto leading-6">
+          A blog is like your brand's personal journal — but online, public, and
+          packed with valuable content that educates, inspires, or connects with your audience.
         </p>
       </div>
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-        <div className="bg-gray-700/50 border-2 border-[#FEC053] rounded-2xl overflow-hidden backdrop-blur-sm">
-          <div className="h-80 overflow-hidden">
+      {/* Layout — slightly increase left width, decrease right width */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Featured (slightly increased width: 5/12) */}
+        <div className="lg:col-span-5">
+          <div className="relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#FEC053] rounded-2xl shadow-xl overflow-hidden">
+            <div className="relative w-full h-[240px] sm:h-[260px]">
             <img 
               src="https://api.builder.io/api/v1/image/assets/TEMP/8d131cf968ba9d25f16ec41d57b7bf0809d4b910?width=1420" 
               alt="Total Lunar Eclipse Gala" 
               className="w-full h-full object-cover"
             />
-            <div className="absolute top-4 right-4 bg-gray-600/80 px-3 py-1 rounded-full">
-              <span className="text-white text-sm">Featured Event</span>
+              <span className="absolute top-3 right-3 bg-[#23272F]/80 px-3 py-[6px] rounded-full text-white text-[11px] font-inter">
+                Featured Event
+              </span>
             </div>
-          </div>
-          <div className="p-6">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="font-reem text-2xl text-white">Total Lunar Eclipse Gala</h3>
+
+            <div className="p-5 sm:p-6">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <h3 className="font-reem text-lg sm:text-xl text-white">
+                  Total Lunar Eclipse Gala
+                </h3>
               <div className="text-right">
-                <p className="text-gray-400 text-sm">Date</p>
-                <p className="text-white">October 14, 2025</p>
+                  <p className="text-gray-400 text-xs leading-none mb-1">Date</p>
+                  <p className="text-white text-xs sm:text-[13px] leading-none">
+                    October 14, 2025
+                  </p>
               </div>
             </div>
-            <p className="font-inter text-gray-300 leading-6 mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra maecenas accumsan lacus vel facilisis.
-            </p>
-            <button className="bg-gradient-to-r from-[#0DF7D4] to-[#2C7BDC] px-6 py-3 rounded-lg text-white font-inter border border-yellow-500/30">
+
+              <p className="font-inter text-xs text-gray-300 leading-5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus
+                commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum
+                dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Risus commodo viverra
+                maecenas accumsan lacus vel facilisis.
+              </p>
+
+              <div className="mt-4 flex justify-end">
+                <button className="bg-gradient-to-r from-[#0DF7D4] to-[#2C7BDC] px-4 py-1.5 rounded-lg text-white font-inter text-xs border border-yellow-400/30 hover:from-[#0DF7D4]/85 hover:to-[#2C7BDC]/85 transition">
               Explore more
             </button>
           </div>
         </div>
-        
-        <div className="space-y-8">
-          <div className="bg-black/60 border border-yellow-500/10 rounded-2xl p-6 backdrop-blur-sm">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="font-reem text-2xl text-white">Total Lunar Eclipse Gala</h3>
-              <div className="text-right">
-                <p className="text-gray-400 text-sm">Date</p>
-                <p className="text-white">May 22-25, 2025</p>
               </div>
             </div>
-            <p className="font-inter text-gray-300 leading-6 mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <button className="border border-yellow-500/30 px-6 py-3 rounded-lg text-gray-200 font-inter">
-              Read
-            </button>
+
+        {/* Side list (decreased width: 7/12) */}
+        <div className="lg:col-span-7 flex flex-col gap-5">
+          {[
+            { date: 'May 22-25, 2025' },
+            { date: 'August 11-13, 2025' },
+            { date: 'September 5, 2025' },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-5 shadow backdrop-blur-sm transition-colors duration-200 hover:border-[#FEC053]"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="font-reem text-base md:text-lg text-white">
+                  Total Lunar Eclipse Gala
+                </h3>
+                <p className="text-gray-400 text-xs leading-none">{item.date}</p>
           </div>
           
-          <div className="bg-black/60 border border-yellow-500/10 rounded-2xl p-6 backdrop-blur-sm">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="font-reem text-2xl text-white">Total Lunar Eclipse Gala</h3>
-              <div className="text-right">
-                <p className="text-gray-400 text-sm">Date</p>
-                <p className="text-white">August 11-13, 2025</p>
-              </div>
-            </div>
-            <p className="font-inter text-gray-300 leading-6 mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <button className="border border-yellow-500/30 px-6 py-3 rounded-lg text-gray-200 font-inter">
+              <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
+
+              <div className="mt-4 flex justify-end">
+                <button className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-xs hover:bg-white hover:text-black transition">
               Read
             </button>
           </div>
-          
-          <div className="bg-black/60 border border-yellow-500/10 rounded-2xl p-6 backdrop-blur-sm">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="font-reem text-2xl text-white">Total Lunar Eclipse Gala</h3>
-              <div className="text-right">
-                <p className="text-gray-400 text-sm">Date</p>
-                <p className="text-white">September 5, 2025</p>
-              </div>
             </div>
-            <p className="font-inter text-gray-300 leading-6 mb-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-            <button className="border border-yellow-500/30 px-6 py-3 rounded-lg text-gray-200 font-inter">
-              Read
-            </button>
-          </div>
+          ))}
         </div>
       </div>
     </div>
-    
-   
   </section>
 );
 
+
+
+
+
+
+
 const AboutSection = () => (
-  <section className="relative bg-black overflow-hidden">
-    <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
-      <div className="relative">
-        <img 
-          src="https://api.builder.io/api/v1/image/assets/TEMP/a47976fc9a4308ff0437dc1b586d21fd4030eb56?width=1782" 
+  <section className="relative bg-black w-full min-h-screen flex items-stretch overflow-hidden" style={{ maxWidth: "100vw" }}>
+    {/* Left Side: Astronaut Image, fills left half */}
+    <div className="relative hidden lg:flex w-1/2 h-screen flex-shrink-0 items-center justify-end overflow-hidden">
+      <div className="relative h-[98vh] w-full flex items-center justify-end">
+        <img
+          src="/assets/Spaceman.png"
           alt="Spaceman" 
-          className="w-full h-full object-cover"
+          className="block h-[98vh] w-auto object-contain object-left"
+          style={{
+            marginLeft: "-10vw", // Pull image left for dramatic effect, adjust as needed
+            zIndex: 1,
+            pointerEvents: "none",
+            userSelect: "none",
+          }}
         />
       </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none" />
+      </div>
       
-      <div className="flex items-center justify-center p-12 lg:p-24">
-        <div className="max-w-2xl">
-          <h2 className="font-reem text-5xl md:text-7xl font-normal text-white leading-[57.6px] tracking-[-2px] mb-8">
+    {/* Right Side: Content, fills right half, centers content */}
+    <div className="w-full lg:w-1/2 flex items-center justify-center px-6 py-16 lg:py-0 min-h-screen" style={{ maxWidth: "700px", marginLeft: "auto" }}>
+      <div className="max-w-xl w-full">
+        <h2 className="font-reem text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
             About Spaceman Craft
           </h2>
-          <p className="font-inter text-xl font-bold text-white mb-6">
+        <p className="font-inter text-xs md:text-sm font-semibold text-white mb-2 tracking-tight">
             "Smarter Thrusters. Longer Missions. Lower Costs"
           </p>
-          <p className="font-inter text-xl text-white leading-normal mb-12 text-justify">
-            International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically. International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically.
+        <p className="font-inter text-sm md:text-base text-white/80 leading-relaxed mb-8">
+          International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically.
           </p>
-          <button className="border border-white px-6 py-3 rounded-[5px] text-white font-inter text-xl hover:bg-white hover:text-black transition-all">
+        <button className="border border-white px-5 py-2 rounded text-white font-inter text-sm hover:bg-white hover:text-black transition-all">
             Explore Now
           </button>
         </div>
       </div>
-    </div>
-    
-  
   </section>
 );
 
 const Footer = () => (
-  <footer className="relative">
-    <img 
-      src="https://api.builder.io/api/v1/image/assets/TEMP/1b7bb8f74606e2f7fece88d857dfebe5a9906f99?width=3840" 
-      alt="Footer" 
-      className="w-full h-auto"
-    />
+  <footer className="relative overflow-hidden text-white">
+    <div className="absolute inset-0">
+      <img
+        src="/assets/Footer.png"
+        alt="Star field footer background"
+        className="h-full w-full object-cover"
+      />
+    </div>
+    <div className="absolute inset-0 bg-black/60" />
+
+    <div className="relative mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
+      <div className="mx-auto mb-10 max-w-3xl text-center">
+        <img src="/assets/01-logo.jpg" alt="Spacemancraft" className="mx-auto mb-4 h-10 w-auto" />
+        <p className="text-sm leading-relaxed text-white/80">
+          A revolutionary blend of spacecraft and passenger vehicle, powered by cost‑effective solar electric propulsion.
+          It paves the way for human exploration across Earth’s orbit and beyond, making space travel more affordable and
+          accessible than ever before.
+        </p>
+      </div>
+
+      <div className="grid gap-10 md:grid-cols-3">
+        <div>
+          <h3 className="mb-4 text-base font-semibold">Navigate</h3>
+          <ul className="space-y-2 text-sm text-white/85">
+            <li><a href="/" className="hover:text-white">Home</a></li>
+            <li><a href="/ourproduct" className="hover:text-white">Product</a></li>
+            <li><a href="#solution" className="hover:text-white">Solution</a></li>
+            <li><a href="#vision" className="hover:text-white">Vision</a></li>
+            <li><a href="#blog" className="hover:text-white">Blog</a></li>
+            <li><a href="#about" className="hover:text-white">About us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="mb-4 text-base font-semibold">Reach Out</h3>
+          <ul className="space-y-3 text-sm text-white/85">
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-white/70" />
+              <span>Tamil Nadu, India</span>
+            </li>
+            <li className="flex items-start gap-3 break-all">
+              <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-white/70" />
+              <a href="mailto:spacemancraftindia@gmail.com" className="hover:text-white">spacemancraftindia@gmail.com</a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="mb-4 text-base font-semibold">Enquire Now</h3>
+          <button
+            className="rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 px-5 py-2.5 text-sm font-medium text-black shadow-[0_0_35px_rgba(56,189,248,0.45)] transition hover:from-cyan-300 hover:to-blue-500"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            Discover Our Thruster
+          </button>
+        </div>
+      </div>
+
+      <div className="mt-12 border-t border-white/20 pt-4 text-xs text-white/70 md:flex md:items-center md:justify-between">
+        <p>© 2025 Spacemancraft. All Rights Reserved.</p>
+        <div className="mt-3 flex gap-4 md:mt-0">
+          <a href="#" className="hover:text-white">Terms & Conditions</a>
+          <a href="#" className="hover:text-white">Privacy Policy</a>
+          <a href="#" className="hover:text-white">Refund Policy</a>
+        </div>
+      </div>
+    </div>
   </footer>
 );
 
