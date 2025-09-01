@@ -554,6 +554,7 @@ const AboutSection = () => (
   </section>
 );
 
+
 const Footer = () => (
   <footer className="relative overflow-hidden text-white">
     <div className="absolute inset-0">
@@ -584,7 +585,16 @@ const Footer = () => (
             <li><a href="#solution" className="hover:text-white">Solution</a></li>
             <li><a href="#vision" className="hover:text-white">Vision</a></li>
             <li><a href="#blog" className="hover:text-white">Blog</a></li>
-            <li><a href="#about" className="hover:text-white">About us</a></li>
+            <li>
+              <Link to="/about" className="hover:text-white">
+                About us
+              </Link>
+            </li>
+            <li>
+              <a href="/contactus" className="hover:text-white">
+                Contact us
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -642,21 +652,3 @@ export default function Index() {
   );
 }
 
-// import React from 'react';
-
-// // Import all the sections of your page
-// import { HeroSection } from '../components/HeroSection';
-
-
-// // This is the main component for your "/" route
-// const LandingPage = () => {
-//   return (
-//     <div className="min-h-screen bg-black">
-      
-//       <HeroSection />
-     
-//     </div>
-//   );
-// };
-
-// export default LandingPage;
