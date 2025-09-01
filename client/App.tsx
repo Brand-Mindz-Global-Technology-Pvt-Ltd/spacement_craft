@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import OurProductSection from "./pages/Ourproduct";
 import About from "./pages/About";
+import ContactUs from "./pages/ContactUs";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/career" element={<PlaceholderPage title="Career" description="Join our mission and explore career opportunities at SpacemanCraft." />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+          <Route path="/contactus" element={<ContactUs /> } />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
