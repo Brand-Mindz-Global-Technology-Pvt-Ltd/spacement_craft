@@ -1296,12 +1296,18 @@
 //   );
 // }
 
-import Scene from "@/components/Scene";
+import React from "react";
+import EarthCanvas from "./EarthCanvas";
+import HeroContent from "./HeroContent";
 
-export default function Index() {
+const Hero: React.FC = () => {
   return (
-    <div className="w-full h-screen">
-      <Scene />
-    </div>
+    <section className="relative w-full h-screen bg-black overflow-hidden">
+      <EarthCanvas />
+      <HeroContent />
+    </section>
   );
-}
+};
+
+export default Hero;
+
