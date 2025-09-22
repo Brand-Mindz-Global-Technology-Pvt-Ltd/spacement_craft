@@ -1299,11 +1299,16 @@
 import React from "react";
 import EarthCanvas from "./EarthCanvas";
 import HeroContent from "./HeroContent";
+import Navbar from "../components/Navbar";
 
 const Hero: React.FC = () => {
   return (
     <section className="relative w-full h-screen bg-black overflow-hidden">
+      {/* The Earth is in the background */}
       <EarthCanvas />
+      
+      {/* The Navbar and Hero Content are layered on top */}
+      <Navbar />
       <HeroContent />
     </section>
   );
