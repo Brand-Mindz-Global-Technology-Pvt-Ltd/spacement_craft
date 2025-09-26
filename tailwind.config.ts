@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         reem: ["Reem Kufi", "sans-serif"],
         inter: ["Inter", "sans-serif"],
+        teachers: ["Teachers", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -8,30 +8,29 @@ const Navbar: React.FC = () => {
       <div className="flex flex-col items-start">
         {/* 🔹 FINAL CHANGE: Reduced logo size */}
         <img src="/assets/01-logo.jpg" alt="Spacemancraft Logo" className="h-12 w-auto" />
-     
       </div>
 
-      {/* 🔹 FINAL CHANGE: Reduced menu font size for a cleaner look */}
-      <ul className="flex space-x-10 text-white font-normal text-sm">
-        <li className="cursor-pointer border-b-2 border-white pb-1">
+      {/* Navigation Menu with Teachers Font */}
+      <ul className="flex space-x-10 text-white text-sm font-teachers">
+        <li className="cursor-pointer border-b-2 border-white pb-1 font-teachers">
           Home
         </li>
-        <li className="cursor-pointer hover:text-gray-300 transition-colors">
+        <li className="cursor-pointer hover:text-gray-300 transition-colors font-teachers">
           Product
         </li>
-        <li className="cursor-pointer hover:text-gray-300 transition-colors">
+        <li className="cursor-pointer hover:text-gray-300 transition-colors font-teachers">
           Solution
         </li>
-        <li className="cursor-pointer hover:text-gray-300 transition-colors">
+        <li className="cursor-pointer hover:text-gray-300 transition-colors font-teachers">
           Mission
         </li>
-        <li className="cursor-pointer hover:text-gray-300 transition-colors">
+        <li className="cursor-pointer hover:text-gray-300 transition-colors font-teachers">
           Vision
         </li>
-        <li className="cursor-pointer hover:text-gray-300 transition-colors">
+        <li className="cursor-pointer hover:text-gray-300 transition-colors font-teachers">
           About us
         </li>
-        <li className="cursor-pointer hover:text-gray-300 transition-colors">
+        <li className="cursor-pointer hover:text-gray-300 transition-colors font-teachers">
           Career
         </li>
       </ul>

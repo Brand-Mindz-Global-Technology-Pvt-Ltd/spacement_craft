@@ -22,9 +22,11 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@react-spring/web": "^10.0.3",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "gsap": "^3.13.0",
+    "motion": "^12.23.21",
     "zod": "^3.25.76"
   },
   "devDependencies": {

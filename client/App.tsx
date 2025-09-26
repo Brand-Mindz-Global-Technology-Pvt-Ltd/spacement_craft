@@ -12,6 +12,10 @@ import PlaceholderPage from "./pages/PlaceholderPage";
 import OurProductSection from "./pages/Ourproduct";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
+import Solution from "./pages/Solution";
+import Blog from "./pages/Blog";
+import BlogPage from "./pages/BlogPage";
+import Product from "./pages/Product";
 
 const queryClient = new QueryClient();
 
@@ -24,14 +28,18 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/ourproduct" element={<OurProductSection />} />
-          <Route path="/product" element={<PlaceholderPage title="Product" description="Discover our revolutionary space technology products and solutions." />} />
-          <Route path="/solution" element={<PlaceholderPage title="Solution" description="Explore comprehensive solutions for space infrastructure and connectivity." />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="/solution" element={<Solution />} />
           <Route path="/mission" element={<PlaceholderPage title="Mission" description="Learn about our mission to revolutionize space technology and lunar infrastructure." />} />
           <Route path="/vision" element={<PlaceholderPage title="Vision" description="Our vision for the future of space exploration and technology." />} />
           <Route path="/about" element={<About /> } />
           <Route path="/career" element={<PlaceholderPage title="Career" description="Join our mission and explore career opportunities at SpacemanCraft." />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blogpage" element={<BlogPage/>} />
+
+
           <Route path="/contactus" element={<ContactUs /> } />
         </Routes>
       </BrowserRouter>

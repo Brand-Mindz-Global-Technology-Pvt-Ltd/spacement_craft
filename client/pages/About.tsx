@@ -328,10 +328,10 @@ const About = () => (
           <h3 className="mb-4 text-base font-semibold">Navigate</h3>
           <ul className="space-y-2 text-sm text-white/85">
             <li><a href="/" className="hover:text-white">Home</a></li>
-            <li><a href="/ourproduct" className="hover:text-white">Product</a></li>
-            <li><a href="#solution" className="hover:text-white">Solution</a></li>
+            <li><a href="/product" className="hover:text-white">Product</a></li>
+            <li><a href="/solution" className="hover:text-white">Solution</a></li>
             <li><a href="#vision" className="hover:text-white">Vision</a></li>
-            <li><a href="#blog" className="hover:text-white">Blog</a></li>
+            <li><a href="/blog" className="hover:text-white">Blog</a></li>
             <li>
               <a href="/about" className="hover:text-white">
                 About us
