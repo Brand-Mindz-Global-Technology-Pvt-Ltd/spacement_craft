@@ -56,8 +56,8 @@ export default function Scene() {
   useEffect(() => {
     if (!earthRef.current || !moonRef.current || !satRef.current) return;
 
-    // reset initial positions
-    earthRef.current.position.set(0, -1, 0);
+    // reset initial positions - moved Earth down to show half
+    earthRef.current.position.set(0, -2.5, 0);
     satRef.current.position.set(0, -5, 0);
     moonRef.current.position.set(6, 0, -2);
 
@@ -95,7 +95,7 @@ export default function Scene() {
 
   return (
     <div className="w-full h-[200vh]" id="scroll-section">
-      <Canvas camera={{ position: [0, 1.5, 8], fov: 60 }}>
+      <Canvas camera={{ position: [0, 0, 8], fov: 60 }}>
         <Suspense fallback={null}>
           <Stars radius={200} depth={50} count={5000} factor={4} fade />
           <ambientLight intensity={0.4} />

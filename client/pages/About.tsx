@@ -1,7 +1,9 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const About = () => (
   <>
+    <Navbar />
     {/* Main About Section */}
     <section
       className="relative bg-black w-full min-h-screen flex items-stretch overflow-hidden"
