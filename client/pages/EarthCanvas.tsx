@@ -1,146 +1,149 @@
-// src/components/EarthCanvas.tsx
-
-import { Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useLoader } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { OrbitControls, Stars } from "@react-three/drei";
 import * as THREE from "three";
 
 // ==================================================================
-// SHADER FOR THE SOFT, BLENDED ATMOSPHERE EFFECT
-// This creates the soft, cinematic glow seen in the reference image.
+// Texture paths - Make sure your files are in the /public folder
 // ==================================================================
-const atmosphereVertexShader = `
-  varying vec3 vNormal;
-  varying vec2 vUv;
+const earthDayMapUrl = "/1_earth_8k.jpg";         // Main day texture
+const earthBumpMapUrl = "/earth-bump-map.png";     // The new B&W bump map
+const earthSpecularMapUrl = "/earth-specular-map.jpg"; // The new blue/black specular map
+const earthNightMapUrl = "/earth-nightmap.jpg";    // Night lights texture
+const earthCloudsMapUrl = "/earth-clouds.jpg";     // Clouds texture
 
-  void main() {
-    vNormal = normalize(normalMatrix * normal);
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
-
-const atmosphereFragmentShader = `
-  uniform sampler2D earthTexture;
-  varying vec3 vNormal;
-  varying vec2 vUv;
-
-  void main() {
-    // A higher bias (0.6) creates a wider glow.
-    // A low exponent (2.0) creates a soft, gradual falloff.
-    // This combination creates the soft border effect you requested.
-    float intensity = pow(0.6 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
-
-    // The base color of the atmosphere.
-    vec3 atmosphereColor = vec3(0.3, 0.6, 1.0);
-
-    // Sample the color from the Earth texture.
-    vec3 earthColor = texture2D(earthTexture, vUv).rgb;
-
-    // Mix the Earth's color with the atmosphere's color based on the intensity.
-    // The final color is also multiplied by the intensity to create the glow effect.
-    gl_FragColor = vec4(mix(earthColor, atmosphereColor, intensity), 1.0) * intensity;
-  }
-`;
-
-// --- Atmosphere Component ---
+// ==================================================================
+// ATMOSPHERE COMPONENT
+// Creates the atmospheric glow effect.
+// ==================================================================
 const Atmosphere = () => {
-  const atmosphereRef = useRef<THREE.Mesh>(null!);
-  // Load the Earth's texture. This will be passed to the shader.
-  const [earthTexture] = useLoader(THREE.TextureLoader, [
-    "/1_earth_8k.jpg",
-  ]);
+  return (
+    <mesh scale={[1.05, 1.05, 1.05]}>
+      <sphereGeometry args={[2.5, 64, 64]} />
+      {/* 
+        Using a standard material with additive blending gives a more
+        realistic "glow" than the basic material from before.
+      */}
+      <meshStandardMaterial
+        color="#00aaff"
+        transparent={true}
+        opacity={0.1}
+        side={THREE.BackSide}
+        blending={THREE.AdditiveBlending} // Key for the glow effect
+        depthWrite={false}
+      />
+    </mesh>
+  );
+};
+
+// ==================================================================
+// CLOUDS COMPONENT
+// Renders the cloud layer with parallax rotation.
+// ==================================================================
+const Clouds = () => {
+  const cloudsRef = useRef<THREE.Mesh>(null!);
+  const cloudsMap = useLoader(THREE.TextureLoader, earthCloudsMapUrl);
 
   useFrame(() => {
-    if (atmosphereRef.current) {
-      atmosphereRef.current.rotation.y += 0.002;
+    if (cloudsRef.current) {
+      // Rotate clouds slightly faster than the Earth
+      cloudsRef.current.rotation.y += 0.0006;
     }
   });
 
   return (
-    <mesh ref={atmosphereRef} scale={[2.7, 2.7, 2.7]}>
-      <sphereGeometry args={[1, 24, 24]} />
-      <shaderMaterial
-        vertexShader={atmosphereVertexShader}
-        fragmentShader={atmosphereFragmentShader}
-        blending={THREE.AdditiveBlending}
-        side={THREE.BackSide}
-        uniforms={{
-          earthTexture: { value: earthTexture },
-        }}
-      />
-    </mesh>
-  );
-};
-
-
-// ==================================================================
-// OPTIMIZED CLOUDS COMPONENT
-// Simplified for faster loading while maintaining visual effect.
-// ==================================================================
-const Clouds = () => {
-  const cloudsRef = useRef<THREE.Mesh>(null!);
-  const cloudsAlphaMap = useLoader(THREE.TextureLoader, "/earth-clouds.jpg");
-  useFrame(() => { if (cloudsRef.current) { cloudsRef.current.rotation.y += 0.0022; } });
-  return (
-    <mesh ref={cloudsRef}>
-      <sphereGeometry args={[2.52, 24, 24]} />
+    <mesh ref={cloudsRef} scale={[1.01, 1.01, 1.01]}>
+      <sphereGeometry args={[2.5, 64, 64]} />
       <meshStandardMaterial
-        alphaMap={cloudsAlphaMap}
+        alphaMap={cloudsMap}
         transparent={true}
-        color="white"
-        opacity={0.15}
+        opacity={0.35}
       />
     </mesh>
   );
 };
 
 // ==================================================================
-// OPTIMIZED EARTH COMPONENT
-// Simplified for faster loading while maintaining visual quality.
+// EARTH COMPONENT
+// This is where the magic happens with all the PBR textures.
 // ==================================================================
 const Earth = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
-  // Load only essential textures for faster loading
-  const [colorMap, nightMap] = useLoader(THREE.TextureLoader, [
-    "/1_earth_8k.jpg",
-    "/earth-nightmap.jpg",
+
+  // Load all the textures needed for the PBR material
+  const [colorMap, bumpMap, roughnessMap, nightMap] = useLoader(THREE.TextureLoader, [
+    earthDayMapUrl,
+    earthBumpMapUrl,
+    earthSpecularMapUrl,
+    earthNightMapUrl,
   ]);
-  useFrame(() => { if (meshRef.current) { meshRef.current.rotation.y += 0.002; } });
+
+  useFrame(() => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += 0.00001; // Earth's rotation
+    }
+  });
+
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[2.5, 24, 24]} />
+      <sphereGeometry args={[2.5, 64, 64]} />
       <meshStandardMaterial
+        // --- Base Color & Surface Detail ---
         map={colorMap}
+        bumpMap={bumpMap}
+        bumpScale={0.05} // Controls the intensity of the mountains/valleys
+
+        // --- Reflections ---
+        // Use the specular map as a roughness map.
+        // Black areas (land) on the map will be rough (less reflective).
+        // White/blue areas (water) will be smooth (more reflective).
+        roughnessMap={roughnessMap}
+        metalness={0.1} // Earth is not very metallic
+
+        // --- Night Lights ---
         emissiveMap={nightMap}
-        emissive={new THREE.Color(0xfff5d4)}
-        emissiveIntensity={0.6}
-        roughness={0.7}
-        metalness={0.1}
+        emissive={new THREE.Color("#ffffbb")} // A warm, yellowish light color
+        emissiveIntensity={1.5} // How bright the lights are
       />
     </mesh>
   );
 };
 
-// --- Main Canvas Component ---
+// ==================================================================
+// MAIN CANVAS COMPONENT
+// Assembles the scene, lighting, and controls.
+// ==================================================================
 const EarthCanvas = () => {
   return (
     <div className="absolute inset-0 z-0">
-      <Canvas camera={{ position: [0, -1.5, 5], fov: 75 }}>
+      <Canvas camera={{ position: [0, 1, 7], fov: 50 }}>
         <Suspense fallback={null}>
-          {/* Intense, cinematic lighting for a bright Earth */}
+          {/* --- Cinematic Lighting Setup --- */}
+          {/* A soft ambient light to slightly illuminate the dark side */}
           <ambientLight intensity={0.1} />
-          <directionalLight position={[10, 10, 5]} intensity={4.0} />
-          
-          {/* Stars are removed as requested */}
+          {/* A strong directional light to simulate the Sun */}
+          <directionalLight
+            position={[5, 5,4]} // Positioned to create a crescent effect
+            intensity={2.5}
+            color="#ffffff"
+          />
 
-          <Earth />
-          <Clouds />
-          <Atmosphere />
+       
 
-          <OrbitControls enableZoom={false} enablePan={false} />
+          {/* --- Earth System --- */}
+          <group position={[0, 0, 0]}>
+            <Earth />
+            {/* <Clouds /> */}
+            {/* <Atmosphere /> */}
+          </group>
+
+          {/* --- Controls --- */}
+          <OrbitControls
+            enableZoom={false}
+            enablePan={false}
+            autoRotate={true}
+            autoRotateSpeed={0.3}
+          />
         </Suspense>
       </Canvas>
     </div>
