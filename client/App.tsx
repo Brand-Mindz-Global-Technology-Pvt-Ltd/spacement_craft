@@ -16,6 +16,9 @@ import Solution from "./pages/Solution";
 import Blog from "./pages/Blog";
 import BlogPage from "./pages/BlogPage";
 import Product from "./pages/Product";
+import Vission from "./pages/Vission";
+import Mission from "./pages/Mission";
+import Career from "./pages/Career";
 
 const queryClient = new QueryClient();
 
@@ -27,13 +30,13 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/ourproduct" element={<OurProductSection />} />
+          <Route path="/vission" element={<Vission />} />
           <Route path="/product" element={<Product />} />
           <Route path="/solution" element={<Solution />} />
-          <Route path="/mission" element={<PlaceholderPage title="Mission" description="Learn about our mission to revolutionize space technology and lunar infrastructure." />} />
+          <Route path="/mission" element={<Mission />} />
           <Route path="/vision" element={<PlaceholderPage title="Vision" description="Our vision for the future of space exploration and technology." />} />
           <Route path="/about" element={<About /> } />
-          <Route path="/career" element={<PlaceholderPage title="Career" description="Join our mission and explore career opportunities at SpacemanCraft." />} />
+          <Route path="/career" element={<Career/>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
           <Route path="/blog" element={<Blog />} />

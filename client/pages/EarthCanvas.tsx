@@ -61,7 +61,7 @@ const Atmosphere = () => {
 
   return (
     <mesh ref={atmosphereRef} scale={[2.7, 2.7, 2.7]}>
-      <sphereGeometry args={[1, 32, 32]} />
+      <sphereGeometry args={[1, 24, 24]} />
       <shaderMaterial
         vertexShader={atmosphereVertexShader}
         fragmentShader={atmosphereFragmentShader}
@@ -77,8 +77,8 @@ const Atmosphere = () => {
 
 
 // ==================================================================
-// BALANCED CLOUDS COMPONENT
-// Creates the subtle, wispy "light color of the white phrase" effect.
+// OPTIMIZED CLOUDS COMPONENT
+// Simplified for faster loading while maintaining visual effect.
 // ==================================================================
 const Clouds = () => {
   const cloudsRef = useRef<THREE.Mesh>(null!);
@@ -86,11 +86,10 @@ const Clouds = () => {
   useFrame(() => { if (cloudsRef.current) { cloudsRef.current.rotation.y += 0.0022; } });
   return (
     <mesh ref={cloudsRef}>
-      <sphereGeometry args={[2.52, 32, 32]} />
+      <sphereGeometry args={[2.52, 24, 24]} />
       <meshStandardMaterial
         alphaMap={cloudsAlphaMap}
         transparent={true}
-        // Pure white color with very low opacity makes the clouds wispy and realistic.
         color="white"
         opacity={0.15}
       />
@@ -99,40 +98,27 @@ const Clouds = () => {
 };
 
 // ==================================================================
-// DEFINITIVE PHOTOREALISTIC EARTH COMPONENT
-// Uses all textures for maximum realism.
+// OPTIMIZED EARTH COMPONENT
+// Simplified for faster loading while maintaining visual quality.
 // ==================================================================
 const Earth = () => {
   const meshRef = useRef<THREE.Mesh>(null!);
-  // Load all five textures required for the complete effect.
-  const [colorMap, nightMap, metalnessMap, normalMap, bumpMap] = useLoader(THREE.TextureLoader, [
-    // "/earth-daymap.jpg",
+  // Load only essential textures for faster loading
+  const [colorMap, nightMap] = useLoader(THREE.TextureLoader, [
     "/1_earth_8k.jpg",
     "/earth-nightmap.jpg",
-    "/earth-specular-map.jpg",
-    "/earth-normal-map.jpg",
-    "/earth-bump-map.png", // The new, cropped bump map
   ]);
   useFrame(() => { if (meshRef.current) { meshRef.current.rotation.y += 0.002; } });
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[2.5, 32, 32]} />
+      <sphereGeometry args={[2.5, 24, 24]} />
       <meshStandardMaterial
-        map={colorMap} // Your new 8K texture
-        
-        normalMap={normalMap} // Adds fine, per-pixel lighting detail
-        normalScale={new THREE.Vector2(0.5, 0.5)}
-
-        metalnessMap={metalnessMap} // Makes oceans shiny, land matte
-        roughness={0.6}
-        
-        // This is the key for physical-looking mountains.
-        bumpMap={bumpMap}
-        bumpScale={0.05} // A subtle value is most realistic
-
-        emissiveMap={nightMap} // City lights
+        map={colorMap}
+        emissiveMap={nightMap}
         emissive={new THREE.Color(0xfff5d4)}
-        emissiveIntensity={0.8}
+        emissiveIntensity={0.6}
+        roughness={0.7}
+        metalness={0.1}
       />
     </mesh>
   );
@@ -142,7 +128,7 @@ const Earth = () => {
 const EarthCanvas = () => {
   return (
     <div className="absolute inset-0 z-0">
-      <Canvas camera={{ position: [0, 0.5, 5], fov: 75 }}>
+      <Canvas camera={{ position: [0, -1.5, 5], fov: 75 }}>
         <Suspense fallback={null}>
           {/* Intense, cinematic lighting for a bright Earth */}
           <ambientLight intensity={0.1} />

@@ -1,4 +1,5 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const items = [
   {
@@ -50,6 +51,7 @@ const items = [
 
 const Solution = () => (
   <div className="min-h-screen w-full bg-black text-white">
+    <Navbar />
     {/* Hero Section */}
     <div className="relative w-full min-h-[350px] md:min-h-[500px] h-[40vw] max-h-[600px] flex items-end justify-start overflow-hidden">
       <img

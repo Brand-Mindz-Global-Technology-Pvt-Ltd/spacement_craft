@@ -1,7 +1,9 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
 const ContactUs = () => (
   <div className="min-h-screen w-full bg-black text-white">
+    <Navbar />
     {/* Hero Section with Spacecraft Image - Fullscreen */}
     <div className="relative w-full min-h-screen h-screen flex items-end justify-start overflow-hidden">
       <img
