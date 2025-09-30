@@ -31,105 +31,104 @@ const Vission: React.FC = () => {
       {/* Main Content Sections */}
       <div className="max-w-7xl mx-auto px-4 py-16 space-y-16">
  
-     {/* SPACE TOURISM */}
+     {/* GOING TO THE MOON */}
      <Card className="bg-[#181c1b] border border-[#222826] rounded-2xl overflow-hidden shadow-lg mt-8">
-          <CardContent className="p-0">
-            <div className="flex flex-col md:flex-row">
-              {/* Left: Image */}
-              <div className="flex-1 flex items-center justify-center p-6 md:p-8">
-                <div className="w-full h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden bg-black flex items-center justify-center">
-                  <img
-                    src="/assets/astronaut-window.jpg"
-                    alt="Astronaut looking out window at Earth"
-                    className="object-cover w-full h-full rounded-xl border border-[#222826]"
-                    style={{ objectPosition: "center" }}
-                  />
-                </div>
-              </div>
-              {/* Right: Text */}
-              <div className="flex-1 flex flex-col justify-center px-8 py-8 md:py-12">
-                <h2 className="text-white text-2xl md:text-3xl lg:text-2xl font-semibold uppercase tracking-wide mb-4 font-inter bg-[#222826] px-4 py-2 rounded-t-lg rounded-b-none shadow">
-                  SPACE TOURISM
-                </h2>
-                <div className="mb-4">
-                  <span className="bg-[#f7b93e] text-[#222826] text-base md:text-lg font-semibold px-4 py-2 rounded shadow font-inter inline-block">
-                    "MAKING THE FINAL FRONTIER AFFORDABLE."
-                  </span>
-                </div>
-                <p className="text-[#c7cfc9] text-sm md:text-base leading-relaxed font-inter">
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+        <CardContent className="p-0">
+          <div className="flex flex-col md:flex-row">
+            {/* Left: Image */}
+            <div className="flex-1 flex items-center justify-center p-6 md:p-8">
+              <div className="w-full h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden bg-black flex items-center justify-center">
+                <img
+                  src="/assets/moon-landers.jpg"
+                  alt="Lunar landers on the moon"
+                  className="object-cover w-full h-full rounded-xl border border-[#222826]"
+                  style={{ objectPosition: "center" }}
+                />
               </div>
             </div>
-          </CardContent>
-        </Card>
+            {/* Right: Text */}
+            <div className="flex-1 flex flex-col justify-center px-8 py-8 md:py-12">
+              <h2 className="text-white text-2xl md:text-3xl lg:text-2xl font-semibold uppercase tracking-wide mb-4 font-inter bg-[#222826] px-4 py-2 rounded-t-lg rounded-b-none shadow">
+                GOING TO THE MOON
+              </h2>
+              <div className="mb-4">
+                <span className="bg-[#f7b93e] text-[#222826] text-base md:text-lg font-semibold px-4 py-2 rounded shadow font-inter inline-block">
+                  “Shaping the future of humanity’s journey to the Moon”
+                </span>
+              </div>
+              <p className="text-[#c7cfc9] text-sm md:text-base leading-relaxed font-inter">
+                Spaceman Craft envisions building technologies that will take humanity closer to the Moon. Through innovation and sustainable space solutions, we aim to inspire future generations and contribute to the lunar journey of mankind.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
-        {/* Next Gen AI Infrastructure Section */}
-        {/* NEXT GEN AI INFRASTRUCTURE */}
-        <Card className="bg-[#181c1b] border border-[#222826] rounded-2xl overflow-hidden shadow-lg">
-          <CardContent className="p-0">
-            <div className="flex flex-col md:flex-row">
-              {/* Left: Text */}
-              <div className="flex-1 flex flex-col justify-center px-8 py-8 md:py-12">
-                <h2 className="text-white text-2xl md:text-3xl lg:text-2xl font-semibold uppercase tracking-wide mb-4 font-inter bg-[#222826] px-4 py-2 rounded-t-lg rounded-b-none shadow">
-                  NEXT GEN AI INFRASTRUCTURE
-                </h2>
-                <div className="mb-4">
-                  <span className="bg-[#f7b93e] text-[#222826] text-base md:text-lg font-semibold px-4 py-2 rounded shadow font-inter inline-block">
-                    "MOON-POWERED DATA, MADE ACCESSIBLE."
-                  </span>
-                </div>
-                <p className="text-[#c7cfc9] text-sm md:text-base leading-relaxed font-inter">
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+      {/* Data Center in Space */}
+      <Card className="bg-[#181c1b] border border-[#222826] rounded-2xl overflow-hidden shadow-lg">
+        <CardContent className="p-0">
+          <div className="flex flex-col md:flex-row">
+            {/* Left: Text */}
+            <div className="flex-1 flex flex-col justify-center px-8 py-8 md:py-12">
+              <h2 className="text-white text-2xl md:text-3xl lg:text-2xl font-semibold uppercase tracking-wide mb-4 font-inter bg-[#222826] px-4 py-2 rounded-t-lg rounded-b-none shadow">
+                DATA CENTER IN SPACE
+              </h2>
+              <div className="mb-4">
+                <span className="bg-[#f7b93e] text-[#222826] text-base md:text-lg font-semibold px-4 py-2 rounded shadow font-inter inline-block">
+                  “Varsha.AI – Space-Based Data Center”
+                </span>
               </div>
-              {/* Right: Image */}
-              <div className="flex-1 flex items-center justify-center p-6 md:p-8">
-                <div className="w-full h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden bg-black flex items-center justify-center">
-                  <img
-                    src="/assets/moon-landers.jpg"
-                    alt="Lunar landers on the moon"
-                    className="object-cover w-full h-full rounded-xl border border-[#222826]"
-                    style={{ objectPosition: "center" }}
-                  />
-                </div>
+              <p className="text-[#c7cfc9] text-sm md:text-base leading-relaxed font-inter">
+                Varsha.AI is Spaceman Craft’s AI-powered platform designed for space-based data processing and satellite operations. It ensures efficient, reliable, and sustainable management of data, supporting humanity’s journey into space and the future of lunar computing.
+              </p>
+            </div>
+            {/* Right: Image */}
+            <div className="flex-1 flex items-center justify-center p-6 md:p-8">
+              <div className="w-full h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden bg-black flex items-center justify-center">
+                <img
+                  src="/assets/datacenter-space.jpg"
+                  alt="Space-based data center"
+                  className="object-cover w-full h-full rounded-xl border border-[#222826]"
+                  style={{ objectPosition: "center" }}
+                />
               </div>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </CardContent>
+      </Card>
 
-        {/* SPACE TOURISM */}
-        <Card className="bg-[#181c1b] border border-[#222826] rounded-2xl overflow-hidden shadow-lg mt-8">
-          <CardContent className="p-0">
-            <div className="flex flex-col md:flex-row">
-              {/* Left: Image */}
-              <div className="flex-1 flex items-center justify-center p-6 md:p-8">
-                <div className="w-full h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden bg-black flex items-center justify-center">
-                  <img
-                    src="/assets/astronaut-window.jpg"
-                    alt="Astronaut looking out window at Earth"
-                    className="object-cover w-full h-full rounded-xl border border-[#222826]"
-                    style={{ objectPosition: "center" }}
-                  />
-                </div>
-              </div>
-              {/* Right: Text */}
-              <div className="flex-1 flex flex-col justify-center px-8 py-8 md:py-12">
-                <h2 className="text-white text-2xl md:text-3xl lg:text-2xl font-semibold uppercase tracking-wide mb-4 font-inter bg-[#222826] px-4 py-2 rounded-t-lg rounded-b-none shadow">
-                  SPACE TOURISM
-                </h2>
-                <div className="mb-4">
-                  <span className="bg-[#f7b93e] text-[#222826] text-base md:text-lg font-semibold px-4 py-2 rounded shadow font-inter inline-block">
-                    "MAKING THE FINAL FRONTIER AFFORDABLE."
-                  </span>
-                </div>
-                <p className="text-[#c7cfc9] text-sm md:text-base leading-relaxed font-inter">
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
+      {/* SPACE TOURISM */}
+      <Card className="bg-[#181c1b] border border-[#222826] rounded-2xl overflow-hidden shadow-lg mt-8">
+        <CardContent className="p-0">
+          <div className="flex flex-col md:flex-row">
+            {/* Left: Image */}
+            <div className="flex-1 flex items-center justify-center p-6 md:p-8">
+              <div className="w-full h-56 md:h-64 lg:h-72 rounded-xl overflow-hidden bg-black flex items-center justify-center">
+                <img
+                  src="/assets/astronaut-window.jpg"
+                  alt="Astronaut looking out window at Earth"
+                  className="object-cover w-full h-full rounded-xl border border-[#222826]"
+                  style={{ objectPosition: "center" }}
+                />
               </div>
             </div>
-          </CardContent>
-        </Card>
+            {/* Right: Text */}
+            <div className="flex-1 flex flex-col justify-center px-8 py-8 md:py-12">
+              <h2 className="text-white text-2xl md:text-3xl lg:text-2xl font-semibold uppercase tracking-wide mb-4 font-inter bg-[#222826] px-4 py-2 rounded-t-lg rounded-b-none shadow">
+                SPACE TOURISM
+              </h2>
+              <div className="mb-4">
+                <span className="bg-[#f7b93e] text-[#222826] text-base md:text-lg font-semibold px-4 py-2 rounded shadow font-inter inline-block">
+                  “Experience the wonder of space—an unforgettable journey beyond Earth”
+                </span>
+              </div>
+              <p className="text-[#c7cfc9] text-sm md:text-base leading-relaxed font-inter">
+                Spaceman Craft aims to make space travel an unforgettable experience for civilians, combining advanced spacecraft technology with safety and sustainability. Our goal is to let everyone witness the beauty of Earth from orbit and inspire a new era of space exploration.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
        </div>
 

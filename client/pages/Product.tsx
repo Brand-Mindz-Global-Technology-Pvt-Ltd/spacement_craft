@@ -37,30 +37,7 @@ const Product = () => {
           </h1>
         </div>
       </div>
-      <section className="w-full flex flex-col md:flex-row items-stretch justify-center px-4 md:px-10 py-8 md:py-12 gap-0 bg-black">
-        {/* Left: Product Image */}
-        <div className="w-full md:w-1/2 flex justify-center items-center">
-          <img
-            src="/assets/03-orbiting-earth.png"
-            alt="Spacemancraft Product in Orbit"
-            className="w-full h-full max-w-full max-h-full rounded-lg shadow-2xl object-contain"
-            draggable={false}
-            style={{ background: "rgba(0,0,0,0.2)", aspectRatio: "1 / 1" }}
-          />
-        </div>
-        {/* Right: Product Description */}
-        <div className="w-full md:w-1/2 flex flex-col justify-center items-start px-0 md:px-8 py-8 md:py-0">
-          <h2 className="font-reem text-2xl md:text-3xl font-semibold text-white mb-4">
-            Spacemancraft
-          </h2>
-          <p className="font-inter text-sm md:text-base text-white/90 leading-relaxed mb-3">
-            Innovation-based deep-tech metal startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission: help satellites travel farther, operate longer, and reduce space mission costs dramatically. International-based deep-tech metal startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission: help satellites travel farther, operate longer, and reduce space mission costs dramatically. International-based deep-tech metal startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission: help satellites travel farther, operate longer, and reduce space mission costs dramatically.
-          </p>
-          <p className="font-inter text-sm md:text-base text-white/90 leading-relaxed">
-            International-based deep-tech metal startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission: help satellites travel farther, operate longer, and reduce space mission costs dramatically. International-based deep-tech metal startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission: help satellites travel farther, operate longer, and reduce space mission costs dramatically.
-          </p>
-        </div>
-      </section>
+   
       <section className="w-full flex flex-col items-center justify-center px-4 md:px-10 py-8 md:py-12 bg-black">
         <div className="relative w-full  mx-auto rounded-2xl overflow-hidden border border-cyan-400/40 shadow-lg" style={{ minHeight: "400px", height: "400px" }}>
           {/* Earth background */}
@@ -172,3 +149,5 @@ const Product = () => {
 };
 
 export default Product;
+
+

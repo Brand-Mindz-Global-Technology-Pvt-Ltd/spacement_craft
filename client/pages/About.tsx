@@ -3,98 +3,65 @@ import Navbar from "../components/Navbar";
 
 const About = () => (
   <>
-    <Navbar />
-    {/* Main About Section */}
-    <section
-      className="relative bg-black w-full min-h-screen flex items-stretch overflow-hidden"
-      style={{ maxWidth: "100vw" }}
-    >
-      {/* Left Side: Astronaut Image */}
-      <div className="relative hidden lg:flex w-1/2 h-screen flex-shrink-0 items-center justify-end overflow-hidden">
-        <div className="relative h-[98vh] w-full flex items-center justify-end">
-          <img
-            src="/assets/Spaceman.png"
-            alt="Spaceman"
-            className="block h-[98vh] w-auto object-contain object-left"
-            style={{
-              marginLeft: "-10vw",
-              zIndex: 1,
-              pointerEvents: "none",
-              userSelect: "none",
-            }}
-          />
+    {/* Responsive Navbar with content offset to prevent overlap */}
+    <div className="relative w-full bg-black">
+      <Navbar />
+      {/* Spacer to offset content below the fixed navbar */}
+      <div className="h-[64px] md:h-[72px] lg:h-[80px]" />
+      {/* Main About Section */}
+      <section
+        className="relative bg-black w-full min-h-screen flex flex-col lg:flex-row items-stretch overflow-hidden"
+        style={{ maxWidth: "100vw" }}
+      >
+        {/* Left Side: Astronaut Image (hidden on mobile/tablet) */}
+        <div className="relative hidden lg:flex w-1/2 h-[calc(100vh-80px)] flex-shrink-0 items-center justify-end overflow-hidden">
+          <div className="relative h-full w-full flex items-center justify-end">
+            <img
+              src="/assets/Spaceman.png"
+              alt="Spaceman"
+              className="block h-full w-auto object-contain object-left"
+              style={{
+                marginLeft: "-10vw",
+                zIndex: 1,
+                pointerEvents: "none",
+                userSelect: "none",
+              }}
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none" />
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none" />
-      </div>
 
-      {/* Right Side: Content */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center min-h-screen">
-        <div
-          className="w-full flex flex-col items-center justify-center"
-          style={{
-            maxWidth: 700,
-            margin: "0 auto",
-            padding: "0 32px",
-          }}
-        >
-          <h2
-            className="font-reem font-normal text-white mb-4"
-            style={{
-              fontSize: "32px",
-              lineHeight: "1.1",
-              textAlign: "left",
-              width: "100%",
-            }}
-          >
-            About Spaceman Craft
-          </h2>
-          <p
-            className="font-inter font-semibold text-white mb-4 tracking-tight"
-            style={{
-              fontSize: "16px",
-              textAlign: "left",
-              width: "100%",
-            }}
-          >
-            "Smarter Thrusters. Longer Missions. Lower Costs"
-          </p>
+        {/* Right Side: Content */}
+        <div className="w-full lg:w-1/2 flex items-center justify-center min-h-[calc(100vh-80px)] py-10 px-4 sm:px-8">
           <div
-            className="flex flex-col gap-4"
+            className="w-full flex flex-col items-center justify-center"
             style={{
-              width: "100%",
+              maxWidth: 700,
+              margin: "0 auto",
             }}
           >
-            <p
-              className="font-inter text-white/80 leading-relaxed"
-              style={{
-                fontSize: "16px",
-                textAlign: "left",
-              }}
+            <h2
+              className="font-reem font-normal text-white mb-4 text-[2rem] sm:text-[2.2rem] md:text-[2.5rem] leading-tight text-left w-full"
             >
-              International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically.
-            </p>
+              About Spaceman Craft
+            </h2>
             <p
-              className="font-inter text-white/80 leading-relaxed"
-              style={{
-                fontSize: "16px",
-                textAlign: "left",
-              }}
+              className="font-inter font-semibold text-white mb-4 tracking-tight text-base sm:text-lg text-left w-full"
             >
-              We are committed to revolutionizing the satellite industry with smarter, more efficient thrusters, enabling longer missions and significant cost savings for our partners and clients.
+              "Driven by Innovation. Defined by Excellence."
             </p>
-            <p
-              className="font-inter text-white/80 leading-relaxed"
-              style={{
-                fontSize: "16px",
-                textAlign: "left",
-              }}
-            >
-              Our international team of specialists brings decades of experience and a passion for innovation, driving us to push the boundaries of what’s possible in space propulsion.
-            </p>
+            <div className="flex flex-col gap-4 w-full">
+              <p className="font-inter text-white/80 leading-relaxed text-base sm:text-lg text-left">
+                At Spaceman Craft Private Limited, we are driven by innovation and a passion for engineering excellence. Established in 2022 and headquartered in Kanyakumari, Tamil Nadu, our company is focused on designing and developing advanced solutions in aerospace, manufacturing, and next-generation technologies.
+              </p>
+              <p className="font-inter text-white/80 leading-relaxed text-base sm:text-lg text-left">
+                Guided by industry experts and supported by a dynamic team, we strive to build reliable, efficient, and sustainable systems that push the boundaries of what’s possible. From nurturing student talent through CubeSat programs to pioneering electric space thruster technology, Spaceman Craft is committed to shaping the future of space exploration and engineering with creativity, precision, and purpose.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     {/* Stats Section */}
     <section
@@ -104,25 +71,25 @@ const About = () => (
         overflow: "visible",
       }}
     >
-      <div className="relative flex w-full max-w-5xl justify-between items-center gap-2 md:gap-8">
+      <div className="relative w-full max-w-5xl flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center sm:gap-2 md:gap-8">
         {/* Stat 1 */}
-        <div className="flex flex-col items-center flex-1 min-w-[120px]">
-          <span className="text-white text-2xl md:text-3xl font-bold font-inter">
+        <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
+          <span className="text-white text-xl xs:text-2xl md:text-3xl font-bold font-inter">
             25<span className="align-super text-base font-normal">+</span>
           </span>
-          <span className="text-white/80 text-xs md:text-sm mt-1 font-inter">
+          <span className="text-white/80 text-xs md:text-sm mt-1 font-inter text-center">
             Years of Experience
           </span>
         </div>
         {/* Stat 2 */}
-        <div className="flex flex-col items-center flex-1 min-w-[120px]">
-          <span className="text-white text-2xl md:text-3xl font-bold font-inter">25K</span>
-          <span className="text-white/80 text-xs md:text-sm mt-1 font-inter">
+        <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
+          <span className="text-white text-xl xs:text-2xl md:text-3xl font-bold font-inter">25K</span>
+          <span className="text-white/80 text-xs md:text-sm mt-1 font-inter text-center">
             Completed Projects
           </span>
         </div>
         {/* Astronaut Image */}
-        <div className="flex flex-col items-center flex-1 min-w-[120px] relative h-[80px] md:h-[120px]">
+        <div className="flex flex-col items-center flex-1 min-w-[100px] relative h-[70px] xs:h-[80px] md:h-[120px] py-3">
           <img
             src="/assets/ABOUTEX.png"
             alt="Astronaut"
@@ -136,62 +103,60 @@ const About = () => (
           />
         </div>
         {/* Stat 3 */}
-        <div className="flex flex-col items-center flex-1 min-w-[120px]">
-          <span className="text-white text-2xl md:text-3xl font-bold font-inter">2K</span>
-          <span className="text-white/80 text-xs md:text-sm mt-1 font-inter">
+        <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
+          <span className="text-white text-xl xs:text-2xl md:text-3xl font-bold font-inter">2K</span>
+          <span className="text-white/80 text-xs md:text-sm mt-1 font-inter text-center">
             Our Specialists
           </span>
         </div>
         {/* Stat 4 */}
-        <div className="flex flex-col items-center flex-1 min-w-[120px]">
-          <span className="text-white text-2xl md:text-3xl font-bold font-inter">5K</span>
-          <span className="text-white/80 text-xs md:text-sm mt-1 font-inter">
+        <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
+          <span className="text-white text-xl xs:text-2xl md:text-3xl font-bold font-inter">5K</span>
+          <span className="text-white/80 text-xs md:text-sm mt-1 font-inter text-center">
             Success Stories
           </span>
         </div>
       </div>
     </section>
 
-    {/* CEO Section - Adjusted padding and image/content sizing */}
-    <section className="w-full bg-black flex flex-col items-center justify-center py-12 px-2 md:px-6">
-      <div className="flex flex-col md:flex-row items-start justify-center w-full gap-8 md:gap-12">
+    {/* CEO Section - Responsive */}
+    <section className="w-full bg-black flex flex-col items-center justify-center py-8 px-2 sm:py-10 md:py-12 md:px-6">
+      <div className="flex flex-col md:flex-row items-start justify-center w-full gap-6 sm:gap-8 md:gap-12 max-w-6xl">
         {/* Left: CEO Image */}
-        <div className="w-full md:w-[480px] flex-shrink-0 flex justify-center md:justify-start h-full">
+        <div className="w-full md:w-[45%] flex-shrink-0 flex justify-center md:justify-start h-full mb-6 md:mb-0">
           <img
             src="./assets/ceo.png"
             alt="CEO"
-            className="rounded-sm object-cover w-[480px] h-[380px] md:w-[480px] md:h-[380px] shadow-lg border border-white/10"
+            className="
+              rounded-sm object-cover shadow-lg border border-white/10
+              w-full max-w-[340px] xs:max-w-[400px] sm:max-w-[440px] md:max-w-[480px]
+              h-[220px] xs:h-[260px] sm:h-[320px] md:h-[380px]
+            "
             style={{
               background: "#222",
               objectPosition: "center top",
               userSelect: "none",
               pointerEvents: "none",
-              minHeight: "380px",
-              minWidth: "480px",
-              maxHeight: "380px",
-              maxWidth: "480px",
             }}
             draggable={false}
           />
         </div>
         {/* Right: Content */}
         <div
-          className="flex-1 flex flex-col justify-start"
-          style={{ minHeight: "420px", maxWidth: "850px" }}
+          className="flex-1 flex flex-col justify-start w-full md:w-[55%] max-w-full"
+          style={{ minHeight: "unset", maxWidth: "850px" }}
         >
-          <h2 className="font-reem text-2xl md:text-3xl font-normal text-white mb-4 mt-2 md:mt-0">
+          <h2 className="font-reem text-xl xs:text-2xl md:text-3xl font-normal text-white mb-3 md:mb-4 mt-2 md:mt-0">
             Meet <span className="font-reem font-normal">Our CEO</span>
           </h2>
           <div className="space-y-3">
-            <p className="font-inter text-white/80 leading-relaxed" style={{ fontSize: "14px" }}>
+            <p className="font-inter text-white/80 leading-relaxed text-xs xs:text-sm md:text-base">
               International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically. International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically.
             </p>
-            <p className="font-inter text-white/80 leading-relaxed" style={{ fontSize: "14px" }}>
-              International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically. International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically.
+            <p className="font-inter text-white/80 leading-relaxed text-xs xs:text-sm md:text-base">
+              International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. 
             </p>
-            <p className="font-inter text-white/80 leading-relaxed" style={{ fontSize: "14px" }}>
-              International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically. International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically.
-            </p>
+            
           </div>
         </div>
       </div>
@@ -223,9 +188,17 @@ const About = () => (
           <div className="absolute inset-0 bg-black/60" />
           <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-6 py-6">
             <span className="text-white text-2xl mb-2 font-reem">“</span>
-            <p className="text-white text-center font-inter text-xs md:text-sm max-w-2xl drop-shadow-lg">
-              The aim was simple, popularize his love for trekking and passion for mountain related activities to the region. Fast forward to 2016 and ME as it is now known has moved from the mountains of Ras Al Khaimah to an initial location in Business Bay. The first integrated indoor purpose-built climbing wall is born in Dubai.
+            <p className="text-white text-center font-inter text-xs md:text-sm max-w-2xl drop-shadow-lg whitespace-pre-line">
+              From the wheel to spaceflight, humanity’s greatest leaps began with the urge to 
+              move. On this pale blue dot, we are but a tiny speck—yet one that dares to propel 
+              itself beyond, while the rest drift with space-time. At Spaceman Craft, we exist to 
+              make that leap possible.
             </p>
+            <div className="mt-4 text-white/80 text-xs md:text-sm font-inter text-center">
+              <span className="italic">_ Praveen Kumar N,</span>
+              <br />
+              <span className="italic">CEO, Spaceman Craft</span>
+            </div>
           </div>
         </div>
       </div>
