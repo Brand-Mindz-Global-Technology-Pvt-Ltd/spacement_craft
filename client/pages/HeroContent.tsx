@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 const HeroContent: React.FC = () => {
   return (
     <div className="absolute inset-0 z-10 flex flex-col items-center text-white">
-      <div className="flex flex-col items-center text-center w-full pt-[20vh] px-4">
+      <div className="flex flex-col items-center text-center w-full pt-[23vh] px-4">
         {/* Main Headline - Reem Kufi Font */}
         <h1 className="text-4xl md:text-5xl lg:text-7xl font-normal uppercase tracking-[0.1em] leading-tight font-reem">
           REVOLUTIONIZING ORBITS
@@ -20,10 +20,7 @@ const HeroContent: React.FC = () => {
         </button>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <ChevronDown size={28} className="text-white/80" />
-      </div>
+     
     </div>
   );
 };

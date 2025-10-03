@@ -1,82 +1,102 @@
-import { useState } from "react";
+import { useState, useEffect, useRef, forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import EarthCanvas from "./EarthCanvas";
 import HeroContent from "./HeroContent";
 import Navbar from "../components/Navbar";
+import ScrollFloat from "../components/ui/ScrollFloat";
 
+// --- Always show Navbar at the top, outside the scrollable hero container ---
 
-// Real Hero Section with 3D Earth Effect
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen bg-black overflow-hidden">
-      {/* 3D Earth Canvas as background */}
-      <EarthCanvas />
-      
-      {/* Navigation Bar */}
-      <Navbar />
-      
-      {/* Hero Content Overlay */}
+    // This section is now just a container for the content overlay.
+    // The height of 100vh ensures it takes up the full screen, acting as a scroll trigger.
+    <section className="relative w-full h-screen">
+      {/* Navbar is now outside, so remove it here */}
       <HeroContent />
     </section>
   );
 };
 
+export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: number }) => {
+  
+  // All your existing text animation logic is preserved.
+  const p1Progress = revealProgress;
+  const p1TranslateY = (1 - p1Progress) * 20;
 
-export const OurProductSection = (): JSX.Element => {
+  const p2Progress = Math.max(0, Math.min(1, (revealProgress - 0.1) / 0.9));
+  const p2TranslateY = (1 - p2Progress) * 20;
+
+  // This master opacity will control both the satellite and the moon.
+  const imageOpacity = revealProgress;
+  // Subtle scale-up animation for the satellite.
+  const imageScale = 1.0 + revealProgress * 0.1;
+  // Subtle slide-in animation for the moon.
+  const moonTranslate = (1 - revealProgress) * 50;
+
   return (
-    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
-      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
-        {/* Background image */}
-        <img
-          className="absolute inset-0 w-full h-full object-cover"
-          alt="Spaceman craft orbiting earth and moon"
-          src="/assets/spaceman-craft-orbiting-earth-and-moon-2.png"
-          style={{ zIndex: 0 }}
-        />
-
-        {/* Top gradient overlay */}
-        <div
-          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
-          style={{ zIndex: 1 }}
-        />
-
-        {/* Content */}
-        <div
-          className="relative z-10 flex flex-col items-center w-full px-4"
-          style={{ marginTop: "60px" }}
+    <section className="relative w-full h-screen">
+      
+      {/* 1. TEXT CONTENT (on top) */}
+      <div className="relative z-20 flex flex-col items-center w-full px-4 pt-20 md:pt-8">
+        <ScrollFloat
+          progress={revealProgress}
+          tag="h1"
+          containerClassName="text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal font-reem text-center tracking-wide mb-3"
         >
-          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
-            OUR PRODUCT
-          </h1>
-          <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-2 leading-relaxed flex items-center gap-2">
-            <span>&quot; Powering the Future From the Moon &quot;</span>
-            <span>
-              <svg
-                width="32"
-                height="20"
-                viewBox="0 0 32 20"
-                fill="none"
-                className="inline-block align-middle"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M31.5 10C31.5 15.2467 24.5081 19.5 16 19.5C7.49187 19.5 0.5 15.2467 0.5 10C0.5 4.75329 7.49187 0.5 16 0.5C24.5081 0.5 31.5 4.75329 31.5 10Z"
-                  stroke="#B6B6B6"
-                />
-                <circle cx="24" cy="5" r="3" fill="#B6B6B6" />
-              </svg>
-            </span>
-          </p>
-          <p className="max-w-[600px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
-            SpacemanCraft is on a mission to build the first-ever lunar data
-            center—reshaping how the world thinks about infrastructure,
-            connectivity, and the cosmos. Welcome to the future of data, built
-            in space.
-          </p>
-        </div>
+          OUR PRODUCT
+        </ScrollFloat>
+
+        <p 
+          className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-2 leading-relaxed"
+          style={{ opacity: p1Progress, transform: `translateY(${p1TranslateY}px)` }}
+        >
+          " Powering the Future From the Moon "
+        </p>
+        
+        <p 
+          className="max-w-[600px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed"
+          style={{ opacity: p2Progress, transform: `translateY(${p2TranslateY}px)` }}
+        >
+          SpacemanCraft is on a mission to build the first-ever lunar data center—reshaping how the world thinks about infrastructure, connectivity, and the cosmos. Welcome to the future of data, built in space.
+        </p>
       </div>
+
+      {/* 2. SATELLITE IMAGE (centered, behind text) */}
+      <div 
+        className="absolute inset-0 z-10 flex justify-center items-center pointer-events-none"
+        style={{ opacity: imageOpacity }}
+      >
+        <img
+          src="/satellite-.png"
+          alt="Spaceman Craft Satellite"
+          // Responsive sizing: small on mobile, larger on desktop
+          className="w-auto h-auto max-w-[320px] md:max-w-[600px] lg:max-w-[900px] mt-24 md:mt-12"
+          style={{
+            transform: `scale(${imageScale})`,
+            transformOrigin: 'center center',
+          }}
+        />
+      </div>
+
+      {/* 3. MOON IMAGE (top right, behind text) */}
+      {/* <div 
+        className="absolute inset-0 z-0 flex justify-end items-start pointer-events-none"
+        style={{ opacity: imageOpacity }}
+      >
+        <img
+          src="/moon.png"
+          alt="Moon"
+          // Responsive sizing and positioning
+          className="w-auto h-auto max-w-[120px] md:max-w-[180px] lg:max-w-[250px] mt-10 mr-5 md:mt-16 md:mr-16"
+          style={{
+            transform: `translate(${moonTranslate}px, -${moonTranslate}px)`,
+          }}
+        />
+      </div> */}
+      
     </section>
   );
 };
@@ -616,10 +636,68 @@ const Footer = () => (
 );
 
 export default function Index() {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const scrollDurationInScreens = 7;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const container = containerRef.current;
+      if (!container) return;
+      const { top } = container.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const scrollableDistance = windowHeight * (scrollDurationInScreens - 1);
+      const progress = Math.max(0, Math.min(1, -top / scrollableDistance));
+      setScrollProgress(progress);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrollDurationInScreens]);
+
+  // --- CENTRALIZED TIMING LOGIC ---
+  const heroOpacity = Math.max(0, Math.min(1, (0.1 - scrollProgress) / 0.1));
+
+  // This is the master timing control for the entire "Our Product" section reveal.
+  // You can adjust this one line to change when everything appears.
+  const revealProgress = Math.max(0, Math.min(1, (scrollProgress - 0.3) / 0.3));
+
+  const containerHeight = `${scrollDurationInScreens * 100}vh`;
+
   return (
     <div className="min-h-screen bg-black">
-      <Hero />
-      <OurProductSection />
+      {/* Navbar is always visible at the top */}
+      <div className="sticky top-0 z-[100] w-full">
+        <Navbar />
+      </div>
+      <div ref={containerRef} className="relative" style={{ height: containerHeight }}>
+        <div className="sticky top-0 h-screen overflow-hidden">
+          <EarthCanvas scrollProgress={scrollProgress} />
+
+          <div
+            className="absolute inset-0 z-20"
+            style={{
+              opacity: heroOpacity,
+              pointerEvents: heroOpacity > 0.5 ? "auto" : "none",
+            }}
+          >
+            <Hero />
+          </div>
+
+          {/* This wrapper's ONLY job is to handle interactivity. */}
+          {/* The component inside will handle its own animations. */}
+          <div
+            className="absolute inset-0 z-10 flex justify-center items-start pt-28"
+            style={{
+              pointerEvents: revealProgress > 0.5 ? "auto" : "none",
+            }}
+          >
+            <OurProductSection revealProgress={revealProgress} />
+          </div>
+        </div>
+      </div>
+
+      {/* --- Rest of the page flows normally below the container --- */}
       <VideoObservationSection />
       <VisionStatementSection />
       <GoingToTheMoonSection />

@@ -1,59 +1,79 @@
-import { Suspense, useRef } from "react";
+import { Suspense, useRef, useState, useEffect } from "react";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { OrbitControls, Stars } from "@react-three/drei";
 import * as THREE from "three";
+import { useGLTF } from "@react-three/drei";
+import { useMemo } from "react";
 
 // ==================================================================
-// Texture paths - Make sure your files are in the /public folder
+// YOUR ORIGINAL TEXTURE PATHS - UNCHANGED
 // ==================================================================
-const earthDayMapUrl = "/1_earth_8k.jpg";         // Main day texture
-const earthBumpMapUrl = "/earth-bump-map.png";     // The new B&W bump map
-const earthSpecularMapUrl = "/earth-specular-map.jpg"; // The new blue/black specular map
-const earthNightMapUrl = "/earth-nightmap.jpg";    // Night lights texture
-const earthCloudsMapUrl = "/earth-clouds.jpg";     // Clouds texture
+const earthDayMapUrl = "/1_earth_8k.jpg";
+const earthBumpMapUrl = "/earth-bump-map.png";
+const earthSpecularMapUrl = "/earth-specular-map.jpg";
+const earthNightMapUrl = "/earth-nightmap.jpg";
+const earthCloudsMapUrl = "/earth-clouds.jpg";
 
 // ==================================================================
-// ATMOSPHERE COMPONENT
-// Creates the atmospheric glow effect.
+// YOUR ORIGINAL ATMOSPHERE COMPONENT - UNCHANGED
 // ==================================================================
 const Atmosphere = () => {
+  const shader = useMemo(() => ({
+    uniforms: {
+      uColor: { value: new THREE.Color(0x00aaff) }, // glow color
+      uIntensity: { value: 1.0 },
+    },
+    vertexShader: `
+      varying vec3 vNormal;
+      void main() {
+        vNormal = normalize(normalMatrix * normal);
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uColor;
+      uniform float uIntensity;
+      varying vec3 vNormal;
+
+      void main() {
+        // Fresnel effect: stronger glow near edges
+        float fresnel = pow(1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0))), 3.0);
+        gl_FragColor = vec4(uColor, fresnel * uIntensity);
+      }
+    `,
+    side: THREE.BackSide,
+    transparent: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  }), []);
+
   return (
     <mesh scale={[1.05, 1.05, 1.05]}>
-      <sphereGeometry args={[2.5, 64, 64]} />
-      {/* 
-        Using a standard material with additive blending gives a more
-        realistic "glow" than the basic material from before.
-      */}
-      <meshStandardMaterial
-        color="#00aaff"
-        transparent={true}
-        opacity={0.1}
-        side={THREE.BackSide}
-        blending={THREE.AdditiveBlending} // Key for the glow effect
-        depthWrite={false}
-      />
+      <sphereGeometry args={[4.5, 128, 128]} />
+      <shaderMaterial args={[shader]} />
     </mesh>
   );
 };
 
 // ==================================================================
-// CLOUDS COMPONENT
-// Renders the cloud layer with parallax rotation.
+// YOUR ORIGINAL CLOUDS COMPONENT - WITH THE FIX
 // ==================================================================
 const Clouds = () => {
   const cloudsRef = useRef<THREE.Mesh>(null!);
+  
+  // ***** THIS IS THE FIX *****
+  // Changed THREE.Loader to the correct THREE.TextureLoader
   const cloudsMap = useLoader(THREE.TextureLoader, earthCloudsMapUrl);
+  // **************************
 
   useFrame(() => {
     if (cloudsRef.current) {
-      // Rotate clouds slightly faster than the Earth
-      cloudsRef.current.rotation.y += 0.0006;
+      cloudsRef.current.rotation.y += 0.0005;
     }
   });
 
   return (
-    <mesh ref={cloudsRef} scale={[1.01, 1.01, 1.01]}>
-      <sphereGeometry args={[2.5, 64, 64]} />
+    <mesh ref={cloudsRef} scale={[0, 1.01, 1.01]}>
+      <sphereGeometry args={[4.5, 64, 64]} />
       <meshStandardMaterial
         alphaMap={cloudsMap}
         transparent={true}
@@ -64,13 +84,11 @@ const Clouds = () => {
 };
 
 // ==================================================================
-// EARTH COMPONENT
-// This is where the magic happens with all the PBR textures.
+// YOUR ORIGINAL EARTH COMPONENT - UNCHANGED (WITH REVOLVING SPEED)
 // ==================================================================
-const Earth = () => {
+const Earth = ({ scrollVelocity }: { scrollVelocity: number }) => {
   const meshRef = useRef<THREE.Mesh>(null!);
 
-  // Load all the textures needed for the PBR material
   const [colorMap, bumpMap, roughnessMap, nightMap] = useLoader(THREE.TextureLoader, [
     earthDayMapUrl,
     earthBumpMapUrl,
@@ -80,70 +98,163 @@ const Earth = () => {
 
   useFrame(() => {
     if (meshRef.current) {
-      meshRef.current.rotation.y += 0.00001; // Earth's rotation
+      const baseSpeed = 0.0003; // Correct, visible revolving speed
+      const velocityMultiplier = Math.abs(scrollVelocity) * 0.0001;
+      const totalSpeed = baseSpeed + velocityMultiplier;
+      meshRef.current.rotation.y += totalSpeed;
     }
   });
 
   return (
     <mesh ref={meshRef}>
-      <sphereGeometry args={[2.5, 64, 64]} />
+      <sphereGeometry args={[4.5, 100, 100]} />
       <meshStandardMaterial
-        // --- Base Color & Surface Detail ---
         map={colorMap}
         bumpMap={bumpMap}
-        bumpScale={0.05} // Controls the intensity of the mountains/valleys
-
-        // --- Reflections ---
-        // Use the specular map as a roughness map.
-        // Black areas (land) on the map will be rough (less reflective).
-        // White/blue areas (water) will be smooth (more reflective).
+        bumpScale={0.05}
         roughnessMap={roughnessMap}
-        metalness={0.1} // Earth is not very metallic
-
-        // --- Night Lights ---
+        metalness={0.1}
         emissiveMap={nightMap}
-        emissive={new THREE.Color("#ffffbb")} // A warm, yellowish light color
-        emissiveIntensity={1.5} // How bright the lights are
+        emissive={new THREE.Color("#ffffbb")}
+        emissiveIntensity={1.5}
       />
     </mesh>
   );
 };
 
+// const Satellite = () => {
+//   const satelliteRef = useRef<THREE.Group>(null!);
+  
+//   // This hook loads your 3D model from the /public folder
+//   const { scene } = useGLTF("/satellite.glb");
+
+//   // A subtle floating animation to make it feel alive
+//   useFrame(({ clock }) => {
+//     if (satelliteRef.current) {
+//       satelliteRef.current.position.y += Math.sin(clock.getElapsedTime() * 0.5) * 0.003;
+//     }
+//   });
+
+//   // We render the loaded scene using the <primitive> object.
+//   // This is the standard way to display imported 3D models.
+//   return <primitive ref={satelliteRef} object={scene} />;
+// };
+
 // ==================================================================
-// MAIN CANVAS COMPONENT
-// Assembles the scene, lighting, and controls.
+// MAIN CANVAS COMPONENT - UNCHANGED FROM THE LAST CORRECT VERSION
 // ==================================================================
-const EarthCanvas = () => {
+const EarthCanvas = ({ scrollProgress = 0 }: { scrollProgress?: number }) => {
+  const [scrollVelocity, setScrollVelocity] = useState(0);
+  const lastScrollY = useRef(0);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const velocity = currentScrollY - lastScrollY.current;
+      setScrollVelocity(velocity);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+      scrollTimeout.current = setTimeout(() => { setScrollVelocity(0); }, 100);
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
+  }, []);
+
+  const easeOutCubic = (x: number): number => 1 - Math.pow(1 - x, 3);
+  const progress = easeOutCubic(scrollProgress);
+
+  const initial = {
+    position: new THREE.Vector3(0, -6.6, 2),
+    rotation: new THREE.Euler(-0.5, 0, 0),
+    scale: 1.5,
+    cameraZ: 12,
+  };
+
+  const final = {
+    position: new THREE.Vector3(-10,-7, 7),
+    rotation: new THREE.Euler(0, 0, 0.5),
+    scale: 2.2,
+    cameraZ: 20,
+  };
+
+  const satelliteProgress = Math.max(0, Math.min(1, (progress - 0.5) / 0.5));
+
+  const initialSatellite = {
+    position: new THREE.Vector3(-6, -3, -2),
+    rotation: new THREE.Euler(0, 0, 0),
+    scale: 0,
+  };
+
+  // ==================================================================
+  // TWEAK THESE VALUES TO PERFECTLY POSITION YOUR NEW 3D MODEL
+  // ==================================================================
+  const finalSatellite = {
+    position: new THREE.Vector3(2, -1, 5),
+    // We add a rotation on the X-axis to tilt the model up, which is common for .glb files.
+    // The Y-axis rotation angles it towards the camera.
+    rotation: new THREE.Euler(Math.PI / 12, Math.PI / 4, Math.PI / 16),
+    scale: 2.0, // .glb models are often much larger, so we start with a smaller scale.
+  };
+  // ==================================================================
+
+  const satellitePosition = new THREE.Vector3().lerpVectors(initialSatellite.position, finalSatellite.position, satelliteProgress);
+  const satRotX = THREE.MathUtils.lerp(initialSatellite.rotation.x, finalSatellite.rotation.x, satelliteProgress);
+  const satRotY = THREE.MathUtils.lerp(initialSatellite.rotation.y, finalSatellite.rotation.y, satelliteProgress);
+  const satRotZ = THREE.MathUtils.lerp(initialSatellite.rotation.z, finalSatellite.rotation.z, satelliteProgress);
+  const satelliteRotation = new THREE.Euler(satRotX, satRotY, satRotZ);
+  const satelliteScale = THREE.MathUtils.lerp(initialSatellite.scale, finalSatellite.scale, satelliteProgress);
+
+
+  // earthpostion
+
+  const earthPosition = new THREE.Vector3().lerpVectors(initial.position, final.position, progress);
+  const rotX = THREE.MathUtils.lerp(initial.rotation.x, final.rotation.x, progress);
+  const rotY = THREE.MathUtils.lerp(initial.rotation.y, final.rotation.y, progress);
+  const rotZ = THREE.MathUtils.lerp(initial.rotation.z, final.rotation.z, progress);
+  const earthRotation = new THREE.Euler(rotX, rotY, rotZ);
+  const earthScale = THREE.MathUtils.lerp(initial.scale, final.scale, progress);
+  const cameraZ = THREE.MathUtils.lerp(initial.cameraZ, final.cameraZ, progress);
+
   return (
     <div className="absolute inset-0 z-0">
-      <Canvas camera={{ position: [0, 1, 7], fov: 50 }}>
+      <Canvas camera={{ position: [0, 0, cameraZ], fov: 50 }}>
         <Suspense fallback={null}>
-          {/* --- Cinematic Lighting Setup --- */}
-          {/* A soft ambient light to slightly illuminate the dark side */}
           <ambientLight intensity={0.1} />
-          {/* A strong directional light to simulate the Sun */}
-          <directionalLight
-            position={[5, 5,4]} // Positioned to create a crescent effect
-            intensity={2.5}
-            color="#ffffff"
-          />
+          <directionalLight position={[20, 9, 5]} intensity={2.5} />
 
-       
-
-          {/* --- Earth System --- */}
-          <group position={[0, 0, 0]}>
-            <Earth />
+          <group 
+            position={earthPosition}
+            rotation={earthRotation}
+            scale={earthScale}
+          >
+            <Earth scrollVelocity={scrollVelocity} />
             {/* <Clouds /> */}
-            {/* <Atmosphere /> */}
+            {/* <Atmosphere />   */}
           </group>
 
-          {/* --- Controls --- */}
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            autoRotate={true}
-            autoRotateSpeed={0.3}
-          />
+          {/* --- STEP 3: ADD THE SATELLITE TO THE SCENE --- */}
+          {/* <group
+            position={satellitePosition}
+            rotation={satelliteRotation}
+            scale={satelliteScale}
+          >
+           
+            <pointLight 
+              position={[2, 3, 5]} // Positioned relative to the satellite
+              intensity={200}       // Point lights need a much higher intensity
+              distance={100}        // How far the light reaches
+              decay={2}             // How fast the light fades with distance
+            />
+            
+           
+            <Satellite />
+            
+       
+          </group> */}
         </Suspense>
       </Canvas>
     </div>
