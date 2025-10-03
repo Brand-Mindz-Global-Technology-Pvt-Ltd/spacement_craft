@@ -19,7 +19,8 @@ const earthCloudsMapUrl = "/earth-clouds.jpg";
 const Atmosphere = () => {
   const shader = useMemo(() => ({
     uniforms: {
-      uColor: { value: new THREE.Color(0x00aaff) }, // glow color
+      uInnerColor: { value: new THREE.Color("#2e7cff") }, // deep blue near Earth
+      uOuterColor: { value: new THREE.Color("#ffffff") }, // soft fade to white
       uIntensity: { value: 1.0 },
     },
     vertexShader: `
@@ -30,14 +31,20 @@ const Atmosphere = () => {
       }
     `,
     fragmentShader: `
-      uniform vec3 uColor;
+      uniform vec3 uInnerColor;
+      uniform vec3 uOuterColor;
       uniform float uIntensity;
       varying vec3 vNormal;
 
       void main() {
-        // Fresnel effect: stronger glow near edges
-        float fresnel = pow(1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0))), 3.0);
-        gl_FragColor = vec4(uColor, fresnel * uIntensity);
+        // Fresnel effect controls edge strength
+        float fresnel = pow(1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0))), 2.0);
+
+        // Blend between inner blue and outer white
+        vec3 color = mix(uInnerColor, uOuterColor, fresnel);
+
+        // Apply fade
+        gl_FragColor = vec4(color, fresnel * uIntensity * 0.4);
       }
     `,
     side: THREE.BackSide,
@@ -47,12 +54,13 @@ const Atmosphere = () => {
   }), []);
 
   return (
-    <mesh scale={[1.05, 1.05, 1.05]}>
+    <mesh scale={[1.02, 1.02, 1.02]}>
       <sphereGeometry args={[4.5, 128, 128]} />
       <shaderMaterial args={[shader]} />
     </mesh>
   );
 };
+
 
 // ==================================================================
 // YOUR ORIGINAL CLOUDS COMPONENT - WITH THE FIX
