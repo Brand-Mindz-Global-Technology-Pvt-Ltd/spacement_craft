@@ -120,6 +120,16 @@ const Navbar: React.FC = () => {
         >
           Career
         </li>
+        <li 
+          className={`cursor-pointer pb-1 font-teachers transition-colors ${
+            location.pathname === "/contactus" 
+              ? "border-b-2 border-cyan-400 text-cyan-400" 
+              : "hover:text-cyan-400 hover:border-b-2 hover:border-cyan-400"
+          }`}
+          onClick={() => handleNavClick("/contactus")}
+        >
+          Contact us
+        </li>
       </ul>
 
       {/* Mobile Menu Button */}
@@ -221,6 +231,16 @@ const Navbar: React.FC = () => {
                 onClick={() => handleNavClick("/career")}
               >
                 Career
+              </li>
+              <li 
+                className={`cursor-pointer pb-1 font-teachers transition-colors ${
+                  location.pathname === "/contactus" 
+                    ? "border-b-2 border-cyan-400 text-cyan-400" 
+                    : "hover:text-cyan-400 hover:border-b-2 hover:border-cyan-400"
+                }`}
+                onClick={() => handleNavClick("/contactus")}
+              >
+                Contact us
               </li>
             </ul>
           </div>
