@@ -12,8 +12,9 @@ const HeroContent: React.FC = () => {
 
         {/* Subtitle - Inter Font */}
         <p className="max-w-4xl mt-8 text-base md:text-lg font-light text-gray-300 font-inter leading-relaxed">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
+        At Spaceman Craft Private Limited, we are on a mission to change the way   
+humanity moves in space. With our breakthrough electric thruster technology, we 
+are bringing a true revolution to orbital systems.         </p>
         {/* CTA Button - Inter Font with Figma Gradient Hover and ShinyText */}
         <button className="mt-10 px-8 py-3 text-base font-medium border rounded-md transition-all duration-300 font-inter hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white">
           <span className="shiny-text">Discover Our Thruster</span>

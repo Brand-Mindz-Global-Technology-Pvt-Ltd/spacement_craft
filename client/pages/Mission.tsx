@@ -125,7 +125,7 @@ const Mission: React.FC = () => {
       <div className="w-full flex justify-center">
         <div className="w-full max-w-7xl rounded-lg overflow-hidden shadow-lg border border-[#222826] bg-[#0a0a1a]">
           <img
-            src="/assets/varshaai-heartwave.jpg"
+            src="/assets/varsaai.png"
             alt="VARSHAAI Heart Wave"
             className="w-full h-[220px] sm:h-[320px] md:h-[400px] lg:h-[520px] object-cover object-center"
             draggable={false}

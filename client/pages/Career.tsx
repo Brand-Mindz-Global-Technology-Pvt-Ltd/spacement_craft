@@ -46,23 +46,26 @@ const Career: React.FC = () => {
           JOIN OUR TEAM
         </button>
       </section>
-
-      {/* Image & Quote Section */}
+      {/* Image & Quote Section - Overlaid Content on Wide Image */}
       <section className="w-full flex flex-col items-center justify-center mt-8">
-        <div className="w-full max-w-3xl rounded-lg overflow-hidden shadow-lg border border-[#222826] bg-[#0a0a1a] flex flex-col items-center">
+        <div className="relative w-full max-w-7xl rounded-2xl overflow-hidden shadow-2xl border border-[#222826] bg-black flex flex-col items-center min-h-[260px] md:min-h-[380px]">
+          {/* Background Image */}
           <img
-            src="/assets/eclipse-career.jpg"
+            src="/assets/careerthought.png"
             alt="Eclipse Career"
-            className="w-full h-[200px] md:h-[320px] object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover object-center"
             draggable={false}
-            style={{ background: "#0a0a1a" }}
+            style={{ zIndex: 0, minHeight: "260px", maxHeight: "420px" }}
           />
-          <div className="w-full flex flex-col items-center justify-center py-6 px-4">
-            <p className="text-white text-center text-base md:text-lg font-inter font-medium mb-2 tracking-wide">
+          {/* Optional: Overlay for better text contrast */}
+          <div className="absolute inset-0 bg-black/40 z-10" />
+          {/* Quote Content - Centered Over Image */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-4 py-8">
+            <p className="text-white text-center text-base md:text-xl font-inter font-medium mb-3 tracking-wide drop-shadow-lg">
               "THE ONLY WAY TO DO GREAT WORK IS TO<br className="hidden md:block" /> LOVE WHAT YOU DO"
             </p>
-            <span className="text-[#1de9b6] text-sm md:text-base font-inter font-semibold text-center">
-              - STEVE JOBS
+            <span className="text-[#1de9b6] text-sm md:text-lg font-inter font-semibold text-center drop-shadow-lg">
+              STEVE JOBS
             </span>
           </div>
         </div>

@@ -49,18 +49,18 @@ export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: num
           OUR PRODUCT
         </ScrollFloat>
 
-        <p 
+        <p
           className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-2 leading-relaxed"
           style={{ opacity: p1Progress, transform: `translateY(${p1TranslateY}px)` }}
         >
-          " Powering the Future From the Moon "
+          Electric Thruster System
         </p>
-        
-        <p 
+
+        <p
           className="max-w-[600px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed"
           style={{ opacity: p2Progress, transform: `translateY(${p2TranslateY}px)` }}
         >
-          SpacemanCraft is on a mission to build the first-ever lunar data center—reshaping how the world thinks about infrastructure, connectivity, and the cosmos. Welcome to the future of data, built in space.
+          The Electric Thruster System by Spaceman Craft Pvt Ltd provides compact, efficient, and sustainable propulsion for satellites and spacecraft. It extends mission life while reducing costs and supporting orbital sustainability.
         </p>
       </div>
 
@@ -105,17 +105,17 @@ const VideoObservationSection = () => {
     {
       title: "Hyperspectral Vision",
       img: "https://api.builder.io/api/v1/image/assets/TEMP/44d47a5d1658608c03887f3ffd188776125c7cf4?width=1051",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.",
+      desc: "High-precision analysis beyond human sight.",
     },
     {
-      title: "Defence Surveillance",
+      title: "Defense Surveillance",
       img: "https://api.builder.io/api/v1/image/assets/TEMP/3f1e84217d78a591e5fe172b0a9b8d3029537341?width=1009",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.",
+      desc: "Real-time monitoring for security and intelligence.",
     },
     {
-      title: "Ocean Net",
+      title: "OceanNet",
       img: "https://api.builder.io/api/v1/image/assets/TEMP/46faf5a2fa5b4c6392659eaf48c4ad8540804c04?width=978",
-      desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus commodo viverra.",
+      desc: "Smart observation for marine activity and sustainability.",
     },
   ];
 
@@ -140,8 +140,8 @@ const VideoObservationSection = () => {
             VIDEO BASED EARTH OBSERVATION
           </h2>
           <p className="font-inter text-[12px] md:text-[13px] text-white/90 mt-2 md:mt-3 max-w-[600px] text-center">
-            Break barriers in space. Unlock reliable, sustainable satellite
-            operations.
+          We develop advanced video observation technologies that provide deeper insights  
+          across land, defense, and ocean domains.
           </p>
           {/* CTA Button in right corner, absolutely positioned */}
           <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
@@ -183,9 +183,13 @@ const VideoObservationSection = () => {
                   {it.desc}
                 </p>
                 <div className="mt-auto flex items-end">
-                  <span className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FEC053] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto">
+                  <button
+                    type="button"
+                    onClick={() => { window.location.href = "/solution"; }}
+                    className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FEC053] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
+                  >
                     View Details
-                  </span>
+                  </button>
                 </div>
               </div>
             </a>
@@ -205,35 +209,75 @@ const VideoObservationSection = () => {
 
 export const VisionStatementSection = (): JSX.Element => {
   return (
-    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
-      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
-        {/* Background image */}
-        <img
-          className="absolute inset-0 w-full h-full object-cover"
-          alt="Satellite orbit with planet earth background"
-          src="/assets/08-satellite-orbit.jpg"
-          style={{ zIndex: 0 }}
-        />
+    <section className="relative w-full min-h-[1400px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
+      {/* Background image as a true background, not an <img> */}
+      <div
+        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
+        style={{
+          backgroundImage: "url('/assets/VisionBg.png')",
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Top gradient overlay */}
-        <div
-          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
-          style={{ zIndex: 1 }}
-        />
+      {/* Top gradient overlay */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
+        style={{ zIndex: 1 }}
+        aria-hidden="true"
+      />
 
-        {/* Content */}
-        <div
-          className="relative z-10 flex flex-col items-center w-full px-4"
-          style={{ marginTop: "60px" }}
-        >
-          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
-            OUR VISION
-          </h1>
-          <p className="max-w-[700px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+      {/* Content */}
+      <div
+        className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
+        style={{ paddingTop: "80px" }}
+      >
+        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+          OUR VISION
+        </h1>
+        <p className="max-w-[700px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+        Our vision is to land on the Moon powered by our electric thruster 
+        </p>
+      </div>
+    </section>
+  );
+};
+
+export const VarshaAISection = (): JSX.Element => {
+  return (
+    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
+      {/* Background image as a true background, not an <img> */}
+      <div
+        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
+        style={{
+          backgroundImage: "url('/assets/Varsha ai.png')",
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Top gradient overlay */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
+        style={{ zIndex: 1 }}
+        aria-hidden="true"
+      />
+
+      {/* Content */}
+      <div
+        className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
+        style={{ paddingTop: "80px" }}
+      >
+        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+          VARSHA.AI
+        </h1>
+        <p className="max-w-[600px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+        <button className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors">
+          Explore Now
+        </button>
       </div>
     </section>
   );
@@ -241,41 +285,41 @@ export const VisionStatementSection = (): JSX.Element => {
 
 export const GoingToTheMoonSection = (): JSX.Element => {
   return (
-    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
-      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
-        {/* Background image */}
-        <img
-          className="absolute inset-0 w-full h-full object-cover"
-          alt="Going to the moon background"
-          src="/assets/frame-1597883628.png"
-          style={{ zIndex: 0 }}
-        />
+    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
+      {/* Background image as a true background, not an <img> */}
+      <div
+        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
+        style={{
+          backgroundImage: "url('/assets/GoingToMoon.png')",
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Top gradient overlay */}
-        <div
-          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
-          style={{ zIndex: 1 }}
-        />
+      {/* Top gradient overlay */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
+        style={{ zIndex: 1 }}
+        aria-hidden="true"
+      />
 
-        {/* Content */}
-        <div
-          className="relative z-10 flex flex-col items-center w-full px-4"
-          style={{ marginTop: "60px" }}
+      {/* Content */}
+      <div
+        className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
+        style={{ paddingTop: "80px" }}
+      >
+        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+          GOING TO THE MOON
+        </h1>
+        <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+        From Earth to Moon — powered by innovation in propulsion 
+        </p>
+        <Button
+          variant="outline"
+          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
         >
-          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
-            GOING TO THE MOON
-          </h1>
-          <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <Button
-            variant="outline"
-            className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
-          >
-            Explore Now
-          </Button>
-        </div>
+          Explore Now
+        </Button>
       </div>
     </section>
   );
@@ -283,41 +327,41 @@ export const GoingToTheMoonSection = (): JSX.Element => {
 
 export const DataCenterSection = (): JSX.Element => {
   return (
-    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
-      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
-        {/* Background image */}
-        <img
-          className="absolute inset-0 w-full h-full object-cover"
-          alt="Data center on moon background"
-          src="/assets/10-data-center-moon.jpg"
-          style={{ zIndex: 0 }}
-        />
+    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
+      {/* Background image as a true background, not an <img> */}
+      <div
+        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
+        style={{
+          backgroundImage: "url('/assets/10-data-center-moon.jpg')",
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Top gradient overlay */}
-        <div
-          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
-          style={{ zIndex: 1 }}
-        />
+      {/* Top gradient overlay */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
+        style={{ zIndex: 1 }}
+        aria-hidden="true"
+      />
 
-        {/* Content */}
-        <div
-          className="relative z-10 flex flex-col items-center w-full px-4"
-          style={{ marginTop: "60px" }}
+      {/* Content */}
+      <div
+        className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
+        style={{ paddingTop: "80px" }}
+      >
+        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+        Data Centers in Moon and Space 
+        </h1>
+        <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+        Redefining the Future of Computing
+        </p>
+        <Button
+          variant="outline"
+          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
         >
-          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
-            DATA CENTER ON MOON
-          </h1>
-          <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <Button
-            variant="outline"
-            className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
-          >
-            Explore Now
-          </Button>
-        </div>
+          Explore Now
+        </Button>
       </div>
     </section>
   );
@@ -325,41 +369,44 @@ export const DataCenterSection = (): JSX.Element => {
 
 export const SpaceTourismSection = (): JSX.Element => {
   return (
-    <section className="relative w-full min-h-[700px] flex justify-center bg-black">
-      <div className="relative w-full max-w-[1400px] min-h-[700px] flex justify-center items-start">
-        {/* Background image */}
-        <img
-          className="absolute inset-0 w-full h-full object-cover"
-          alt="Space background"
-          src="/assets/11-space-tourism.jpg"
-          style={{ zIndex: 0 }}
-        />
+    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
+      {/* Background image as a true background, not an <img> */}
+      <div
+        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
+        style={{
+          backgroundImage: "url('/assets/11-space-tourism.jpg')",
+          zIndex: 0,
+        }}
+        aria-hidden="true"
+      />
 
-        {/* Top gradient overlay */}
-        <div
-          className="absolute inset-0 h-[340px] w-full bg-gradient-to-b from-black via-black/80 to-transparent"
-          style={{ zIndex: 1 }}
-        />
+      {/* Top gradient overlay */}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
+        style={{ zIndex: 1 }}
+        aria-hidden="true"
+      />
 
-        {/* Content */}
-        <div
-          className="relative z-10 flex flex-col items-center w-full px-4"
-          style={{ marginTop: "60px" }}
+      {/* Content */}
+      <div
+        className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
+        style={{ paddingTop: "80px" }}
+      >
+        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+          Space Tourism – Making the Universe Your Next Destination
+        </h1>
+        <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+          We believe space is not just for astronauts — it’s for everyone. Space tourism is
+          the next leap in human exploration, where ordinary people experience the extraordinary
+          wonders of the cosmos.
+        </p>
+        <Button
+          asChild
+          variant="outline"
+          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
         >
-          <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
-            SPACE TOURISM
-          </h1>
-          <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <Button
-            variant="outline"
-            className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
-          >
-            Explore Now
-          </Button>
-        </div>
+          <a href="">Explore Now</a>
+        </Button>
       </div>
     </section>
   );
@@ -367,11 +414,11 @@ export const SpaceTourismSection = (): JSX.Element => {
 
 const BlogsSection = () => (
   <section className="relative bg-black py-20 md:py-24 overflow-hidden">
-    {/* Subtle glow (smaller & darker than before) */}
+    {/* Subtle center glow */}
     <div className="pointer-events-none absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full bg-[#0BFFD3] opacity-20 blur-[140px]" />
 
     <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8">
-      {/* Header — smaller like Image-1 */}
+      {/* Header */}
       <div className="text-center mb-10 md:mb-14">
         <h2 className="font-reem text-3xl md:text-4xl font-normal text-white leading-tight mb-3">
           The Blogs
@@ -383,12 +430,25 @@ const BlogsSection = () => (
         </p>
       </div>
 
-      {/* Layout — slightly increase left width, decrease right width */}
+      {/* Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Featured (slightly increased width: 5/12) */}
+        {/* Featured */}
         <div className="lg:col-span-5">
-          <div className="relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#FEC053] rounded-2xl shadow-xl overflow-hidden">
-            <div className="relative w-full h-[240px] sm:h-[260px]">
+          <div
+            className="group relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#0BFFD3] rounded-2xl shadow-xl overflow-hidden transition-colors duration-200"
+            style={{
+              // Always show the left border with #0BFFD3, and on hover, all borders get #0BFFD3
+              borderLeftColor: "#0BFFD3",
+              borderLeftWidth: "2px",
+              borderWidth: "1px",
+              borderStyle: "solid",
+            }}
+          >
+            {/* Green glow on hover */}
+            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/30 via-transparent to-transparent blur-2xl" />
+            </div>
+            <div className="relative w-full h-[240px] sm:h-[260px] z-10">
               <img
                 src="https://api.builder.io/api/v1/image/assets/TEMP/8d131cf968ba9d25f16ec41d57b7bf0809d4b910?width=1420"
                 alt="Total Lunar Eclipse Gala"
@@ -399,7 +459,7 @@ const BlogsSection = () => (
               </span>
             </div>
 
-            <div className="p-5 sm:p-6">
+            <div className="relative p-5 sm:p-6 z-10 transition-colors duration-200 group-hover:bg-gradient-to-br group-hover:from-[#0BFFD3]/10 group-hover:to-[#23272F]/60">
               <div className="flex items-start justify-between gap-4 mb-2">
                 <h3 className="font-reem text-lg sm:text-xl text-white">
                   Total Lunar Eclipse Gala
@@ -429,10 +489,18 @@ const BlogsSection = () => (
                 </button>
               </div>
             </div>
+            {/* On hover, make all borders #0BFFD3 */}
+            <style>
+              {`
+                .group:hover {
+                  border-color: #0BFFD3 !important;
+                }
+              `}
+            </style>
           </div>
         </div>
 
-        {/* Side list (decreased width: 7/12) */}
+        {/* Side list */}
         <div className="lg:col-span-7 flex flex-col gap-5">
           {[
             { date: "May 22-25, 2025" },
@@ -441,26 +509,37 @@ const BlogsSection = () => (
           ].map((item, i) => (
             <div
               key={i}
-              className="bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-5 shadow backdrop-blur-sm transition-colors duration-200 hover:border-[#FEC053]"
+              className={`
+                group bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-5 shadow backdrop-blur-sm transition-colors duration-200
+                hover:border-[#0BFFD3]
+                hover:bg-gradient-to-br hover:from-[#0BFFD3]/15 hover:to-[#181A20]/80
+                relative
+              `}
             >
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="font-reem text-base md:text-lg text-white">
-                  Total Lunar Eclipse Gala
-                </h3>
-                <p className="text-gray-400 text-xs leading-none">
-                  {item.date}
-                </p>
+              {/* Green glow on hover */}
+              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/25 via-transparent to-transparent blur-2xl" />
               </div>
+              <div className="relative z-10">
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-reem text-base md:text-lg text-white">
+                    Total Lunar Eclipse Gala
+                  </h3>
+                  <p className="text-gray-400 text-xs leading-none">
+                    {item.date}
+                  </p>
+                </div>
 
-              <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+                <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
 
-              <div className="mt-4 flex justify-end">
-                <button className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-xs hover:bg-white hover:text-black transition">
-                  Read
-                </button>
+                <div className="mt-4 flex justify-end">
+                  <button className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-xs hover:bg-white hover:text-black transition">
+                    Read
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -502,16 +581,20 @@ const AboutSection = () => (
         <h2 className="font-reem text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
           About Spaceman Craft
         </h2>
-        <p className="font-inter text-xs md:text-sm font-semibold text-white mb-2 tracking-tight">
-          "Smarter Thrusters. Longer Missions. Lower Costs"
-        </p>
+       
         <p className="font-inter text-sm md:text-base text-white/80 leading-relaxed mb-8">
-          International-based deep-tech rebel startup, founded in 2022, focused
-          on building high-efficiency electric propulsion systems. Our mission?
-          Help satellites travel farther, operate longer, and reduce space
-          mission costs dramatically.
+        We are a team of innovators, engineers, and dreamers working together to 
+redefine the future of space technology. From electric propulsion systems to CubeSats 
+and lunar data centers, our projects are built to advance how humanity explores, 
+communicates, and thrives in space. 
         </p>
-        <button className="border border-white px-5 py-2 rounded text-white font-inter text-sm hover:bg-white hover:text-black transition-all">
+        <button
+          type="button"
+          className="inline-block border border-white px-5 py-2 rounded text-white font-inter text-sm hover:bg-white hover:text-black transition-all"
+          onClick={() => {
+            window.location.href = "/about";
+          }}
+        >
           Explore Now
         </button>
       </div>
@@ -700,6 +783,7 @@ export default function Index() {
       {/* --- Rest of the page flows normally below the container --- */}
       <VideoObservationSection />
       <VisionStatementSection />
+      <VarshaAISection />
       <GoingToTheMoonSection />
       <DataCenterSection />
       <SpaceTourismSection />

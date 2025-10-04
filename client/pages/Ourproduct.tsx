@@ -25,15 +25,11 @@ const OurProductSection = () => (
       
       {/* 2. Tagline: Made text italic and removed the quotation marks to match the style in the image. Increased bottom margin. */}
       <p className="font-inter text-xl md:text-2xl text-white mb-8 italic">
-        Powering the Future From the Moon
+        Electric Thruster System
       </p>
       
-      {/* 3. Description: Reduced max-width for a narrower text block and adjusted line-height for readability, which better matches the image. */}
       <p className="font-inter text-base md:text-lg text-white max-w-3xl leading-relaxed">
-        SpacemanCraft is on a mission to build the first-ever lunar data
-        center—reshaping how the world thinks about infrastructure,
-        connectivity, and the cosmos. Welcome to the future of data, built in
-        space.
+        The Electric Thruster System by Spaceman Craft Pvt Ltd provides compact, efficient, and sustainable propulsion for satellites and spacecraft. It extends mission life while reducing costs and supporting orbital sustainability.
       </p>
     </div>
   </section>

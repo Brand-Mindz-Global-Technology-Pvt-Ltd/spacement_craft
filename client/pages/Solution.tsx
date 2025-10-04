@@ -31,22 +31,8 @@ const items = [
     title: "Traffic Sense 360",
     img: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80",
     desc: `Traffic Sense 360 delivers a complete 360° view of roads with real-time monitoring and smart insights. It helps reduce congestion, prevent accidents, and improve traffic flow. Designed for modern cities, it ensures safer and more efficient mobility for everyone.`,
-  },
-  {
-    title: "Mineris",
-    img: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80",
-    desc: "Resource mapping and mineral exploration with advanced sensors.",
-  },
-  {
-    title: "Eco Watch",
-    img: "https://api.builder.io/api/v1/image/assets/TEMP/44d47a5d1658608c03887f3ffd188776125c7cf4?width=1051",
-    desc: "Track environmental changes and support conservation efforts.",
-  },
-  {
-    title: "OceanNet",
-    img: "https://api.builder.io/api/v1/image/assets/TEMP/46faf5a2fa5b4c6392659eaf48c4ad8540804c04?width=978",
-    desc: "Comprehensive ocean monitoring for research and industry.",
-  },
+  }
+ 
 ];
 
 const Solution = () => {
@@ -94,7 +80,7 @@ const Solution = () => {
         </h1>
       </div>
     </div>
-    <section className="relative w-full flex flex-col items-center justify-center bg-[#030712] py-24 px-4 overflow-hidden">
+    <section className="relative w-full flex flex-col items-center justify-center bg-[#030712] py-16 md:py-24 px-2 md:px-4 overflow-hidden">
       {/* Background stars and subtle glow */}
       <div className="absolute inset-0 pointer-events-none select-none z-0">
         <img 
@@ -106,7 +92,7 @@ const Solution = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-transparent" />
       </div>
 
-      <div className="relative z-10 w-full max-w-[1320px] min-h-[420px] flex flex-col justify-center px-4 md:px-8">
+      <div className="relative z-10 w-full max-w-[1440px] min-h-[480px] flex flex-col justify-center px-2 md:px-8">
         {/* Centered Heading and CTA */}
         <div className="w-full flex flex-col items-center justify-center mb-10 md:mb-14 relative">
           <h2 className="font-reem text-[28px] md:text-[32px] lg:text-[36px] font-normal uppercase text-white leading-tight tracking-wide text-center">
@@ -150,6 +136,10 @@ const Solution = () => {
                   color 0.2s,
                   border-color 0.2s;
                 box-shadow: none;
+                font-size: 12px;
+                padding: 0.25rem 1.1rem;
+                min-height: 28px;
+                min-width: 90px;
               }
               .solution-card:hover .view-details-btn,
               .solution-card:focus-visible .view-details-btn {
@@ -172,14 +162,14 @@ const Solution = () => {
                 key={idx}
                 href="#"
                 tabIndex={0}
-                className="solution-card group relative rounded-[18px] overflow-hidden min-w-[340px] max-w-[370px] w-[90vw] sm:w-[370px] min-h-[390px] flex-shrink-0 flex flex-col"
+                className="solution-card group relative rounded-[18px] overflow-hidden min-w-[370px] max-w-[410px] w-[92vw] sm:w-[410px] min-h-[440px] flex-shrink-0 flex flex-col"
                 style={{
-                  height: "390px",
+                  height: "440px",
                   scrollSnapAlign: "start",
                 }}
               >
                 {/* Card image */}
-                <div className="w-full h-[180px] overflow-hidden">
+                <div className="w-full h-[210px] overflow-hidden">
                   <img
                     src={it.img}
                     alt={it.title}
@@ -188,20 +178,17 @@ const Solution = () => {
                   />
                 </div>
                 {/* Card content */}
-                <div className="flex flex-col flex-1 px-7 py-6">
-                  <h3 className="font-reem text-[20px] text-white font-normal leading-tight mb-2">
+                <div className="flex flex-col flex-1 px-6 py-5">
+                  <h3 className="font-reem text-[18px] md:text-[20px] text-white font-normal leading-tight mb-2">
                     {it.title}
                   </h3>
-                  <p className="font-inter text-[15px] text-gray-300 leading-[1.6] mb-6 line-clamp-3">
+                  <p className="font-inter text-[14px] md:text-[15px] text-gray-300 leading-[1.6] mb-6 line-clamp-3">
                     {it.desc}
                   </p>
                   <div className="mt-auto flex items-end justify-end">
                     <button
                       onClick={() => openModal(it)}
-                      className="view-details-btn px-6 py-2 rounded-[8px] text-white font-inter text-[15px] shadow-md transition-all duration-200 focus:outline-none"
-                      style={{
-                        boxShadow: "0 2px 12px 0 rgba(11,255,211,0.10)",
-                      }}
+                      className="view-details-btn shadow-md transition-all duration-200 focus:outline-none"
                     >
                       View Details
                     </button>
@@ -222,132 +209,76 @@ const Solution = () => {
     </section>
 
     {/* DATA CENTER IN SPACE Section */}
-    <section className="relative w-full py-20 px-4 overflow-hidden">
+    <section className="relative w-full py-14 md:py-20 px-2 sm:px-4 overflow-hidden">
       {/* Subtle black gradient background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/20 to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black to-black" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Main Title */}
-        <div className="text-center mb-16">
-          <h2 className="font-reem text-4xl md:text-5xl lg:text-6xl font-normal uppercase text-white tracking-wider">
-            Varsha.AI <br className="hidden md:block" />
-            <span className="block text-lg md:text-2xl font-inter font-light normal-case tracking-normal mt-2">
-              Space-Based Data Center
-            </span>
+        <div className="text-center mb-10 md:mb-16">
+          <h2 className="font-reem text-[1.5rem] xs:text-2xl md:text-3xl lg:text-4xl font-normal uppercase text-white tracking-wider drop-shadow-lg">
+            Data Centers in Space
           </h2>
         </div>
 
         {/* Main Content Container */}
-        <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-2xl border border-gray-600/30 p-8 md:p-12">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Left Section - Centered Layout */}
-            <div className="flex flex-col items-center text-center space-y-6 w-full">
+        <div className="bg-gradient-to-r from-black/90 to-black/60 rounded-2xl border border-gray-600/30 p-4 xs:p-6 md:p-12 shadow-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Left Section - Content */}
+            <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-5 w-full">
               {/* VARSHA.AI Header */}
               <div className="w-full">
-                <h3 className="font-reem text-[2.2rem] md:text-[2.7rem] font-normal uppercase text-white tracking-wide mb-4 leading-tight" style={{letterSpacing: "0.08em"}}>
+                <h3
+                  className="font-reem text-[1.7rem] xs:text-[2.2rem] md:text-[2.7rem] font-normal uppercase text-white tracking-wide mb-3 md:mb-4 leading-tight drop-shadow-lg"
+                  style={{ letterSpacing: "0.08em" }}
+                >
                   Varsha.AI
                 </h3>
                 {/* Horizontal line separator */}
-                <div className="w-full h-px bg-gray-400/50 mb-6"></div>
+                <div className="w-full h-px bg-gray-400/50 mb-4 md:mb-6"></div>
               </div>
-              
+
               {/* Orange Banner Button - matches line width */}
-              <div className="w-full flex justify-center">
-                <div className="w-full">
+              <div className="w-full flex justify-center md:justify-start">
+                <div className="w-full max-w-xs md:max-w-full">
                   <div
-                    className="flex items-center justify-center rounded-[8px] bg-[#D6891A] text-white font-inter font-semibold text-[1.35rem] md:text-[1.35rem] uppercase tracking-wide shadow-lg"
+                    className="flex items-center justify-center rounded-[8px] bg-[#D6891A] text-white font-inter font-semibold text-base xs:text-[1.1rem] md:text-[1.2rem] uppercase tracking-wide shadow-lg drop-shadow-lg"
                     style={{
-                      height: "52px",
-                      minHeight: "52px",
-                      maxHeight: "52px",
+                      height: "42px",
+                      minHeight: "42px",
+                      maxHeight: "42px",
                       letterSpacing: "0.03em",
                       width: "100%",
                     }}
                   >
-                    Space-Based Data Center
+                    RAIN OF SPACE DATA INTELLIGENCE
                   </div>
                 </div>
               </div>
-              
+
               {/* Description Content */}
-              <div className="text-white/90 font-inter text-sm md:text-base leading-relaxed space-y-4 text-left w-full">
+              <div className="text-white/90 font-inter text-[0.97rem] xs:text-sm md:text-base leading-relaxed space-y-2 md:space-y-4 text-left w-full drop-shadow-lg">
                 <p>
-                  Varsha.AI is Spaceman Craft’s AI-powered platform designed for space-based data processing and satellite operations. It ensures efficient, reliable, and sustainable management of data, supporting humanity’s journey into space and the future of lunar computing.
+                  <span className="font-semibold">Varsha.AI – Space-Based Data Center</span>
+                  <br className="hidden xs:block" />
+                  Varsha.AI is Spaceman Craft’s AI-powered platform designed for space-based&nbsp;
+                  data processing and satellite operations. It ensures efficient, reliable, and sustainable&nbsp;
+                  management of data, supporting humanity’s journey into space and the future of lunar&nbsp;
+                  computing.
                 </p>
               </div>
             </div>
 
-            {/* Right Section - Wavy Graphic */}
-            <div className="relative flex items-center justify-center">
-              <div className="relative w-80 h-80 md:w-96 md:h-96">
-                {/* Wavy circular graphic */}
-                <svg
-                  viewBox="0 0 400 400"
-                  className="absolute inset-0 w-full h-full"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <defs>
-                    <radialGradient id="wavyGradient" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#8B5CF6" />
-                      <stop offset="50%" stopColor="#3B82F6" />
-                      <stop offset="100%" stopColor="#14B8A6" />
-                    </radialGradient>
-                  </defs>
-                  
-                  {/* Multiple wavy circles */}
-                  {Array.from({ length: 8 }).map((_, i) => (
-                    <circle
-                      key={i}
-                      cx="200"
-                      cy="200"
-                      r={120 + i * 15}
-                      fill="none"
-                      stroke="url(#wavyGradient)"
-                      strokeWidth="2"
-                      opacity="0.6"
-                      className="animate-pulse"
-                      style={{
-                        animationDelay: `${i * 0.2}s`,
-                        animationDuration: '3s',
-                      }}
-                    >
-                      <animateTransform
-                        attributeName="transform"
-                        type="rotate"
-                        values="0 200 200;360 200 200"
-                        dur={`${8 + i}s`}
-                        repeatCount="indefinite"
-                      />
-                    </circle>
-                  ))}
-                  
-                  {/* Central wavy pattern */}
-                  <path
-                    d="M 200 80 Q 280 120 320 200 Q 280 280 200 320 Q 120 280 80 200 Q 120 120 200 80 Z"
-                    fill="url(#wavyGradient)"
-                    opacity="0.3"
-                    className="animate-pulse"
-                  />
-                  
-                  {/* Additional wavy elements */}
-                  <path
-                    d="M 200 100 Q 260 140 300 200 Q 260 260 200 300 Q 140 260 100 200 Q 140 140 200 100 Z"
-                    fill="none"
-                    stroke="url(#wavyGradient)"
-                    strokeWidth="3"
-                    opacity="0.8"
-                  />
-                </svg>
-                
-                {/* VARSHA.AI text in center */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h4 className="font-reem text-2xl md:text-3xl font-normal uppercase text-cyan-400 tracking-wider">
-                    Varsha.AI
-                  </h4>
-                </div>
-              </div>
+            {/* Right Section - Image */}
+            <div className="flex items-center justify-center w-full mt-8 md:mt-0">
+              <img
+                src="/assets/varsa.png"
+                alt="Varsha.AI Data Center Graphic"
+                className="w-full max-w-[320px] xs:max-w-sm md:max-w-md rounded-xl shadow-2xl border border-black object-contain drop-shadow-2xl"
+                style={{ background: "#181c1b" }}
+              />
             </div>
           </div>
         </div>
@@ -438,66 +369,73 @@ const Solution = () => {
     {isModalOpen && selectedItem && (
       <div className="fixed inset-0 z-50 flex items-center justify-center">
         {/* Dark semi-transparent background */}
-        <div 
+        <div
           className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-200 ${
             isAnimating ? 'opacity-100' : 'opacity-0'
           }`}
           onClick={closeModal}
         />
-        
-        {/* Modal Content */}
-        <div className={`relative z-10 w-[95vw] sm:w-[80vw] md:w-[70vw] lg:w-[60vw] max-w-3xl h-[90vh] sm:h-[80vh] md:h-[70vh] lg:h-[60vh] max-h-[500px] bg-gray-800/95 rounded-lg border border-gray-600/30 overflow-hidden shadow-2xl transition-all duration-200 transform ${
-          isAnimating 
-            ? 'opacity-100 scale-100 translate-y-0' 
-            : 'opacity-0 scale-95 translate-y-4'
-        }`}>
-          {/* Close Button */}
-          <button
-            onClick={closeModal}
-            className="absolute top-2 right-2 z-20 w-6 h-6 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white font-bold text-sm transition-all duration-200 hover:scale-110 active:scale-95"
-          >
-            ×
-          </button>
-          
-          {/* Modal Content Layout */}
-          <div className="flex flex-col md:flex-row h-full">
-            {/* Left Side - Image */}
-            <div className="w-full md:w-2/5 h-48 sm:h-56 md:h-full p-3 sm:p-4">
-              <img
-                src={selectedItem.img}
-                alt={selectedItem.title}
-                className="w-full h-full object-cover object-center rounded-lg"
-                draggable={false}
-              />
+        {/* Popup Modal Content */}
+        <div
+          className={`relative z-10 flex flex-col md:flex-row w-[96vw] max-w-2xl bg-[#23272e] rounded-lg border border-gray-700/60 shadow-2xl overflow-hidden transition-all duration-200 ${
+            isAnimating
+              ? 'opacity-100 scale-100 translate-y-0'
+              : 'opacity-0 scale-95 translate-y-4'
+          }`}
+          style={{
+            minHeight: '320px',
+            maxHeight: '90vh',
+          }}
+        >
+          {/* Left: Image */}
+          <div className="md:w-[44%] w-full flex-shrink-0 bg-black/60 flex items-center justify-center p-0 md:p-0">
+            <img
+              src={selectedItem.img}
+              alt={selectedItem.title}
+              className="w-full h-full object-cover object-center"
+              style={{
+                minHeight: '220px',
+                maxHeight: '350px',
+                borderTopLeftRadius: '0.5rem',
+                borderBottomLeftRadius: '0.5rem',
+              }}
+              draggable={false}
+            />
+          </div>
+          {/* Right: Content */}
+          <div className="relative flex-1 flex flex-col px-5 py-4 md:py-6 md:px-6">
+            {/* Close Button */}
+            <button
+              onClick={closeModal}
+              className="absolute top-3 right-3 z-20 w-7 h-7 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white font-bold text-lg transition-all duration-200 hover:scale-110 active:scale-95"
+              aria-label="Close"
+              tabIndex={0}
+            >
+              ×
+            </button>
+            {/* Title */}
+            <h3 className="font-reem text-lg md:text-xl font-semibold text-white mb-2 tracking-wide">
+              {selectedItem.title}
+            </h3>
+            {/* Description */}
+            <div className="text-white/90 font-inter text-xs md:text-sm leading-relaxed mb-4 flex-1 overflow-y-auto pr-1">
+              <p className="text-justify whitespace-pre-line">
+                {selectedItem.desc}
+              </p>
             </div>
-            
-            {/* Right Side - Content */}
-            <div className="w-full md:w-3/5 p-3 sm:p-4 flex flex-col">
-              {/* Title */}
-              <h3 className="font-reem text-base sm:text-lg md:text-xl font-normal uppercase text-white mb-2 sm:mb-3 tracking-wide">
-                {selectedItem.title}
-              </h3>
-              
-              {/* Description */}
-              <div className="text-white/90 font-inter text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4 flex-1">
-                <p className="text-justify">
-                  {selectedItem.desc}
-                </p>
+            {/* Example: Tag Buttons (if present in item) */}
+            {selectedItem.tags && Array.isArray(selectedItem.tags) && (
+              <div className="flex flex-wrap gap-2 mt-2">
+                {selectedItem.tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="inline-block bg-blue-700/90 text-white text-xs px-3 py-1 rounded-md font-semibold shadow-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-              
-              {/* Bottom Section with Buttons */}
-              <div className="mt-auto">
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded text-xs sm:text-sm font-medium transition-all duration-200 hover:scale-105 active:scale-95">
-                    Orbital Velocity ~0.5 m/s
-                  </button>
-                  <button className="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded text-xs sm:text-sm font-medium transition-all duration-200 hover:scale-105 active:scale-95">
-                    Altitude ~100-200 km
-                  </button>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
