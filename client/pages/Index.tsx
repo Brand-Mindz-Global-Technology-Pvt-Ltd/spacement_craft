@@ -124,89 +124,30 @@ const VideoObservationSection = () => {
 
   return (
     <section className="relative w-full min-h-[700px] flex justify-center items-center bg-[#030712] overflow-hidden">
-      {/* Background stars and glow */}
-      <div className="absolute inset-0 pointer-events-none select-none">
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/b8b9acf6016a95d32435be71013b40ab7f911b8c?width=3760"
-          alt="Star field"
-          className="w-[1880px] h-[1354px] absolute left-5 -top-[199px]"
-          draggable={false}
-        />
-        <div className="absolute inset-0 bg-black/20" />
-        <div className="absolute left-[196px] top-[275px] w-[531px] h-[513px] rounded-full bg-[#0BFFD3] opacity-30 blur-[200px]" />
-      </div>
+    {/* Background stars and glow */}
+    <div className="absolute inset-0 pointer-events-none select-none">
+      <img
+        src="https://api.builder.io/api/v1/image/assets/TEMP/b8b9acf6016a95d32435be71013b40ab7f911b8c?width=3760"
+        alt="Star field"
+        className="w-[1880px] h-[1354px] absolute left-5 -top-[199px]"
+        draggable={false}
+      />
+      <div className="absolute inset-0 bg-black/20" />
+      <div className="absolute left-[196px] top-[275px] w-[531px] h-[513px] rounded-full bg-[#0BFFD3] opacity-30 blur-[200px]" />
+    </div>
 
-      <div className="relative z-10 w-full max-w-[1320px] min-h-[700px] flex flex-col justify-center px-4 md:px-8">
-        {/* Centered Heading and CTA */}
-        <div className="w-full flex flex-col items-center justify-center mb-10 md:mb-14 relative">
-          <h2 className="font-reem text-[28px] md:text-[32px] lg:text-[36px] font-normal uppercase text-white leading-tight tracking-wide text-center">
-            VIDEO BASED EARTH OBSERVATION
-          </h2>
-          <p className="font-inter text-[12px] md:text-[13px] text-white/90 mt-2 md:mt-3 max-w-[600px] text-center">
-            We develop advanced video observation technologies that provide deeper insights  
-            across land, defense, and ocean domains.
-          </p>
-          {/* CTA Button in right corner, absolutely positioned */}
-          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
-            <button
-              className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-[12px] hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
-              onClick={() => navigate("/solution")}
-            >
-              Explore Full Archive
-            </button>
-          </div>
-        </div>
-
-        {/* Cards */}
-        <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center md:items-stretch">
-          {items.map((it, idx) => (
-            <a
-              key={idx}
-              href="#"
-              className="group relative bg-transparent rounded-[12px] overflow-hidden transition w-full max-w-[400px] min-w-[320px] min-h-[380px] shadow-none"
-              style={{
-                height: "380px",
-              }}
-              tabIndex={-1}
-              aria-hidden="true"
-              onClick={e => e.preventDefault()}
-            >
-              {/* Card surface */}
-              <div className="absolute inset-0 rounded-[12px] bg-black/60 border border-[#FEC053]/10 transition-all duration-300 group-hover:bg-gray-700/50 group-hover:border-[#FEC053] group-hover:shadow-[0_0_0_1px_rgba(254,192,83,0.35),0_12px_30px_rgba(0,0,0,0.5)]" />
-              <div className="relative flex flex-col h-full p-4">
-                <div
-                  className="rounded-[8px] w-full overflow-hidden shadow-inner transition-transform duration-300 group-hover:scale-[1.02]"
-                  style={{ height: "200px" }}
-                >
-                  <img
-                    src={it.img}
-                    alt={it.title}
-                    className="w-full h-full object-cover"
-                    draggable={false}
-                  />
-                </div>
-                <h3 className="mt-4 font-reem text-[15px] text-white font-normal leading-tight">
-                  {it.title}
-                </h3>
-                <p className="mt-2 font-inter text-[11px] leading-[1.5] text-gray-300 line-clamp-3">
-                  {it.desc}
-                </p>
-                <div className="mt-auto flex items-end">
-                  <button
-                    type="button"
-                    onClick={() => navigate("/solution")}
-                    className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FEC053] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
-                  >
-                    View Details
-                  </button>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        {/* Mobile CTA */}
-        <div className="mt-8 md:hidden text-center">
+    <div className="relative z-10 w-full max-w-[1320px] min-h-[700px] flex flex-col justify-center px-4 md:px-8">
+      {/* Centered Heading and CTA */}
+      <div className="w-full flex flex-col items-center justify-center mb-10 md:mb-14 relative">
+        <h2 className="font-reem text-[28px] md:text-[32px] lg:text-[36px] font-normal uppercase text-white leading-tight tracking-wide text-center">
+          VIDEO BASED EARTH OBSERVATION
+        </h2>
+        <p className="font-inter text-[12px] md:text-[13px] text-white/90 mt-2 md:mt-3 max-w-[600px] text-center">
+          We develop advanced video observation technologies that provide deeper insights  
+          across land, defense, and ocean domains.
+        </p>
+        {/* CTA Button in right corner, absolutely positioned */}
+        <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
           <button
             className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-[12px] hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
             onClick={() => navigate("/solution")}
@@ -215,7 +156,101 @@ const VideoObservationSection = () => {
           </button>
         </div>
       </div>
-    </section>
+
+      {/* Cards */}
+      <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center md:items-stretch">
+        {items.map((it, idx) => (
+          <a
+            key={idx}
+            href="#"
+            className="group relative bg-transparent rounded-[12px] overflow-hidden transition w-full max-w-[400px] min-w-[320px] min-h-[380px] shadow-none"
+            style={{
+              height: "380px",
+            }}
+            tabIndex={-1}
+            aria-hidden="true"
+            onClick={e => e.preventDefault()}
+          >
+            {/* Card surface */}
+            <div className="absolute inset-0 rounded-[12px]  border border-[#FEC053]/10 transition-all duration-300 group-hover:bg-gray-700/50 pointer-events-none z-20">
+              {/* Decorative edge highlights on hover: top-left (horizontal) and bottom-right (vertical) */}
+              <div
+                className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                }}
+              />
+              {/* New: Top-left vertical down accent */}
+              <div
+                className="pointer-events-none absolute top-0 left-0 w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                }}
+              />
+              
+              <div
+                className="pointer-events-none absolute bottom-0  right-0  w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
+                style={{
+                  background:
+                    "linear-gradient(0deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                }}
+              />
+              {/* New: Top-right horizontal accent (towards center) */}
+              <div
+                className="pointer-events-none absolute bottom-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
+                style={{
+                  background:
+                    "linear-gradient(270deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                }}
+              />
+            </div>
+            <div className="relative flex flex-col h-full z-10">
+              <div
+                className=" w-full overflow-hidden rounded-[10px] "
+                style={{ height: "200px" }}
+              >
+                <img
+                  src={it.img}
+                  alt={it.title}
+                  className="w-full h-full object-cover block"
+                  draggable={false}
+                />
+              </div>
+              <div className="px-4">
+              <h3 className="mt-4 font-reem text-[20px] text-white font-normal leading-tight">
+                {it.title}
+              </h3>
+              <p className="mt-2 font-inter text-[11px] leading-[1.5] text-gray-300 line-clamp-3">
+                {it.desc}
+              </p>
+              </div>
+              <div className="mt-auto flex items-end p-4">
+                <button
+                  type="button"
+                  onClick={() => navigate("/solution")}
+                  className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FFD7004D] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
+                >
+                  View Details
+                </button>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      {/* Mobile CTA */}
+      <div className="mt-8 md:hidden text-center">
+        <button
+          className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-[12px] hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
+          onClick={() => navigate("/solution")}
+        >
+          Explore Full Archive
+        </button>
+      </div>
+    </div>
+  </section>
   );
 };
 

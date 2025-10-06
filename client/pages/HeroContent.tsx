@@ -16,12 +16,18 @@ const HeroContent: React.FC = () => {
 humanity moves in space. With our breakthrough electric thruster technology, we 
 are bringing a true revolution to orbital systems.</p>
         {/* CTA Button - Inter Font with Figma Gradient Hover and ShinyText */}
-        <button
-          className="mt-10 px-8 py-3 text-base font-medium border rounded-md transition-all duration-300 font-inter hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white"
-          onClick={() => window.location.href = "/solution"}
+        {/* Use react-router-dom Link for client-side navigation without reload */}
+        <a
+          href="/solution"
+          className="mt-10 px-8 py-3 text-base font-medium border rounded-md transition-all duration-300 font-inter hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block"
+          onClick={e => {
+            e.preventDefault();
+            window.history.pushState({}, '', '/solution');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+          }}
         >
           <span className="shiny-text">Discover Our Thruster</span>
-        </button>
+        </a>
       </div>
 
      
