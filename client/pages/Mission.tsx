@@ -212,8 +212,18 @@ const Mission: React.FC = () => {
         </div>
 
         <div className="mt-12 border-t border-white/20 pt-4 text-xs text-white/70 md:flex md:items-center md:justify-between">
-          <p>© 2025 Spacemancraft. All Rights Reserved.</p>
-          <div className="mt-3 flex gap-4 md:mt-0">
+    <p>
+          Copyright © 2025 Nellai Tours Made with <span role="img" aria-label="love">❤️</span> by{" "}
+          <a
+            href="https://www.brandmindz.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=" hover:text-white"
+          >
+            Brand Mindz
+          </a>{" "}
+          | All rights reserved
+        </p>          <div className="mt-3 flex gap-4 md:mt-0">
             <a href="#" className="hover:text-white">Terms & Conditions</a>
             <a href="#" className="hover:text-white">Privacy Policy</a>
             <a href="#" className="hover:text-white">Refund Policy</a>

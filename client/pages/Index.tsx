@@ -323,9 +323,16 @@ export const VarshaAISection = (): JSX.Element => {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
-        <button    onClick={() => navigate("/mission")} className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors">
-          Explore Now
-        </button>
+        <a
+          href="/mission"
+          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm font-inter transition-all duration-300 hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block"
+          onClick={e => {
+            e.preventDefault();
+            navigate("/mission");
+          }}
+        >
+          <span className="shiny-text">Explore Now</span>
+        </a>
       </div>
     </section>
   );
@@ -365,11 +372,20 @@ export const GoingToTheMoonSection = (): JSX.Element => {
         </p>
         <Button
           variant="outline"
-          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
-          onClick={() => navigate("/vission")}
+          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white hover:border-[#FFD7004D]"
+          onClick={() => {
+            navigate("/vission");
+            // Scroll to the GOING TO THE MOON card after navigation
+            setTimeout(() => {
+              const element = document.getElementById("going-to-moon");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }, 100);
+          }}
         >
           Explore Now
-        </Button >
+        </Button>
       </div>
     </section>
   );
@@ -409,9 +425,18 @@ export const DataCenterSection = (): JSX.Element => {
         </p>
         <Button
           variant="outline"
-          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
-          onClick={() => navigate("/vission")}
-          >
+          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-[#0BFFD3] hover:text-white hover:border-[#0BFFD3]"
+          onClick={() => {
+            navigate("/vission");
+            // Scroll to the DATA CENTER IN SPACE card after navigation
+            setTimeout(() => {
+              const element = document.getElementById("data-center-space");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }, 100);
+          }}
+        >
           Explore Now
         </Button>
       </div>
@@ -420,6 +445,7 @@ export const DataCenterSection = (): JSX.Element => {
 };
 
 export const SpaceTourismSection = (): JSX.Element => {
+  const navigate = useNavigate();
   return (
     <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
       {/* Background image as a true background, not an <img> */}
@@ -455,11 +481,20 @@ export const SpaceTourismSection = (): JSX.Element => {
           Space tourism is the next leap in human exploration, where ordinary people experience the extraordinary wonders of the cosmos.
         </p>
         <Button
-          asChild
           variant="outline"
-          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm hover:bg-white hover:text-black transition-colors"
+          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-[#0BFFD3] hover:text-black hover:border-[#0BFFD3]"
+          onClick={() => {
+            navigate("/vission");
+            // Scroll to the SPACE TOURISM card after navigation
+            setTimeout(() => {
+              const element = document.getElementById("space-tourism");
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }, 100);
+          }}
         >
-          <a href="">Explore Now</a>
+          Explore Now
         </Button>
       </div>
     </section>
@@ -773,8 +808,18 @@ const Footer = () => (
       </div>
 
       <div className="mt-12 border-t border-white/20 pt-4 text-xs text-white/70 md:flex md:items-center md:justify-between">
-        <p>© 2025 Spacemancraft. All Rights Reserved.</p>
-        <div className="mt-3 flex gap-4 md:mt-0">
+  <p>
+          Copyright © 2025 Nellai Tours Made with <span role="img" aria-label="love">❤️</span> by{" "}
+          <a
+            href="https://www.brandmindz.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=" hover:text-white"
+          >
+            Brand Mindz
+          </a>{" "}
+          | All rights reserved
+        </p>        <div className="mt-3 flex gap-4 md:mt-0">
           <a href="#" className="hover:text-white">
             Terms & Conditions
           </a>
