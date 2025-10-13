@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Navbar from '../components/Navbar';
+import { useLocation } from 'react-router-dom';
 
 const Vission: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const targetId = params.get('target');
+    if (!targetId) return;
+    const timeout = setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const headerOffset = 80; // adjust to your sticky navbar height
+      const rect = el.getBoundingClientRect();
+      const absoluteY = window.scrollY + rect.top - headerOffset;
+      window.scrollTo({ top: absoluteY, behavior: 'smooth' });
+    }, 50);
+    return () => clearTimeout(timeout);
+  }, [location.search]);
+
   return (
     <div className="min-h-screen bg-black text-white">
       <Navbar />

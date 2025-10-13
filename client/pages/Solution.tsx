@@ -417,7 +417,7 @@ const Solution = () => {
             {/* Close Button */}
             <button
               onClick={closeModal}
-              className="absolute top-3 right-3 z-20 w-7 h-7 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center text-white font-bold text-lg transition-all duration-200 hover:scale-110 active:scale-95"
+              className="absolute top-3 right-3 z-20 w-7 h-7  rounded-full flex items-center justify-center text-white font-bold text-lg transition-all duration-200 hover:scale-110 active:scale-95"
               aria-label="Close"
               tabIndex={0}
             >

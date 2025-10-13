@@ -59,7 +59,7 @@ const Footer = () => (
 
       <div className="mt-12 border-t border-white/20 pt-4 text-xs text-white/70 md:flex md:items-center md:justify-between">
   <p>
-          Copyright © 2025 Nellai Tours Made with <span role="img" aria-label="love">❤️</span> by{" "}
+          Copyright © 2025 Spacemancraft Made with <span role="img" aria-label="love">❤️</span> by{" "}
           <a
             href="https://www.brandmindz.com/"
             target="_blank"

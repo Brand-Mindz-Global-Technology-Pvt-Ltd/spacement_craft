@@ -104,21 +104,36 @@ import { useNavigate } from "react-router-dom";
 
 const VideoObservationSection = () => {
   const navigate = useNavigate();
+  const [selectedItem, setSelectedItem] = useState<null | { title: string; img: string; desc: string }>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const openModal = (item: { title: string; img: string; desc: string }) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+    setIsAnimating(true);
+  };
+  const closeModal = () => {
+    setIsAnimating(false);
+    setTimeout(() => {
+      setIsModalOpen(false);
+      setSelectedItem(null);
+    }, 200);
+  };
   const items = [
     {
       title: "Hyperspectral Vision",
       img: "https://api.builder.io/api/v1/image/assets/TEMP/44d47a5d1658608c03887f3ffd188776125c7cf4?width=1051",
-      desc: "High-precision analysis beyond human sight.",
+      desc: "Our Hyperspectral Vision technology captures light across hundreds of spectral bands, revealing details invisible to the human eye. It enables precise material identification, advanced imaging, and deeper insights across industries such as agriculture, environmental monitoring, defense, and space exploration. By analyzing every wavelength, we turn complex data into actionable intelligence. Experience a new dimension of vision where every detail matters.",
     },
     {
       title: "Defense Surveillance",
       img: "https://api.builder.io/api/v1/image/assets/TEMP/3f1e84217d78a591e5fe172b0a9b8d3029537341?width=1009",
-      desc: "Real-time monitoring for security and intelligence.",
+      desc: "Advanced surveillance solutions are designed to strengthen national security with precision and reliability. From real-time monitoring to threat detection, we integrate cutting-edge technologies to ensure complete situational awareness. Hyperspectral imaging, AI analytics, and satellite data empower defense forces to identify hidden threats and make faster decisions. We deliver intelligence that protects borders, assets, and lives.",
     },
     {
       title: "OceanNet",
       img: "https://api.builder.io/api/v1/image/assets/TEMP/46faf5a2fa5b4c6392659eaf48c4ad8540804c04?width=978",
-      desc: "Smart observation for marine activity and sustainability.",
+      desc: "Ocean Net is designed to make oceans smarter and safer by mapping underwater resources with advanced sensing technology. It helps fishermen locate fish more efficiently, identifies rocks and obstacles for safe boating, and monitors marine activity in real time. By combining satellite data and AI, Ocean Net ensures both livelihood support and maritime safety. Together, we move toward a secure and sustainable blue planet.",
     },
   ];
 
@@ -170,9 +185,11 @@ const VideoObservationSection = () => {
             tabIndex={-1}
             aria-hidden="true"
             onClick={e => e.preventDefault()}
-          >
-            {/* Card surface */}
-            <div className="absolute inset-0 rounded-[12px]  border border-[#FEC053]/10 transition-all duration-300 group-hover:bg-gray-700/50 pointer-events-none z-20">
+            >
+            {/* Background layer below image (does not affect image brightness) */}
+            <div className="absolute inset-0 rounded-[12px] bg-black transition-colors duration-300 group-hover:bg-gray-700/50 pointer-events-none z-0" />
+            {/* Edge/border accents above image */}
+            <div className="absolute inset-0 rounded-[12px] border border-[#FEC053]/10 transition-all duration-300 pointer-events-none z-20">
               {/* Decorative edge highlights on hover: top-left (horizontal) and bottom-right (vertical) */}
               <div
                 className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
@@ -208,7 +225,7 @@ const VideoObservationSection = () => {
             </div>
             <div className="relative flex flex-col h-full z-10">
               <div
-                className=" w-full overflow-hidden rounded-[10px] "
+                className=" w-full overflow-hidden  "
                 style={{ height: "200px" }}
               >
                 <img
@@ -222,14 +239,14 @@ const VideoObservationSection = () => {
               <h3 className="mt-4 font-reem text-[20px] text-white font-normal leading-tight">
                 {it.title}
               </h3>
-              <p className="mt-2 font-inter text-[11px] leading-[1.5] text-gray-300 line-clamp-3">
+              <p className="mt-2 font-inter text-[13px] leading-[1.5] text-gray-300 line-clamp-3">
                 {it.desc}
               </p>
               </div>
               <div className="mt-auto flex items-end p-4">
                 <button
                   type="button"
-                  onClick={() => navigate("/solution")}
+                  onClick={() => openModal(it)}
                   className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FFD7004D] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
                 >
                   View Details
@@ -239,6 +256,70 @@ const VideoObservationSection = () => {
           </a>
         ))}
       </div>
+
+      {/* Modal Overlay (Solution-style, smaller) */}
+      {isModalOpen && selectedItem && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          {/* Dark semi-transparent background */}
+          <div
+            className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-200 ${
+              isAnimating ? 'opacity-100' : 'opacity-0'
+            }`}
+            onClick={closeModal}
+          />
+          {/* Popup Modal Content */}
+          <div
+            className={`relative z-10 flex flex-col md:flex-row w-[96vw] max-w-2xl bg-[#23272e] rounded-lg border border-gray-700/60 shadow-2xl overflow-hidden transition-all duration-200 ${
+              isAnimating
+                ? 'opacity-100 scale-100 translate-y-0'
+                : 'opacity-0 scale-95 translate-y-4'
+            }`}
+            style={{
+              minHeight: '320px',
+              maxHeight: '90vh',
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Left: Image */}
+            <div className="md:w-[44%] w-full flex-shrink-0 bg-black/60 flex items-center justify-center p-0 md:p-0">
+              <img
+                src={selectedItem.img}
+                alt={selectedItem.title}
+                className="w-full h-full object-cover object-center"
+                style={{
+                  minHeight: '220px',
+                  maxHeight: '350px',
+                  borderTopLeftRadius: '0.5rem',
+                  borderBottomLeftRadius: '0.5rem',
+                }}
+                draggable={false}
+              />
+            </div>
+            {/* Right: Content */}
+            <div className="relative flex-1 flex flex-col px-5 py-4 md:py-6 md:px-6">
+              {/* Close Button */}
+              <button
+                onClick={closeModal}
+                className="absolute top-3 right-3 z-20 w-7 h-7  rounded-full flex items-center justify-center text-white font-bold text-lg transition-all duration-200 hover:scale-110 active:scale-95"
+                aria-label="Close"
+                tabIndex={0}
+              >
+                ×
+              </button>
+              {/* Title */}
+              <h3 className="font-reem text-lg md:text-xl font-semibold text-white mb-2 tracking-wide">
+                {selectedItem.title}
+              </h3>
+              {/* Description */}
+              <div className="text-white/90 font-inter text-xs md:text-sm leading-relaxed mb-4 flex-1 overflow-y-auto pr-1">
+                <p className="text-justify whitespace-pre-line">
+                  {selectedItem.desc}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Mobile CTA */}
       <div className="mt-8 md:hidden text-center">
@@ -324,12 +405,10 @@ export const VarshaAISection = (): JSX.Element => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <a
-          href="/mission"
+          href="https://varsha.ai/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm font-inter transition-all duration-300 hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block"
-          onClick={e => {
-            e.preventDefault();
-            navigate("/mission");
-          }}
         >
           <span className="shiny-text">Explore Now</span>
         </a>
@@ -374,14 +453,7 @@ export const GoingToTheMoonSection = (): JSX.Element => {
           variant="outline"
           className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white hover:border-[#FFD7004D]"
           onClick={() => {
-            navigate("/vission");
-            // Scroll to the GOING TO THE MOON card after navigation
-            setTimeout(() => {
-              const element = document.getElementById("going-to-moon");
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth", block: "start" });
-              }
-            }, 100);
+            navigate("/vission?target=going-to-moon");
           }}
         >
           Explore Now
@@ -809,7 +881,7 @@ const Footer = () => (
 
       <div className="mt-12 border-t border-white/20 pt-4 text-xs text-white/70 md:flex md:items-center md:justify-between">
   <p>
-          Copyright © 2025 Nellai Tours Made with <span role="img" aria-label="love">❤️</span> by{" "}
+          Copyright © 2025 Spacemancraft Made with <span role="img" aria-label="love">❤️</span> by{" "}
           <a
             href="https://www.brandmindz.com/"
             target="_blank"
