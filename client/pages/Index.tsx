@@ -5,7 +5,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import EarthCanvas from "./EarthCanvas";
 import HeroContent from "./HeroContent";
 import Navbar from "../components/Navbar";
-import ScrollFloat from "../components/ui/ScrollFloat";
+import ScrollFloat from "../components/ui/scroll/ScrollFloat";
+import ScrollReveal from "../components/ui/scroll/ScrollReveal";
+import DataCenterScrollReveal from "../components/ui/home/DataCenterScrollReveal";
+import SpaceTourismScrollReveal from "../components/ui/home/SpaceTourismScrollReveal";
+import { useNavigate } from "react-router-dom";
 
 // --- Always show Navbar at the top, outside the scrollable hero container ---
 
@@ -41,13 +45,17 @@ export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: num
       
       {/* 1. TEXT CONTENT (on top) */}
       <div className="relative z-20 flex flex-col items-center w-full px-4 pt-20 md:pt-8">
-        <ScrollFloat
-          progress={revealProgress}
-          tag="h1"
-          containerClassName="text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal font-reem text-center tracking-wide mb-3"
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={0}
+          blurStrength={10}
+          containerClassName="text-center mb-3"
+          textClassName="text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal font-reem tracking-wide"
+          manualProgress={p1Progress}
         >
           OUR PRODUCT
-        </ScrollFloat>
+        </ScrollReveal>
 
         <p
           className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-2 leading-relaxed"
@@ -55,6 +63,7 @@ export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: num
         >
           Electric Thruster System
         </p>
+        
 
         <p
           className="max-w-[600px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed"
@@ -96,11 +105,13 @@ export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: num
           }}
         />
       </div> */}
+
+      
       
     </section>
   );
 };
-import { useNavigate } from "react-router-dom";
+
 
 const VideoObservationSection = () => {
   const navigate = useNavigate();
@@ -138,7 +149,7 @@ const VideoObservationSection = () => {
   ];
 
   return (
-    <section className="relative w-full min-h-[700px] flex justify-center items-center bg-[#030712] overflow-hidden">
+    <section className="relative w-full min-h-[700px] pt-14 lg:pt-0 md:pt-0    flex justify-center items-center bg-[#030712] overflow-hidden">
     {/* Background stars and glow */}
     <div className="absolute inset-0 pointer-events-none select-none">
       <img
@@ -149,22 +160,27 @@ const VideoObservationSection = () => {
       />
       <div className="absolute inset-0 bg-black/20" />
       <div className="absolute left-[196px] top-[275px] w-[531px] h-[513px] rounded-full bg-[#0BFFD3] opacity-30 blur-[200px]" />
+      
+      {/* Semi-Circle Blur Effect (Right Side) - Smaller & Darker */}
+      <div 
+        className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-1/2 w-[150px] h-[150px] md:w-[300px] md:h-[300px] lg:w-[450px] lg:h-[450px] bg-indigo-900/60 rounded-full blur-[10px] md:blur-[80px] pointer-events-none z-0"
+      />
     </div>
 
     <div className="relative z-10 w-full max-w-[1320px] min-h-[700px] flex flex-col justify-center px-4 md:px-8">
       {/* Centered Heading and CTA */}
       <div className="w-full flex flex-col items-center justify-center mb-10 md:mb-14 relative">
-        <h2 className="font-reem text-[28px] md:text-[32px] lg:text-[36px] font-normal uppercase text-white leading-tight tracking-wide text-center">
+        <h2 className="font-reem text-[21px] md:text-[38px] lg:text-[44px] font-normal uppercase text-white leading-tight tracking-wide text-center">
           VIDEO BASED EARTH OBSERVATION
         </h2>
-        <p className="font-inter text-[12px] md:text-[13px] text-white/90 mt-2 md:mt-3 max-w-[600px] text-center">
+        <p className="font-inter text-[12px] md:text-sm text-white/90 mt-2 md:mt-3 max-w-[600px] text-center">
           We develop advanced video observation technologies that provide deeper insights  
           across land, defense, and ocean domains.
         </p>
         {/* CTA Button in right corner, absolutely positioned */}
         <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
           <button
-            className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-[12px] hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
+            className="  border rounded-md transition-all duration-300  hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-xs md:text-sm  transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
             onClick={() => navigate("/solution")}
           >
             Explore Full Archive
@@ -236,10 +252,10 @@ const VideoObservationSection = () => {
                 />
               </div>
               <div className="px-4">
-              <h3 className="mt-4 font-reem text-[20px] text-white font-normal leading-tight">
+              <h3 className="mt-4 font-reem text-[18px] md:text-[20px] lg:text-[22px] text-white font-normal leading-tight">
                 {it.title}
               </h3>
-              <p className="mt-2 font-inter text-[13px] leading-[1.5] text-gray-300 line-clamp-3">
+              <p className="mt-2 font-inter text-xs md:text-sm leading-[1.5] text-gray-300 line-clamp-3">
                 {it.desc}
               </p>
               </div>
@@ -247,7 +263,7 @@ const VideoObservationSection = () => {
                 <button
                   type="button"
                   onClick={() => openModal(it)}
-                  className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FFD7004D] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
+                  className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[10px] md:text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FFD7004D] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
                 >
                   View Details
                 </button>
@@ -307,7 +323,7 @@ const VideoObservationSection = () => {
                 ×
               </button>
               {/* Title */}
-              <h3 className="font-reem text-lg md:text-xl font-semibold text-white mb-2 tracking-wide">
+              <h3 className="font-reem text-[18px] md:text-[20px] lg:text-[22px] font-semibold text-white mb-2 tracking-wide">
                 {selectedItem.title}
               </h3>
               {/* Description */}
@@ -324,7 +340,7 @@ const VideoObservationSection = () => {
       {/* Mobile CTA */}
       <div className="mt-8 md:hidden text-center">
         <button
-          className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-[12px] hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
+          className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-xs md:text-sm hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
           onClick={() => navigate("/solution")}
         >
           Explore Full Archive
@@ -340,7 +356,7 @@ export const VisionStatementSection = (): JSX.Element => {
     <section className="relative w-full min-h-[1400px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
       {/* Background image as a true background, not an <img> */}
       <div
-        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
+        className="absolute inset-0 lg:w-full lg:h-full w-[100%] h-[100%] lg:bg-no-repeat bg-cover lg:bg-center bg-right pointer-events-none select-none"
         style={{
           backgroundImage: "url('/assets/VisionBg.png')",
           zIndex: 0,
@@ -360,10 +376,10 @@ export const VisionStatementSection = (): JSX.Element => {
         className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
         style={{ paddingTop: "80px" }}
       >
-        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+        <h1 className="font-reem text-white text-[23px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
           OUR VISION
         </h1>
-        <p className="max-w-[700px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+        <p className="max-w-[700px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
         Our vision is to land on the Moon powered by our electric thruster 
         </p>
       </div>
@@ -374,33 +390,45 @@ export const VisionStatementSection = (): JSX.Element => {
 export const VarshaAISection = (): JSX.Element => { 
   const navigate = useNavigate();
   return (
-    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "110vh" }}>
+<section
+  className="
+    relative w-full flex items-stretch overflow-hidden
+    min-h-[80vh]      /* default for desktop */
+    md:min-h-[80vh]
+    lg:min-h-[120vh]
+    sm:min-h-[900px]   /* small screens */
+    xs:min-h-[800px]   /* extra small */
+  "
+>
+
       {/* Background image as a true background, not an <img> */}
-      <div
-        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none "
-        style={{
-          backgroundImage: "url('/assets/Varsha ai.png')",
-          zIndex: 0,
-        }}
+      <video
+        className="absolute inset-0 lg:w-full lg:h-full w-[100%] h-[100%] pt-32 lg:pt-0  object-cover pointer-events-none select-none"
+        src="/assets/varshai-ai-animate.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{ zIndex: 0 }}
         aria-hidden="true"
       />
 
       {/* Top gradient overlay */}
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
+      {/* <div
+        className="absolute inset-0 bg-gradient-to-b from-black  to-transparent pointer-events-none"
         style={{ zIndex: 1 }}
         aria-hidden="true"
-      />
+      /> */}
 
       {/* Content */}
       <div
         className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
         style={{ paddingTop: "80px" }}
       >
-        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+        <h1 className="font-reem text-white text-[23px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
           VARSHA.AI
         </h1>
-        <p className="max-w-[600px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+        <p className="max-w-[600px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
@@ -420,7 +448,7 @@ export const VarshaAISection = (): JSX.Element => {
 export const GoingToTheMoonSection = (): JSX.Element => {
   const navigate = useNavigate();
   return (
-    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
+    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "120vh" }}>
       {/* Background image as a true background, not an <img> */}
       <div
         className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
@@ -433,7 +461,7 @@ export const GoingToTheMoonSection = (): JSX.Element => {
 
       {/* Top gradient overlay */}
       <div
-        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-b from-black via-black/5 to-transparent pointer-events-none"
         style={{ zIndex: 1 }}
         aria-hidden="true"
       />
@@ -443,10 +471,10 @@ export const GoingToTheMoonSection = (): JSX.Element => {
         className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
         style={{ paddingTop: "80px" }}
       >
-        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+        <h1 className="font-reem text-white text-[23px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
           GOING TO THE MOON
         </h1>
-        <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+        <p className="max-w-[420px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
         From Earth to Moon — powered by innovation in propulsion 
         </p>
         <Button
@@ -465,115 +493,69 @@ export const GoingToTheMoonSection = (): JSX.Element => {
 
 export const DataCenterSection = (): JSX.Element => {
   const navigate = useNavigate();
+  
   return (
-    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
-      {/* Background image as a true background, not an <img> */}
-      <div
-        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
-        style={{
-          backgroundImage: "url('/assets/10-data-center-moon.jpg')",
-          zIndex: 0,
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Top gradient overlay */}
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
-        style={{ zIndex: 1 }}
-        aria-hidden="true"
-      />
-
-      {/* Content */}
-      <div
-        className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
-        style={{ paddingTop: "80px" }}
-      >
-        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
+    <DataCenterScrollReveal backgroundImage="/assets/10-data-center-moon.jpg">
+      <h1 className="font-reem text-white text-[23px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
         Data Centers in Moon and Space 
-        </h1>
-        <p className="max-w-[420px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+      </h1>
+      <p className="max-w-[420px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
         Redefining the Future of Computing
-        </p>
-        <Button
-          variant="outline"
-          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-[#0BFFD3] hover:text-white hover:border-[#0BFFD3]"
-          onClick={() => {
-            navigate("/vission");
-            // Scroll to the DATA CENTER IN SPACE card after navigation
-            setTimeout(() => {
-              const element = document.getElementById("data-center-space");
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth", block: "start" });
-              }
-            }, 100);
-          }}
-        >
-          Explore Now
-        </Button>
-      </div>
-    </section>
+      </p>
+      <Button
+        variant="outline"
+        className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-[#0BFFD3] hover:text-white hover:border-[#0BFFD3]"
+        onClick={() => {
+          navigate("/vission");
+          // Scroll to the DATA CENTER IN SPACE card after navigation
+          setTimeout(() => {
+            const element = document.getElementById("data-center-space");
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }, 100);
+        }}
+      >
+        Explore Now
+      </Button>
+    </DataCenterScrollReveal>
   );
 };
 
 export const SpaceTourismSection = (): JSX.Element => {
   const navigate = useNavigate();
+  
   return (
-    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
-      {/* Background image as a true background, not an <img> */}
-      <div
-        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
-        style={{
-          backgroundImage: "url('/assets/11-space-tourism.jpg')",
-          zIndex: 0,
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Top gradient overlay */}
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
-        style={{ zIndex: 1 }}
-        aria-hidden="true"
-      />
-
-      {/* Content */}
-      <div
-        className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
-        style={{ paddingTop: "80px" }}
-      >
-        <h1 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[46px] font-normal text-center tracking-wide ">
-          Space Tourism 
-        </h1>
-        <h3 className="font-reem text-white text-[32px] md:text-[38px] lg:text-[30px] font-normal text-center tracking-wide mb-3">
+    <SpaceTourismScrollReveal backgroundImage="/assets/11-space-tourism.jpg">
+      <h1 className="font-reem text-white text-[21px] md:text-[38px] lg:text-[46px] font-normal text-center tracking-wide ">
+        Space Tourism 
+      </h1>
+      <h3 className="font-reem text-white text-[18px] md:text-[24px] lg:text-[30px] font-normal text-center tracking-wide mb-3">
         Making the Universe Your Next Destination
-        </h3>
-        <p className="max-w-[820px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
-          We believe space is not just for astronauts — it’s for everyone.
-          Space tourism is the next leap in human exploration, where ordinary people experience the extraordinary wonders of the cosmos.
-        </p>
-        <Button
-          variant="outline"
-          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-[#0BFFD3] hover:text-black hover:border-[#0BFFD3]"
-          onClick={() => {
-            navigate("/vission");
-            // Scroll to the SPACE TOURISM card after navigation
-            setTimeout(() => {
-              const element = document.getElementById("space-tourism");
-              if (element) {
-                element.scrollIntoView({ behavior: "smooth", block: "start" });
-              }
-            }, 100);
-          }}
-        >
-          Explore Now
-        </Button>
-      </div>
-    </section>
+      </h3>
+      <p className="max-w-[820px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed">
+        We believe space is not just for astronauts — it's for everyone.
+        Space tourism is the next leap in human exploration, where ordinary people experience the extraordinary wonders of the cosmos.
+      </p>
+      <Button
+        variant="outline"
+        className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-[#0BFFD3] hover:text-black hover:border-[#0BFFD3]"
+        onClick={() => {
+          navigate("/vission");
+          // Scroll to the SPACE TOURISM card after navigation
+          setTimeout(() => {
+            const element = document.getElementById("space-tourism");
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }, 100);
+        }}
+      >
+        Explore Now
+      </Button>
+    </SpaceTourismScrollReveal>
   );
 };
-
-
 
 const BlogsSection = () => {
   const navigate = useNavigate();
@@ -586,10 +568,10 @@ const BlogsSection = () => {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="text-center mb-10 md:mb-14">
-          <h2 className="font-reem text-3xl md:text-4xl font-normal text-white leading-tight mb-3">
+          <h2 className="font-reem text-[21px] md:text-[38px] lg:text-[44px] font-normal text-white leading-tight mb-3">
             The Blogs
           </h2>
-          <p className="font-inter text-sm md:text-base text-gray-300 max-w-[780px] mx-auto leading-6">
+          <p className="font-inter text-[12px] md:text-sm text-gray-300 max-w-[780px] mx-auto leading-6">
             A blog is like your brand's personal journal — but online, public, and
             packed with valuable content that educates, inspires, or connects with
             your audience.
@@ -620,27 +602,27 @@ const BlogsSection = () => {
                   alt="Total Lunar Eclipse Gala"
                   className="w-full h-full object-cover"
                 />
-                <span className="absolute top-3 right-3 bg-[#23272F]/80 px-3 py-[6px] rounded-full text-white text-[11px] font-inter">
+                <span className="absolute top-3 right-3 bg-[#23272F]/80 px-3 py-[6px] rounded-full text-white text-[10px] md:text-[11px] font-inter">
                   Featured Event
                 </span>
               </div>
 
               <div className="relative p-5 sm:p-6 z-10 transition-colors duration-200 group-hover:bg-gradient-to-br group-hover:from-[#0BFFD3]/10 group-hover:to-[#23272F]/60">
                 <div className="flex items-start justify-between gap-4 mb-2">
-                  <h3 className="font-reem text-lg sm:text-xl text-white">
+                  <h3 className="font-reem text-[16px] md:text-[18px] lg:text-[20px] text-white">
                     Total Lunar Eclipse Gala
                   </h3>
                   <div className="text-right">
                     <p className="text-gray-400 text-xs leading-none mb-1">
                       Date
                     </p>
-                    <p className="text-white text-xs sm:text-[13px] leading-none">
+                    <p className="text-white text-[10px] md:text-[12px] leading-none">
                       October 14, 2025
                     </p>
                   </div>
                 </div>
 
-                <p className="font-inter text-xs text-gray-300 leading-5">
+                <p className="font-inter text-[11px] md:text-xs text-gray-300 leading-5">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                   eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Risus commodo viverra maecenas accumsan lacus vel facilisis.
@@ -651,7 +633,7 @@ const BlogsSection = () => {
 
                 <div className="mt-4 flex justify-end">
                   <button
-                    className="bg-gradient-to-r from-[#0DF7D4] to-[#2C7BDC] px-4 py-1.5 rounded-lg text-white font-inter text-xs border border-yellow-400/30 hover:from-[#0DF7D4]/85 hover:to-[#2C7BDC]/85 transition"
+                    className="bg-gradient-to-r from-[#0DF7D4] to-[#2C7BDC] px-4 py-1.5 rounded-lg text-white font-inter text-[10px] md:text-xs border border-yellow-400/30 hover:from-[#0DF7D4]/85 hover:to-[#2C7BDC]/85 transition"
                     onClick={() => navigate("/blog")}
                   >
                     Explore more
@@ -691,7 +673,7 @@ const BlogsSection = () => {
                 </div>
                 <div className="relative z-10">
                   <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-reem text-base md:text-lg text-white">
+                    <h3 className="font-reem text-[14px] md:text-[16px] lg:text-[18px] text-white">
                       Total Lunar Eclipse Gala
                     </h3>
                     <p className="text-gray-400 text-xs leading-none">
@@ -706,7 +688,7 @@ const BlogsSection = () => {
 
                   <div className="mt-4 flex justify-end">
                     <button
-                      className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-xs hover:bg-white hover:text-black transition"
+                      className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-[10px] md:text-xs hover:bg-white hover:text-black transition"
                       onClick={() => navigate("/blogpage")}
                     >
                       Read
@@ -729,18 +711,40 @@ const AboutSection = () => {
 
   return (
     <section
-      className="relative bg-black w-full min-h-screen flex items-stretch overflow-hidden"
+      className="relative bg-black w-full min-h-screen flex flex-col lg:flex-row items-stretch overflow-hidden"
       style={{ maxWidth: "100vw" }}
     >
-      {/* Left Side: Astronaut Image, fills left half */}
-      <div className="relative hidden lg:flex w-1/2 h-screen flex-shrink-0 items-center justify-end overflow-hidden">
-        <div className="relative h-[98vh] w-full flex items-center justify-end">
-          <img
-            src="/assets/Spaceman.png"
-            alt="Spaceman"
-            className="block h-[98vh] w-auto object-contain object-left"
+      {/* Mobile/Tablet: Astronaut Video at top */}
+      <div className="relative lg:hidden w-full h-[60vh] md:h-[80vh] flex-shrink-0 overflow-hidden">
+        <div className="relative h-full w-full flex items-center justify-center">
+          <video
+            src="/assets/about/spaceman.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="block w-full h-full object-cover"
             style={{
-              marginLeft: "-10vw", // Pull image left for dramatic effect, adjust as needed
+              zIndex: 1,
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black pointer-events-none" />
+      </div>
+
+      {/* Desktop: Astronaut Video on left half */}
+      <div className="relative hidden lg:flex w-1/2 h-screen flex-shrink-0 items-center justify-end overflow-hidden">
+        <div className="relative h-full w-full flex items-center justify-end">
+          <video
+            src="/assets/about/spaceman.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="block w-full h-full object-cover"
+            style={{
               zIndex: 1,
               pointerEvents: "none",
               userSelect: "none",
@@ -750,17 +754,17 @@ const AboutSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none" />
       </div>
 
-      {/* Right Side: Content, fills right half, centers content */}
+      {/* Content Section */}
       <div
-        className="w-full lg:w-1/2 flex items-center justify-center px-6 py-16 lg:py-0 min-h-screen"
-        style={{ maxWidth: "700px", marginLeft: "auto" }}
+        className="w-full lg:w-1/2 flex items-center justify-center px-6 py-12 lg:py-0 min-h-[50vh] lg:min-h-screen"
+        style={{ maxWidth: "100%", marginLeft: "auto" }}
       >
         <div className="max-w-xl w-full">
-          <h2 className="font-reem text-3xl md:text-5xl font-normal text-white leading-tight mb-4">
+          <h2 className="font-reem text-[21px] md:text-[38px] lg:text-[48px] font-normal text-white leading-tight mb-4">
             About Spaceman Craft
           </h2>
 
-          <p className="font-inter text-sm md:text-base text-white/80 leading-relaxed mb-8">
+          <p className="font-inter text-[12px] md:text-sm text-white/80 leading-relaxed mb-8">
             We are a team of innovators, engineers, and dreamers working together to 
             redefine the future of space technology. From electric propulsion systems to CubeSats 
             and lunar data centers, our projects are built to advance how humanity explores, 
@@ -768,7 +772,7 @@ const AboutSection = () => {
           </p>
           <button
             type="button"
-            className="inline-block border border-white px-5 py-2 rounded text-white font-inter text-sm hover:bg-white hover:text-black transition-all"
+            className="inline-block border border-white px-5 py-2 rounded text-white font-inter text-xs md:text-sm hover:bg-white hover:text-black transition-all"
             onClick={() => {
               navigate("/about");
             }}
@@ -792,7 +796,7 @@ const Footer = () => (
     </div>
     <div className="absolute inset-0 bg-black/60" />
 
-    <div className="relative mx-auto w-full max-w-6xl px-6 py-16 md:py-20">
+    <div className="relative mx-auto w-full max-w-6xl px-6 lg:py-16 md:py-20">
       <div className="mx-auto mb-10 max-w-3xl text-center">
         <img
           src="/assets/01-logo.jpg"

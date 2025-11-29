@@ -15,19 +15,21 @@ const About = () => (
       >
         {/* Left Side: Astronaut Image (hidden on mobile/tablet) */}
         <div className="relative hidden lg:flex w-1/2 h-[calc(100vh-80px)] flex-shrink-0 items-center justify-end overflow-hidden">
-          <div className="relative h-full w-full flex items-center justify-end">
-            <img
-              src="/assets/Spaceman.png"
-              alt="Spaceman"
-              className="block h-full w-auto object-contain object-left"
-              style={{
-                marginLeft: "-10vw",
-                zIndex: 1,
-                pointerEvents: "none",
-                userSelect: "none",
-              }}
-            />
-          </div>
+          <div className="relative h-full w-full flex items-center justify-center">
+          <video
+            src="/assets/about/spaceman.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="block w-full h-full object-cover"
+            style={{
+              zIndex: 1,
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
+          />
+        </div>
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent pointer-events-none" />
         </div>
 

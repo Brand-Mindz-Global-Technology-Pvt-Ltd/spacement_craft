@@ -149,12 +149,28 @@ const Earth = ({ scrollVelocity }: { scrollVelocity: number }) => {
 // };
 
 // ==================================================================
-// MAIN CANVAS COMPONENT - UNCHANGED FROM THE LAST CORRECT VERSION
+// MAIN CANVAS COMPONENT - UPDATED FOR RESPONSIVENESS
 // ==================================================================
 const EarthCanvas = ({ scrollProgress = 0 }: { scrollProgress?: number }) => {
   const [scrollVelocity, setScrollVelocity] = useState(0);
   const lastScrollY = useRef(0);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  // --- RESPONSIVE STATE ---
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check initial size
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+    checkMobile();
+
+    // Add listener for resizing
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+  // ------------------------
 
   useEffect(() => {
     const handleScroll = () => {
@@ -175,19 +191,27 @@ const EarthCanvas = ({ scrollProgress = 0 }: { scrollProgress?: number }) => {
   const easeOutCubic = (x: number): number => 1 - Math.pow(1 - x, 3);
   const progress = easeOutCubic(scrollProgress);
 
+  // --- RESPONSIVE CONFIGURATION ---
+  // Adjusted scale and position based on 'isMobile' state
   const initial = {
-    position: new THREE.Vector3(0, -6.6, 2),
+    // Mobile: Shift Y slightly (optional), Desktop: -6.6
+    position: new THREE.Vector3(0, isMobile ? -3.0 : -6.6, 2), 
     rotation: new THREE.Euler(-0.5, 0, 0),
-    scale: 1.5,
-    cameraZ: 12,
+    // Mobile: Scale 0.9, Desktop: 1.5
+    scale: isMobile ? 0.7 : 1.5,
+    // Mobile: Camera further back (16), Desktop: 12
+    cameraZ: isMobile ? 16 : 12,
   };
 
   const final = {
-    position: new THREE.Vector3(-10,-7, 7),
+    // Mobile: Adjust final position if needed, else keep similar logic
+    position: new THREE.Vector3(isMobile ? -4 : -10, isMobile ? -5 : -7, 7),
     rotation: new THREE.Euler(0, 0, 0.5),
-    scale: 2.2,
+    // Mobile: Scale 1.2, Desktop: 2.2
+    scale: isMobile ? 1.2 : 2.2, 
     cameraZ: 20,
   };
+  // --------------------------------
 
   const satelliteProgress = Math.max(0, Math.min(1, (progress - 0.5) / 0.5));
 

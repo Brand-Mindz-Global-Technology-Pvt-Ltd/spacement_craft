@@ -123,3 +123,24 @@
   white-space: nowrap;
   border: 0;
 }
+
+@keyframes fly-ship {
+  0% {
+    transform: translate(-20vw, 20vh) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120vw, -120vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.animate-fly-ship {
+  animation: fly-ship 15s linear infinite;
+}
