@@ -875,7 +875,7 @@ const Footer = () => (
         <div>
           <h3 className="mb-4 text-base font-semibold">Enquire Now</h3>
           <button
-            className="rounded-full bg-gradient-to-r from-cyan-400 to-blue-600 px-5 py-2.5 text-sm font-medium text-black shadow-[0_0_35px_rgba(56,189,248,0.45)] transition hover:from-cyan-300 hover:to-blue-500"
+            className="rounded-lg bg-gradient-to-b from-[#0BFFD3] via-cyan-400 to-[#316BDE] lg:px-4 lg:py-2 px-3 py-2 lg:text-[15px] font-normal text-white shadow-lg transition-transform duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             Discover Our Thruster

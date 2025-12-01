@@ -18,7 +18,7 @@ import ContactUs from "./pages/ContactUs";
 import Solution from "./pages/Solution";
 import Blog from "./pages/Blog";
 import BlogPage from "./pages/BlogPage";
-import Product from "./pages/Product";
+import Product from "./pages/product/Product";
 import Vission from "./pages/Vission";
 import Mission from "./pages/Mission";
 import Career from "./pages/Career";
@@ -48,7 +48,7 @@ const App = () => {
           <ScrollToTop />
           <ScrollToTopButton />
           <Routes>
-            <Route path="/" element={<Index />} />
+            {/* <Route path="/" element={<Index />} /> */}
             <Route path="/vission" element={<Vission />} />
             <Route path="/product" element={<Product />} />
             <Route path="/solution" element={<Solution />} />

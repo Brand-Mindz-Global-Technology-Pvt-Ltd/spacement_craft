@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import Navbar from "../components/Navbar";
+import React, { useState, useEffect, useRef } from "react";
+import Navbar from "../../components/Navbar";
 
 // Utility function for conditional classNames (Tailwind-friendly)
 function cn(...args: (string | false | undefined | null)[]) {
@@ -11,61 +11,108 @@ function cn(...args: (string | false | undefined | null)[]) {
 
 const Product = () => {
   const [selectedTab, setSelectedTab] = useState("space");
+  const [showBanner, setShowBanner] = useState(false);
+  const [showSection, setShowSection] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    // Reveal banner after a short delay
+    const bannerTimer = setTimeout(() => {
+      setShowBanner(true);
+    }, 100);
+
+    return () => clearTimeout(bannerTimer);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShowSection(true);
+            observer.disconnect(); // Animate only once
+          }
+        });
+      },
+      { threshold: 0.2 } // Trigger when 20% of the section is visible
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen w-full bg-black text-white">
       <Navbar />
       {/* Hero Section */}
-      <div className="relative w-full min-h-[350px] md:min-h-[500px] h-[40vw] max-h-[600px] flex items-end justify-start overflow-hidden">
+      <div 
+        className={cn(
+          "relative w-full min-h-[350px] md:min-h-[500px] h-[40vw] max-h-[800px] flex items-end justify-start overflow-hidden transition-all duration-1000 ease-out",
+          showBanner ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}
+      >
         <img
-          src="/assets/contactbg.png"
+          src="/assets/product/productbanner.webp"
           alt="Spacecraft in orbit"
           className="absolute inset-0 w-full h-full object-cover object-center"
           draggable={false}
-          style={{ minHeight: "350px", maxHeight: "600px" }}
+      
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90" />
-        <div className="relative z-10 px-6 md:px-16 pb-8 md:pb-16 w-full">
+        <div className="absolute inset-0 lg:bg-gradient-to-b lg:from-black/90 lg:via-black/10 lg:to-black10 bg-gradient-to-b from-black/80  via-black/10 to-black/90"  />
+        <div className="relative z-10 px-4 md:px-16 pb-8 md:pb-16 w-full">
           {/* Breadcrumb */}
-          <nav className="mb-3 flex items-center space-x-2 text-white/80 text-xs md:text-sm font-inter">
-            <a href="/" className="hover:underline">Home</a>
-            <span className="mx-1">/</span>
-            <span className="text-white font-medium">Our Product</span>
-          </nav>
-          <h1 className="text-2xl md:text-4xl font-semibold font-reem text-white drop-shadow-lg">
+          
+          <h1 className="text-[21px] md:text-[38px] lg:text-[44px] font-normal letter-spacing-[2px] font-reem text-white drop-shadow-lg">
             Our Product
           </h1>
+          <nav className="mt-3 flex items-center space-x-2 text-white/80 text-xs md:text-sm font-reem">
+            <a href="/" className="hover:underline font-reem">Home</a>
+            <span className="mx-1">{' > '}</span>
+            <span className="text-white font-medium font-reem">Our Product</span>
+          </nav>
         </div>
       </div>
    
-      <section className="w-full flex flex-col items-center justify-center px-4 md:px-10 py-8 md:py-12 bg-black">
-        <div className="relative w-full  mx-auto rounded-2xl overflow-hidden border border-cyan-400/40 shadow-lg" style={{ minHeight: "400px", height: "400px" }}>
+      <section 
+        ref={sectionRef}
+        className={cn(
+          "w-full flex flex-col items-center justify-center  md:px-0 py-8 md:py-12 bg-black transition-all duration-1000 ease-out delay-200",
+          showSection ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+        )}
+      >
+        <div className="relative w-full  mx-auto  overflow-hidden shadow-lg" style={{ minHeight: "400px", height: "500px" }}>
           {/* Earth background */}
           <img
-            src="/assets/03-orbiting-earth.png"
+            src="/assets/product/2.webp"
             alt="Earth from orbit"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 lg:w-full lg:h-full object-cover object-center "
             draggable={false}
             style={{ zIndex: 0 }}
           />
           {/* Overlay for effect */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/10 to-black/90 z-10" />
           {/* Satellite image and content */}
           <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-12 px-4">
-            <p className="text-center text-white text-sm md:text-base font-inter mb-6 max-w-2xl mx-auto">
+            <p className="text-center text-white text-[12px] md:text-sm font-inter mb-6 max-w-2xl mx-auto">
               International-based deep-tech metal startup, founded in 2022, focused on building
               high-efficiency electric propulsion systems.
             </p>
             <button
-              className="bg-cyan-400 hover:bg-cyan-300 text-black font-medium px-6 py-2 rounded-full shadow-lg transition"
+           className="rounded-xl bg-gradient-to-b from-[#0BFFD3] via-cyan-400 to-[#316BDE] px-5 py-2.5 text-xs md:text-sm font-medium text-white shadow-lg transition-transform duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]"
               onClick={() => window.location.href = '/contactus'}
             >
-              Enquiry Link
+              Enquiry Us
             </button>
           </div>
         </div>
       </section>
-
 
       <footer className="relative overflow-hidden text-white">
         <div className="absolute inset-0">
