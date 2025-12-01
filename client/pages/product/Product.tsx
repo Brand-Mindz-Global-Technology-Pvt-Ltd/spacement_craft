@@ -54,7 +54,7 @@ const Product = () => {
       {/* Hero Section */}
       <div 
         className={cn(
-          "relative w-full min-h-[350px] md:min-h-[500px] h-[40vw] max-h-[800px] flex items-end justify-start overflow-hidden transition-all duration-1000 ease-out",
+          "relative w-full min-h-[350px] md:min-h-[500px] h-[50vw] max-h-[800px] flex items-end justify-start overflow-hidden transition-all duration-1000 ease-out",
           showBanner ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}
       >
@@ -65,7 +65,7 @@ const Product = () => {
           draggable={false}
       
         />
-        <div className="absolute inset-0 lg:bg-gradient-to-b lg:from-black/90 lg:via-black/10 lg:to-black10 bg-gradient-to-b from-black/80  via-black/10 to-black/90"  />
+        <div className="absolute inset-0 lg:bg-gradient-to-b lg:from-black/0 lg:via-black/0 lg:to-black/0 bg-gradient-to-b from-black/80  via-black/10 to-black/90"  />
         <div className="relative z-10 px-4 md:px-16 pb-8 md:pb-16 w-full">
           {/* Breadcrumb */}
           
@@ -87,20 +87,20 @@ const Product = () => {
           showSection ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         )}
       >
-        <div className="relative w-full  mx-auto  overflow-hidden shadow-lg" style={{ minHeight: "400px", height: "500px" }}>
+        <div className="relative w-full  mx-auto  overflow-hidden shadow-lg lg:min-h-[400px] lg:h-[600px] h-[250px] " >
           {/* Earth background */}
           <img
             src="/assets/product/2.webp"
             alt="Earth from orbit"
-            className="absolute inset-0 lg:w-full lg:h-full object-cover object-center "
+            className="absolute inset-0 lg:w-full lg:h-full w-full h-60 object-cover object-center  "
             draggable={false}
             style={{ zIndex: 0 }}
           />
           {/* Overlay for effect */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/10 to-black/90 z-10" />
           {/* Satellite image and content */}
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-end pb-12 px-4">
-            <p className="text-center text-white text-[12px] md:text-sm font-inter mb-6 max-w-2xl mx-auto">
+          <div className="absolute inset-0 z-20 flex flex-col items-center justify-end lg:pb-12 lg:px-4 px-2 lg:mb-0 mb-4">
+            <p className="text-center text-white text-[12px] md:text-sm font-inter lg:mb-6 mb-3 max-w-2xl mx-auto">
               International-based deep-tech metal startup, founded in 2022, focused on building
               high-efficiency electric propulsion systems.
             </p>
