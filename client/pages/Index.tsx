@@ -11,6 +11,7 @@ import DataCenterScrollReveal from "../components/ui/home/DataCenterScrollReveal
 import SpaceTourismScrollReveal from "../components/ui/home/SpaceTourismScrollReveal";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { eventsData } from "@/data/homeblog";
 
 // --- Always show Navbar at the top, outside the scrollable hero container ---
 
@@ -595,6 +596,7 @@ const BlogsSection = () => {
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/30 via-transparent to-transparent blur-2xl" />
               </div>
+              <div className="flex items-center justify-center py-10 sm:py-14">
               <div className="relative w-full h-[240px] sm:h-[260px] z-10">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/8d131cf968ba9d25f16ec41d57b7bf0809d4b910?width=1420"
@@ -605,7 +607,7 @@ const BlogsSection = () => {
                   Featured Event
                 </span>
               </div>
-
+</div>
               <div className="relative p-5 sm:p-6 z-10 transition-colors duration-200 group-hover:bg-gradient-to-br group-hover:from-[#0BFFD3]/10 group-hover:to-[#23272F]/60">
                 <div className="flex items-start justify-between gap-4 mb-2">
                   <h3 className="font-reem text-[16px] md:text-[18px] lg:text-[20px] text-white">
@@ -622,12 +624,11 @@ const BlogsSection = () => {
                 </div>
 
                 <p className="font-inter text-[11px] md:text-xs text-gray-300 leading-5">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Risus commodo viverra maecenas accumsan lacus vel facilisis.
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Risus commodo viverra maecenas accumsan lacus vel facilisis.
+                  A breathtaking total lunar eclipse will grace the skies on October 14, 2025, visible across Asia,
+Africa, and parts of Europe. During this celestial event, the Moon will pass completely through Earth’s
+shadow, glowing in deep red and copper hues — a true “Blood Moon.”
+Join us for a live telescope session, astrophotography tips, and discussions about the science behind
+eclipses.
                 </p>
 
                 <div className="mt-4 flex justify-end">
@@ -651,52 +652,49 @@ const BlogsSection = () => {
           </div>
 
           {/* Side list */}
-          <div className="lg:col-span-7 flex flex-col gap-5">
-            {[
-              { date: "May 22-25, 2025" },
-              { date: "August 11-13, 2025" },
-              { date: "September 5, 2025" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className={`
-                  group bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-5 shadow backdrop-blur-sm transition-colors duration-200
-                  hover:border-[#0BFFD3]
-                  hover:bg-gradient-to-br hover:from-[#0BFFD3]/15 hover:to-[#181A20]/80
-                  relative
-                `}
-              >
-                {/* Green glow on hover */}
-                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/25 via-transparent to-transparent blur-2xl" />
-                </div>
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-reem text-[14px] md:text-[16px] lg:text-[18px] text-white">
-                      Total Lunar Eclipse Gala
-                    </h3>
-                    <p className="text-gray-400 text-xs leading-none">
-                      {item.date}
-                    </p>
-                  </div>
+         <div className="lg:col-span-7 flex flex-col gap-5">
+  {eventsData.map((item) => (
+    <div
+      key={item.id}
+      className={`
+        group bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-5 shadow backdrop-blur-sm transition-colors duration-200
+        hover:border-[#0BFFD3]
+        hover:bg-gradient-to-br hover:from-[#0BFFD3]/15 hover:to-[#181A20]/80
+        relative
+      `}
+    >
+      {/* Green Glow */}
+      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/25 via-transparent to-transparent blur-2xl" />
+      </div>
 
-                  <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
+      <div className="relative z-10">
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="font-reem text-[14px] md:text-[16px] lg:text-[18px] text-white">
+            {item.title}
+          </h3>
 
-                  <div className="mt-4 flex justify-end">
-                    <button
-                      className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-[10px] md:text-xs hover:bg-white hover:text-black transition"
-                      onClick={() => navigate("/blogpage")}
-                    >
-                      Read
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <p className="text-gray-400 text-xs leading-none">
+            {item.date}
+          </p>
+        </div>
+
+        <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
+          {item.description}
+        </p>
+
+        <div className="mt-4 flex justify-end">
+          <button
+            className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-[10px] md:text-xs hover:bg-white hover:text-black transition"
+            onClick={() => navigate("/blogpage")}
+          >
+            Read
+          </button>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </div>
     </section>
