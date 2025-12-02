@@ -67,7 +67,7 @@ const Atmosphere = () => {
 // ==================================================================
 const Clouds = () => {
   const cloudsRef = useRef<THREE.Mesh>(null!);
-  
+
   // ***** THIS IS THE FIX *****
   // Changed THREE.Loader to the correct THREE.TextureLoader
   const cloudsMap = useLoader(THREE.TextureLoader, earthCloudsMapUrl);
@@ -94,7 +94,7 @@ const Clouds = () => {
 // ==================================================================
 // YOUR ORIGINAL EARTH COMPONENT - UNCHANGED (WITH REVOLVING SPEED)
 // ==================================================================
-const Earth = ({ scrollVelocity }: { scrollVelocity: number }) => {
+const Earth = ({ scrollVelocity, onLoaded }: { scrollVelocity: number, onLoaded?: () => void }) => {
   const meshRef = useRef<THREE.Mesh>(null!);
 
   const [colorMap, bumpMap, roughnessMap, nightMap] = useLoader(THREE.TextureLoader, [
@@ -103,6 +103,12 @@ const Earth = ({ scrollVelocity }: { scrollVelocity: number }) => {
     earthSpecularMapUrl,
     earthNightMapUrl,
   ]);
+
+  useEffect(() => {
+    if (onLoaded) {
+      onLoaded();
+    }
+  }, [onLoaded]);
 
   useFrame(() => {
     if (meshRef.current) {
@@ -132,7 +138,7 @@ const Earth = ({ scrollVelocity }: { scrollVelocity: number }) => {
 
 // const Satellite = () => {
 //   const satelliteRef = useRef<THREE.Group>(null!);
-  
+
 //   // This hook loads your 3D model from the /public folder
 //   const { scene } = useGLTF("/satellite.glb");
 
@@ -156,6 +162,9 @@ const EarthCanvas = ({ scrollProgress = 0 }: { scrollProgress?: number }) => {
   const lastScrollY = useRef(0);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
+  // Entrance animation state (Fade In)
+  const [isLoaded, setIsLoaded] = useState(false);
+
   // --- RESPONSIVE STATE ---
   const [isMobile, setIsMobile] = useState(false);
 
@@ -168,7 +177,9 @@ const EarthCanvas = ({ scrollProgress = 0 }: { scrollProgress?: number }) => {
 
     // Add listener for resizing
     window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
   }, []);
   // ------------------------
 
@@ -195,7 +206,7 @@ const EarthCanvas = ({ scrollProgress = 0 }: { scrollProgress?: number }) => {
   // Adjusted scale and position based on 'isMobile' state
   const initial = {
     // Mobile: Shift Y slightly (optional), Desktop: -6.6
-    position: new THREE.Vector3(0, isMobile ? -3.0 : -6.6, 2), 
+    position: new THREE.Vector3(0, isMobile ? -3.0 : -6.6, 2),
     rotation: new THREE.Euler(-0.5, 0, 0),
     // Mobile: Scale 0.9, Desktop: 1.5
     scale: isMobile ? 0.7 : 1.5,
@@ -208,7 +219,7 @@ const EarthCanvas = ({ scrollProgress = 0 }: { scrollProgress?: number }) => {
     position: new THREE.Vector3(isMobile ? -4 : -10, isMobile ? -5 : -7, 7),
     rotation: new THREE.Euler(0, 0, 0.5),
     // Mobile: Scale 1.2, Desktop: 2.2
-    scale: isMobile ? 1.2 : 2.2, 
+    scale: isMobile ? 1.2 : 2.2,
     cameraZ: 20,
   };
   // --------------------------------
@@ -252,18 +263,21 @@ const EarthCanvas = ({ scrollProgress = 0 }: { scrollProgress?: number }) => {
   const cameraZ = THREE.MathUtils.lerp(initial.cameraZ, final.cameraZ, progress);
 
   return (
-    <div className="absolute inset-0 z-0">
+    <div
+      className={`absolute inset-0 z-0 transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+    >
       <Canvas camera={{ position: [0, 0, cameraZ], fov: 50 }}>
         <Suspense fallback={null}>
           <ambientLight intensity={0.1} />
           <directionalLight position={[20, 9, 5]} intensity={2.5} />
 
-          <group 
+          <group
             position={earthPosition}
             rotation={earthRotation}
             scale={earthScale}
           >
-            <Earth scrollVelocity={scrollVelocity} />
+            <Earth scrollVelocity={scrollVelocity} onLoaded={() => setIsLoaded(true)} />
             {/* <Clouds /> */}
             {/* <Atmosphere />   */}
           </group>

@@ -18,7 +18,7 @@ const ContactUs: React.FC = () => (
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/assets/VisionBg.png"
+          src="/assets/StarAnimate.png"
           alt="Stars Background"
           className="w-full h-full object-cover"
         />
