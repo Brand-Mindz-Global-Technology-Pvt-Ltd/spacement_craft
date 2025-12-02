@@ -431,19 +431,19 @@ export const VarshaAISection = (): JSX.Element => {
           VARSHA.AI
         </h1>
         <p className="max-w-[600px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
-           Rain of Space Data Intelligence. Orbital Data Centre Satellites Powered by our electric thrusters
+          Rain of Space Data Intelligence. Orbital Data Centre Satellites Powered by our electric thrusters
         </p>
-      <a
-  href="https://varsha.ai/"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm font-inter transition-all duration-300 
+        <a
+          href="https://varsha.ai/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm font-inter transition-all duration-300 
              hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
              hover:border-transparent hover:text-white 
              hover:shadow-[0_0_35px_rgba(56,189,248,0.45)] hover:scale-[1.03] inline-block"
->
-  <span className="shiny-text">Explore Now</span>
-</a>
+        >
+          <span className="shiny-text">Explore Now</span>
+        </a>
 
       </div>
     </section>
@@ -482,20 +482,20 @@ export const GoingToTheMoonSection = (): JSX.Element => {
         <p className="max-w-[420px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
           From Earth to Moon — powered by innovation in propulsion
         </p>
-<Button
-  variant="outline"
-  className="
+        <Button
+          variant="outline"
+          className="
     px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-all duration-300
     hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
     hover:border-transparent hover:text-white
     hover:shadow-[0_0_35px_rgba(56,189,248,0.45)] hover:scale-[1.03]
   "
-  onClick={() => {
-    navigate('/vission?target=going-to-moon');
-  }}
->
-  Explore Now
-</Button>
+          onClick={() => {
+            navigate('/vission?target=going-to-moon');
+          }}
+        >
+          Explore Now
+        </Button>
 
       </div>
     </section>
@@ -513,9 +513,9 @@ export const DataCenterSection = (): JSX.Element => {
       <p className="max-w-[420px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
         Redefining the Future of Computing
       </p>
-     <Button
-  variant="outline"
-  className="
+      <Button
+        variant="outline"
+        className="
     px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm 
     transition-all duration-300
     hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
@@ -523,18 +523,18 @@ export const DataCenterSection = (): JSX.Element => {
     hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
     hover:scale-[1.03]
   "
-  onClick={() => {
-    navigate('/vission');
-    setTimeout(() => {
-      const element = document.getElementById('data-center-space');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
-  }}
->
-  Explore Now
-</Button>
+        onClick={() => {
+          navigate('/vission');
+          setTimeout(() => {
+            const element = document.getElementById('data-center-space');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 100);
+        }}
+      >
+        Explore Now
+      </Button>
 
     </DataCenterScrollReveal>
   );
@@ -555,9 +555,9 @@ export const SpaceTourismSection = (): JSX.Element => {
         We believe space is not just for astronauts — it's for everyone.
         Space tourism is the next leap in human exploration, where ordinary people experience the extraordinary wonders of the cosmos.
       </p>
-     <Button
-  variant="outline"
-  className="
+      <Button
+        variant="outline"
+        className="
     px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm 
     transition-all duration-300
     hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
@@ -565,18 +565,18 @@ export const SpaceTourismSection = (): JSX.Element => {
     hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
     hover:scale-[1.03]
   "
-  onClick={() => {
-    navigate('/vission');
-    setTimeout(() => {
-      const element = document.getElementById('space-tourism');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 100);
-  }}
->
-  Explore Now
-</Button>
+        onClick={() => {
+          navigate('/vission');
+          setTimeout(() => {
+            const element = document.getElementById('space-tourism');
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 100);
+        }}
+      >
+        Explore Now
+      </Button>
 
     </SpaceTourismScrollReveal>
   );
@@ -604,11 +604,11 @@ const BlogsSection = () => {
         </div>
 
         {/* Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Featured */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 flex">
             <div
-              className="group relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#0BFFD3] rounded-2xl shadow-xl overflow-hidden transition-colors duration-200"
+              className="group relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#0BFFD3] rounded-2xl shadow-xl overflow-hidden transition-colors duration-200 w-full flex flex-col"
               style={{
                 // Always show the left border with #0BFFD3, and on hover, all borders get #0BFFD3
                 borderLeftColor: "#0BFFD3",
@@ -621,7 +621,6 @@ const BlogsSection = () => {
               <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/30 via-transparent to-transparent blur-2xl" />
               </div>
-              <div className="flex items-center justify-center py-10 sm:py-14">
               <div className="relative w-full h-[240px] sm:h-[260px] z-10">
                 <img
                   src="https://api.builder.io/api/v1/image/assets/TEMP/8d131cf968ba9d25f16ec41d57b7bf0809d4b910?width=1420"
@@ -632,8 +631,7 @@ const BlogsSection = () => {
                   Featured Event
                 </span>
               </div>
-</div>
-              <div className="relative p-5 sm:p-6 z-10 transition-colors duration-200 group-hover:bg-gradient-to-br group-hover:from-[#0BFFD3]/10 group-hover:to-[#23272F]/60">
+              <div className="relative p-5 sm:p-6 z-10 transition-colors duration-200 group-hover:bg-gradient-to-br group-hover:from-[#0BFFD3]/10 group-hover:to-[#23272F]/60 flex-1 flex flex-col">
                 <div className="flex items-start justify-between gap-4 mb-2">
                   <h3 className="font-reem text-[16px] md:text-[18px] lg:text-[20px] text-white">
                     Total Lunar Eclipse Gala
@@ -648,12 +646,12 @@ const BlogsSection = () => {
                   </div>
                 </div>
 
-                <p className="font-inter text-[11px] md:text-xs text-gray-300 leading-5">
+                <p className="font-inter text-[11px] md:text-xs text-gray-300 leading-5 flex-1">
                   A breathtaking total lunar eclipse will grace the skies on October 14, 2025, visible across Asia,
-Africa, and parts of Europe. During this celestial event, the Moon will pass completely through Earth’s
-shadow, glowing in deep red and copper hues — a true “Blood Moon.”
-Join us for a live telescope session, astrophotography tips, and discussions about the science behind
-eclipses.
+                  Africa, and parts of Europe. During this celestial event, the Moon will pass completely through Earth's
+                  shadow, glowing in deep red and copper hues — a true "Blood Moon."
+                  Join us for a live telescope session, astrophotography tips, and discussions about the science behind
+                  eclipses.
                 </p>
 
                 <div className="mt-4 flex justify-end">
@@ -677,40 +675,40 @@ eclipses.
           </div>
 
           {/* Side list */}
-         <div className="lg:col-span-7 flex flex-col gap-5">
-  {eventsData.map((item) => (
-    <div
-      key={item.id}
-      className={`
+          <div className="lg:col-span-7 flex flex-col gap-5">
+            {eventsData.map((item) => (
+              <div
+                key={item.id}
+                className={`
         group bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-5 shadow backdrop-blur-sm transition-colors duration-200
         hover:border-[#0BFFD3]
         hover:bg-gradient-to-br hover:from-[#0BFFD3]/15 hover:to-[#181A20]/80
         relative
       `}
-    >
-      {/* Green Glow */}
-      <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/25 via-transparent to-transparent blur-2xl" />
-      </div>
+              >
+                {/* Green Glow */}
+                <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/25 via-transparent to-transparent blur-2xl" />
+                </div>
 
-      <div className="relative z-10">
-        <div className="flex items-start justify-between gap-4">
-          <h3 className="font-reem text-[14px] md:text-[16px] lg:text-[18px] text-white">
-            {item.title}
-          </h3>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="font-reem text-[14px] md:text-[16px] lg:text-[18px] text-white">
+                      {item.title}
+                    </h3>
 
-          <p className="text-gray-400 text-xs leading-none">
-            {item.date}
-          </p>
-        </div>
+                    <p className="text-gray-400 text-xs leading-none">
+                      {item.date}
+                    </p>
+                  </div>
 
-        <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
-          {item.description}
-        </p>
+                  <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
+                    {item.description}
+                  </p>
 
-        <div className="mt-4 flex justify-end">
-       <button
-  className="
+                  <div className="mt-4 flex justify-end">
+                    <button
+                      className="
     border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-[10px] md:text-xs 
     transition-all duration-300
     hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
@@ -719,16 +717,16 @@ eclipses.
     hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
     hover:scale-[1.03]
   "
-  onClick={() => navigate("/blogpage")}
->
-  Read
-</button>
+                      onClick={() => navigate("/blogpage")}
+                    >
+                      Read
+                    </button>
 
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -801,18 +799,18 @@ const AboutSection = () => {
             and lunar data centers, our projects are built to advance how humanity explores,
             communicates, and thrives in space.
           </p>
-   <button
-  type="button"
-  className="inline-block border border-white px-5 py-2 rounded text-white font-inter text-xs md:text-sm transition-all
+          <button
+            type="button"
+            className="inline-block border border-white px-5 py-2 rounded text-white font-inter text-xs md:text-sm transition-all
              hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
              hover:border-transparent hover:text-white
              hover:shadow-[0_0_35px_rgba(56,189,248,0.45)] hover:scale-[1.03]"
-  onClick={() => {
-    navigate("/about");
-  }}
->
-  Explore Now
-</button>
+            onClick={() => {
+              navigate("/about");
+            }}
+          >
+            Explore Now
+          </button>
 
 
         </div>
