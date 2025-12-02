@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import SolutionHero from "../../components/solution/SolutionHero";
 import EarthObservation from "../../components/solution/EarthObservation";
 import DataCenter from "../../components/solution/DataCenter";
-import SolutionFooter from "../../components/solution/SolutionFooter";
+import Footer from "../../components/Footer";
 import SolutionModal from "../../components/solution/SolutionModal";
 import { SolutionItem } from "../../components/solution/solutionData";
 
@@ -33,7 +33,7 @@ const Solution = () => {
       <SolutionHero />
       <EarthObservation openModal={openModal} />
       <DataCenter />
-      <SolutionFooter />
+      <Footer />
       <SolutionModal
         isOpen={isModalOpen}
         selectedItem={selectedItem}

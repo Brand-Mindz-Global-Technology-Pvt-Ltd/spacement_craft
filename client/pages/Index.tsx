@@ -10,6 +10,7 @@ import ScrollReveal from "../components/ui/scroll/ScrollReveal";
 import DataCenterScrollReveal from "../components/ui/home/DataCenterScrollReveal";
 import SpaceTourismScrollReveal from "../components/ui/home/SpaceTourismScrollReveal";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 // --- Always show Navbar at the top, outside the scrollable hero container ---
 
@@ -25,7 +26,7 @@ const Hero = () => {
 };
 
 export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: number }) => {
-  
+
   // All your existing text animation logic is preserved.
   const p1Progress = revealProgress;
   const p1TranslateY = (1 - p1Progress) * 20;
@@ -42,7 +43,7 @@ export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: num
 
   return (
     <section className="relative w-full h-screen">
-      
+
       {/* 1. TEXT CONTENT (on top) */}
       <div className="relative z-20 flex flex-col items-center w-full px-4 pt-20 md:pt-8">
         <ScrollReveal
@@ -63,7 +64,7 @@ export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: num
         >
           Electric Thruster System
         </p>
-        
+
 
         <p
           className="max-w-[600px] text-center text-white/90 text-xs md:text-sm font-inter mb-5 leading-relaxed"
@@ -74,7 +75,7 @@ export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: num
       </div>
 
       {/* 2. SATELLITE IMAGE (centered, behind text) */}
-      <div 
+      <div
         className="absolute inset-0 z-10 flex justify-center items-center pointer-events-none"
         style={{ opacity: imageOpacity }}
       >
@@ -106,8 +107,8 @@ export const OurProductSection = ({ revealProgress = 0 }: { revealProgress?: num
         />
       </div> */}
 
-      
-      
+
+
     </section>
   );
 };
@@ -150,204 +151,202 @@ const VideoObservationSection = () => {
 
   return (
     <section className="relative w-full min-h-[700px] pt-14 lg:pt-0 md:pt-0    flex justify-center items-center bg-[#030712] overflow-hidden">
-    {/* Background stars and glow */}
-    <div className="absolute inset-0 pointer-events-none select-none">
-      <img
-        src="https://api.builder.io/api/v1/image/assets/TEMP/b8b9acf6016a95d32435be71013b40ab7f911b8c?width=3760"
-        alt="Star field"
-        className="w-[1880px] h-[1354px] absolute left-5 -top-[199px]"
-        draggable={false}
-      />
-      <div className="absolute inset-0 bg-black/20" />
-      <div className="absolute left-[196px] top-[275px] w-[531px] h-[513px] rounded-full bg-[#0BFFD3] opacity-30 blur-[200px]" />
-      
-      {/* Semi-Circle Blur Effect (Right Side) - Smaller & Darker */}
-      <div 
-        className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-1/2 w-[150px] h-[150px] md:w-[300px] md:h-[300px] lg:w-[450px] lg:h-[450px] bg-indigo-900/60 rounded-full blur-[10px] md:blur-[80px] pointer-events-none z-0"
-      />
-    </div>
+      {/* Background stars and glow */}
+      <div className="absolute inset-0 pointer-events-none select-none">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/b8b9acf6016a95d32435be71013b40ab7f911b8c?width=3760"
+          alt="Star field"
+          className="w-[1880px] h-[1354px] absolute left-5 -top-[199px]"
+          draggable={false}
+        />
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute left-[196px] top-[275px] w-[531px] h-[513px] rounded-full bg-[#0BFFD3] opacity-30 blur-[200px]" />
 
-    <div className="relative z-10 w-full max-w-[1320px] min-h-[700px] flex flex-col justify-center px-4 md:px-8">
-      {/* Centered Heading and CTA */}
-      <div className="w-full flex flex-col items-center justify-center mb-10 md:mb-14 relative">
-        <h2 className="font-reem text-[21px] md:text-[38px] lg:text-[44px] font-normal uppercase text-white leading-tight tracking-wide text-center">
-          VIDEO BASED EARTH OBSERVATION
-        </h2>
-        <p className="font-inter text-[12px] md:text-sm text-white/90 mt-2 md:mt-3 max-w-[600px] text-center">
-          We develop advanced video observation technologies that provide deeper insights  
-          across land, defense, and ocean domains.
-        </p>
-        {/* CTA Button in right corner, absolutely positioned */}
-        <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
+        {/* Semi-Circle Blur Effect (Right Side) - Smaller & Darker */}
+        <div
+          className="absolute right-0 top-1/3 -translate-y-1/2 translate-x-1/2 w-[150px] h-[150px] md:w-[300px] md:h-[300px] lg:w-[450px] lg:h-[450px] bg-indigo-900/60 rounded-full blur-[10px] md:blur-[80px] pointer-events-none z-0"
+        />
+      </div>
+
+      <div className="relative z-10 w-full max-w-[1320px] min-h-[700px] flex flex-col justify-center px-4 md:px-8">
+        {/* Centered Heading and CTA */}
+        <div className="w-full flex flex-col items-center justify-center mb-10 md:mb-14 relative">
+          <h2 className="font-reem text-[21px] md:text-[38px] lg:text-[44px] font-normal uppercase text-white leading-tight tracking-wide text-center">
+            VIDEO BASED EARTH OBSERVATION
+          </h2>
+          <p className="font-inter text-[12px] md:text-sm text-white/90 mt-2 md:mt-3 max-w-[600px] text-center">
+            We develop advanced video observation technologies that provide deeper insights
+            across land, defense, and ocean domains.
+          </p>
+          {/* CTA Button in right corner, absolutely positioned */}
+          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
+            <button
+              className="  border rounded-md transition-all duration-300  hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-xs md:text-sm  transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
+              onClick={() => navigate("/solution")}
+            >
+              Explore Full Archive
+            </button>
+          </div>
+        </div>
+
+        {/* Cards */}
+        <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center md:items-stretch">
+          {items.map((it, idx) => (
+            <a
+              key={idx}
+              href="#"
+              className="group relative bg-transparent rounded-[12px] overflow-hidden transition w-full max-w-[400px] min-w-[320px] min-h-[380px] shadow-none"
+              style={{
+                height: "380px",
+              }}
+              tabIndex={-1}
+              aria-hidden="true"
+              onClick={e => e.preventDefault()}
+            >
+              {/* Background layer below image (does not affect image brightness) */}
+              <div className="absolute inset-0 rounded-[12px] bg-black transition-colors duration-300 group-hover:bg-gray-700/50 pointer-events-none z-0" />
+              {/* Edge/border accents above image */}
+              <div className="absolute inset-0 rounded-[12px] border border-[#FEC053]/10 transition-all duration-300 pointer-events-none z-20">
+                {/* Decorative edge highlights on hover: top-left (horizontal) and bottom-right (vertical) */}
+                <div
+                  className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                  }}
+                />
+                {/* New: Top-left vertical down accent */}
+                <div
+                  className="pointer-events-none absolute top-0 left-0 w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                  }}
+                />
+
+                <div
+                  className="pointer-events-none absolute bottom-0  right-0  w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
+                  style={{
+                    background:
+                      "linear-gradient(0deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                  }}
+                />
+                {/* New: Top-right horizontal accent (towards center) */}
+                <div
+                  className="pointer-events-none absolute bottom-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
+                  style={{
+                    background:
+                      "linear-gradient(270deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                  }}
+                />
+              </div>
+              <div className="relative flex flex-col h-full z-10">
+                <div
+                  className=" w-full overflow-hidden  "
+                  style={{ height: "200px" }}
+                >
+                  <img
+                    src={it.img}
+                    alt={it.title}
+                    className="w-full h-full object-cover block"
+                    draggable={false}
+                  />
+                </div>
+                <div className="px-4">
+                  <h3 className="mt-4 font-reem text-[18px] md:text-[20px] lg:text-[22px] text-white font-normal leading-tight">
+                    {it.title}
+                  </h3>
+                  <p className="mt-2 font-inter text-xs md:text-sm leading-[1.5] text-gray-300 line-clamp-3">
+                    {it.desc}
+                  </p>
+                </div>
+                <div className="mt-auto flex items-end p-4">
+                  <button
+                    type="button"
+                    onClick={() => openModal(it)}
+                    className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[10px] md:text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FFD7004D] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
+                  >
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        {/* Modal Overlay (Solution-style, smaller) */}
+        {isModalOpen && selectedItem && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center">
+            {/* Dark semi-transparent background */}
+            <div
+              className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-200 ${isAnimating ? 'opacity-100' : 'opacity-0'
+                }`}
+              onClick={closeModal}
+            />
+            {/* Popup Modal Content */}
+            <div
+              className={`relative z-10 flex flex-col md:flex-row w-[96vw] max-w-2xl bg-[#23272e] rounded-lg border border-gray-700/60 shadow-2xl overflow-hidden transition-all duration-200 ${isAnimating
+                  ? 'opacity-100 scale-100 translate-y-0'
+                  : 'opacity-0 scale-95 translate-y-4'
+                }`}
+              style={{
+                minHeight: '320px',
+                maxHeight: '90vh',
+              }}
+              onClick={e => e.stopPropagation()}
+            >
+              {/* Left: Image */}
+              <div className="md:w-[44%] w-full flex-shrink-0 bg-black/60 flex items-center justify-center p-0 md:p-0">
+                <img
+                  src={selectedItem.img}
+                  alt={selectedItem.title}
+                  className="w-full h-full object-cover object-center"
+                  style={{
+                    minHeight: '220px',
+                    maxHeight: '350px',
+                    borderTopLeftRadius: '0.5rem',
+                    borderBottomLeftRadius: '0.5rem',
+                  }}
+                  draggable={false}
+                />
+              </div>
+              {/* Right: Content */}
+              <div className="relative flex-1 flex flex-col px-5 py-4 md:py-6 md:px-6">
+                {/* Close Button */}
+                <button
+                  onClick={closeModal}
+                  className="absolute top-3 right-3 z-20 w-7 h-7  rounded-full flex items-center justify-center text-white font-bold text-lg transition-all duration-200 hover:scale-110 active:scale-95"
+                  aria-label="Close"
+                  tabIndex={0}
+                >
+                  ×
+                </button>
+                {/* Title */}
+                <h3 className="font-reem text-[18px] md:text-[20px] lg:text-[22px] font-semibold text-white mb-2 tracking-wide">
+                  {selectedItem.title}
+                </h3>
+                {/* Description */}
+                <div className="text-white/90 font-inter text-xs md:text-sm leading-relaxed mb-4 flex-1 overflow-y-auto pr-1">
+                  <p className="text-justify whitespace-pre-line">
+                    {selectedItem.desc}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile CTA */}
+        <div className="mt-8 md:hidden text-center">
           <button
-            className="  border rounded-md transition-all duration-300  hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-xs md:text-sm  transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
+            className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-xs md:text-sm hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
             onClick={() => navigate("/solution")}
           >
             Explore Full Archive
           </button>
         </div>
       </div>
-
-      {/* Cards */}
-      <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center md:items-stretch">
-        {items.map((it, idx) => (
-          <a
-            key={idx}
-            href="#"
-            className="group relative bg-transparent rounded-[12px] overflow-hidden transition w-full max-w-[400px] min-w-[320px] min-h-[380px] shadow-none"
-            style={{
-              height: "380px",
-            }}
-            tabIndex={-1}
-            aria-hidden="true"
-            onClick={e => e.preventDefault()}
-            >
-            {/* Background layer below image (does not affect image brightness) */}
-            <div className="absolute inset-0 rounded-[12px] bg-black transition-colors duration-300 group-hover:bg-gray-700/50 pointer-events-none z-0" />
-            {/* Edge/border accents above image */}
-            <div className="absolute inset-0 rounded-[12px] border border-[#FEC053]/10 transition-all duration-300 pointer-events-none z-20">
-              {/* Decorative edge highlights on hover: top-left (horizontal) and bottom-right (vertical) */}
-              <div
-                className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
-                style={{
-                  background:
-                    "linear-gradient(90deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
-                }}
-              />
-              {/* New: Top-left vertical down accent */}
-              <div
-                className="pointer-events-none absolute top-0 left-0 w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
-                style={{
-                  background:
-                    "linear-gradient(180deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
-                }}
-              />
-              
-              <div
-                className="pointer-events-none absolute bottom-0  right-0  w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
-                style={{
-                  background:
-                    "linear-gradient(0deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
-                }}
-              />
-              {/* New: Top-right horizontal accent (towards center) */}
-              <div
-                className="pointer-events-none absolute bottom-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
-                style={{
-                  background:
-                    "linear-gradient(270deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
-                }}
-              />
-            </div>
-            <div className="relative flex flex-col h-full z-10">
-              <div
-                className=" w-full overflow-hidden  "
-                style={{ height: "200px" }}
-              >
-                <img
-                  src={it.img}
-                  alt={it.title}
-                  className="w-full h-full object-cover block"
-                  draggable={false}
-                />
-              </div>
-              <div className="px-4">
-              <h3 className="mt-4 font-reem text-[18px] md:text-[20px] lg:text-[22px] text-white font-normal leading-tight">
-                {it.title}
-              </h3>
-              <p className="mt-2 font-inter text-xs md:text-sm leading-[1.5] text-gray-300 line-clamp-3">
-                {it.desc}
-              </p>
-              </div>
-              <div className="mt-auto flex items-end p-4">
-                <button
-                  type="button"
-                  onClick={() => openModal(it)}
-                  className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[10px] md:text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FFD7004D] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
-                >
-                  View Details
-                </button>
-              </div>
-            </div>
-          </a>
-        ))}
-      </div>
-
-      {/* Modal Overlay (Solution-style, smaller) */}
-      {isModalOpen && selectedItem && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          {/* Dark semi-transparent background */}
-          <div
-            className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-200 ${
-              isAnimating ? 'opacity-100' : 'opacity-0'
-            }`}
-            onClick={closeModal}
-          />
-          {/* Popup Modal Content */}
-          <div
-            className={`relative z-10 flex flex-col md:flex-row w-[96vw] max-w-2xl bg-[#23272e] rounded-lg border border-gray-700/60 shadow-2xl overflow-hidden transition-all duration-200 ${
-              isAnimating
-                ? 'opacity-100 scale-100 translate-y-0'
-                : 'opacity-0 scale-95 translate-y-4'
-            }`}
-            style={{
-              minHeight: '320px',
-              maxHeight: '90vh',
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            {/* Left: Image */}
-            <div className="md:w-[44%] w-full flex-shrink-0 bg-black/60 flex items-center justify-center p-0 md:p-0">
-              <img
-                src={selectedItem.img}
-                alt={selectedItem.title}
-                className="w-full h-full object-cover object-center"
-                style={{
-                  minHeight: '220px',
-                  maxHeight: '350px',
-                  borderTopLeftRadius: '0.5rem',
-                  borderBottomLeftRadius: '0.5rem',
-                }}
-                draggable={false}
-              />
-            </div>
-            {/* Right: Content */}
-            <div className="relative flex-1 flex flex-col px-5 py-4 md:py-6 md:px-6">
-              {/* Close Button */}
-              <button
-                onClick={closeModal}
-                className="absolute top-3 right-3 z-20 w-7 h-7  rounded-full flex items-center justify-center text-white font-bold text-lg transition-all duration-200 hover:scale-110 active:scale-95"
-                aria-label="Close"
-                tabIndex={0}
-              >
-                ×
-              </button>
-              {/* Title */}
-              <h3 className="font-reem text-[18px] md:text-[20px] lg:text-[22px] font-semibold text-white mb-2 tracking-wide">
-                {selectedItem.title}
-              </h3>
-              {/* Description */}
-              <div className="text-white/90 font-inter text-xs md:text-sm leading-relaxed mb-4 flex-1 overflow-y-auto pr-1">
-                <p className="text-justify whitespace-pre-line">
-                  {selectedItem.desc}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Mobile CTA */}
-      <div className="mt-8 md:hidden text-center">
-        <button
-          className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-xs md:text-sm hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
-          onClick={() => navigate("/solution")}
-        >
-          Explore Full Archive
-        </button>
-      </div>
-    </div>
-  </section>
+    </section>
   );
 };
 
@@ -380,18 +379,18 @@ export const VisionStatementSection = (): JSX.Element => {
           OUR VISION
         </h1>
         <p className="max-w-[700px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
-        Our vision is to land on the Moon powered by our electric thruster 
+          Our vision is to land on the Moon powered by our electric thruster
         </p>
       </div>
     </section>
   );
 };
 
-export const VarshaAISection = (): JSX.Element => { 
+export const VarshaAISection = (): JSX.Element => {
   const navigate = useNavigate();
   return (
-<section
-  className="
+    <section
+      className="
     relative w-full flex items-stretch overflow-hidden
     min-h-[80vh]      /* default for desktop */
     md:min-h-[80vh]
@@ -399,7 +398,7 @@ export const VarshaAISection = (): JSX.Element => {
     sm:min-h-[900px]   /* small screens */
     xs:min-h-[800px]   /* extra small */
   "
->
+    >
 
       {/* Background image as a true background, not an <img> */}
       <video
@@ -475,7 +474,7 @@ export const GoingToTheMoonSection = (): JSX.Element => {
           GOING TO THE MOON
         </h1>
         <p className="max-w-[420px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
-        From Earth to Moon — powered by innovation in propulsion 
+          From Earth to Moon — powered by innovation in propulsion
         </p>
         <Button
           variant="outline"
@@ -489,15 +488,15 @@ export const GoingToTheMoonSection = (): JSX.Element => {
       </div>
     </section>
   );
-};  
+};
 
 export const DataCenterSection = (): JSX.Element => {
   const navigate = useNavigate();
-  
+
   return (
     <DataCenterScrollReveal backgroundImage="/assets/10-data-center-moon.jpg">
       <h1 className="font-reem text-white text-[23px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
-        Data Centers in Moon and Space 
+        Data Centers in Moon and Space
       </h1>
       <p className="max-w-[420px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
         Redefining the Future of Computing
@@ -524,11 +523,11 @@ export const DataCenterSection = (): JSX.Element => {
 
 export const SpaceTourismSection = (): JSX.Element => {
   const navigate = useNavigate();
-  
+
   return (
     <SpaceTourismScrollReveal backgroundImage="/assets/11-space-tourism.jpg">
       <h1 className="font-reem text-white text-[21px] md:text-[38px] lg:text-[46px] font-normal text-center tracking-wide ">
-        Space Tourism 
+        Space Tourism
       </h1>
       <h3 className="font-reem text-white text-[18px] md:text-[24px] lg:text-[30px] font-normal text-center tracking-wide mb-3">
         Making the Universe Your Next Destination
@@ -765,10 +764,10 @@ const AboutSection = () => {
           </h2>
 
           <p className="font-inter text-[12px] md:text-sm text-white/80 leading-relaxed mb-8">
-            We are a team of innovators, engineers, and dreamers working together to 
-            redefine the future of space technology. From electric propulsion systems to CubeSats 
-            and lunar data centers, our projects are built to advance how humanity explores, 
-            communicates, and thrives in space. 
+            We are a team of innovators, engineers, and dreamers working together to
+            redefine the future of space technology. From electric propulsion systems to CubeSats
+            and lunar data centers, our projects are built to advance how humanity explores,
+            communicates, and thrives in space.
           </p>
           <button
             type="button"
@@ -785,131 +784,7 @@ const AboutSection = () => {
   );
 };
 
-const Footer = () => (
-  <footer className="relative overflow-hidden text-white">
-    <div className="absolute inset-0">
-      <img
-        src="/assets/Footer.png"
-        alt="Star field footer background"
-        className="h-full w-full object-cover"
-      />
-    </div>
-    <div className="absolute inset-0 bg-black/60" />
 
-    <div className="relative mx-auto w-full max-w-6xl px-6 lg:py-16 md:py-20">
-      <div className="mx-auto mb-10 max-w-3xl text-center">
-        <img
-          src="/assets/01-logo.jpg"
-          alt="Spacemancraft"
-          className="mx-auto mb-4 h-10 w-auto"
-        />
-        <p className="text-sm leading-relaxed text-white/80">
-          A revolutionary blend of spacecraft and passenger vehicle, powered by
-          cost‑effective solar electric propulsion. It paves the way for human
-          exploration across Earth’s orbit and beyond, making space travel more
-          affordable and accessible than ever before.
-        </p>
-      </div>
-
-      <div className="grid gap-10 md:grid-cols-3">
-        <div>
-          <h3 className="mb-4 text-base font-semibold">Navigate</h3>
-          <ul className="space-y-2 text-sm text-white/85">
-            <li>
-              <a href="/" className="hover:text-white">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="/product" className="hover:text-white">
-                Product
-              </a>
-            </li>
-            <li>
-              <a href="/solution" className="hover:text-white">
-                Solution
-              </a>
-            </li>
-            <li>
-              <a href="#vision" className="hover:text-white">
-                Vision
-              </a>
-            </li>
-            <li>
-              <a href="/blog" className="hover:text-white">
-                Blog
-              </a>
-            </li>
-            <li>
-              <Link to="/about" className="hover:text-white">
-                About us
-              </Link>
-            </li>
-            <li>
-              <a href="/contactus" className="hover:text-white">
-                Contact us
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="mb-4 text-base font-semibold">Reach Out</h3>
-          <ul className="space-y-3 text-sm text-white/85">
-            <li className="flex items-start gap-3">
-              <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-white/70" />
-              <span>Tamil Nadu, India</span>
-            </li>
-            <li className="flex items-start gap-3 break-all">
-              <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-white/70" />
-              <a
-                href="mailto:spacemancraftindia@gmail.com"
-                className="hover:text-white"
-              >
-                spacemancraftindia@gmail.com
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="mb-4 text-base font-semibold">Enquire Now</h3>
-          <button
-            className="rounded-lg bg-gradient-to-b from-[#0BFFD3] via-cyan-400 to-[#316BDE] lg:px-4 lg:py-2 px-3 py-2 lg:text-[15px] font-normal text-white shadow-lg transition-transform duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            Discover Our Thruster
-          </button>
-        </div>
-      </div>
-
-      <div className="mt-12 border-t border-white/20 pt-4 text-xs text-white/70 md:flex md:items-center md:justify-between">
-  <p>
-          Copyright © 2025 Spacemancraft Made with <span role="img" aria-label="love">❤️</span> by{" "}
-          <a
-            href="https://www.brandmindz.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className=" hover:text-white"
-          >
-            Brand Mindz
-          </a>{" "}
-          | All rights reserved
-        </p>        <div className="mt-3 flex gap-4 md:mt-0">
-          <a href="#" className="hover:text-white">
-            Terms & Conditions
-          </a>
-          <a href="#" className="hover:text-white">
-            Privacy Policy
-          </a>
-          <a href="#" className="hover:text-white">
-            Refund Policy
-          </a>
-        </div>
-      </div>
-    </div>
-  </footer>
-);
 
 export default function Index() {
   const [scrollProgress, setScrollProgress] = useState(0);
