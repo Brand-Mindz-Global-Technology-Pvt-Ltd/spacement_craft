@@ -822,6 +822,10 @@ export default function Index() {
       const progress = Math.max(0, Math.min(1, -top / scrollableDistance));
       setScrollProgress(progress);
     };
+
+    // Initial check to set correct state on mount/refresh
+    handleScroll();
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrollDurationInScreens]);

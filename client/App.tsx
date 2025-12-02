@@ -20,7 +20,7 @@ import Blog from "./pages/blog/Blog";
 import BlogPage from "./pages/blog/BlogPage";
 import Product from "./pages/product/Product";
 import Vission from "./pages/vission/Vission";
-import Mission from "./pages/Mission";
+import Mission from "./pages/mission/Mission";
 import Career from "./pages/career/Career";
 import { useState, useEffect } from "react";
 

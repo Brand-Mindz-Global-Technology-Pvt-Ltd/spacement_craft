@@ -12,7 +12,7 @@ const Footer = () => (
         </div>
         <div className="absolute inset-0 bg-black/60" />
 
-        <div className="relative mx-auto w-full max-w-6xl px-6 lg:py-16 md:py-20">
+        <div className="relative mx-auto w-full max-w-6xl px-6 lg:py-16 lg:pb-6 py-9 md:py-20">
             <div className="mx-auto mb-10 max-w-3xl text-center">
                 <img
                     src="/assets/01-logo.jpg"
