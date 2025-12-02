@@ -17,7 +17,7 @@ const MissionImage = () => {
             </div>
             {/* Description Section */}
             <div className="w-full max-w-7xl mt-4 sm:mt-8 px-2 sm:px-4">
-                <p className="text-white/80 text-xs sm:text-sm md:text-base font-inter mb-2 leading-relaxed">
+                <p className="text-white/80 text-xs sm:text-sm md:text-base font-inter mb-2 leading-relaxed text-justify">
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
             </div>
