@@ -431,17 +431,20 @@ export const VarshaAISection = (): JSX.Element => {
           VARSHA.AI
         </h1>
         <p className="max-w-[600px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+           Rain of Space Data Intelligence. Orbital Data Centre Satellites Powered by our electric thrusters
         </p>
-        <a
-          href="https://varsha.ai/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm font-inter transition-all duration-300 hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block"
-        >
-          <span className="shiny-text">Explore Now</span>
-        </a>
+      <a
+  href="https://varsha.ai/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm font-inter transition-all duration-300 
+             hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
+             hover:border-transparent hover:text-white 
+             hover:shadow-[0_0_35px_rgba(56,189,248,0.45)] hover:scale-[1.03] inline-block"
+>
+  <span className="shiny-text">Explore Now</span>
+</a>
+
       </div>
     </section>
   );
@@ -479,15 +482,21 @@ export const GoingToTheMoonSection = (): JSX.Element => {
         <p className="max-w-[420px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
           From Earth to Moon — powered by innovation in propulsion
         </p>
-        <Button
-          variant="outline"
-          className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white hover:border-[#FFD7004D]"
-          onClick={() => {
-            navigate("/vission?target=going-to-moon");
-          }}
-        >
-          Explore Now
-        </Button>
+<Button
+  variant="outline"
+  className="
+    px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-all duration-300
+    hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
+    hover:border-transparent hover:text-white
+    hover:shadow-[0_0_35px_rgba(56,189,248,0.45)] hover:scale-[1.03]
+  "
+  onClick={() => {
+    navigate('/vission?target=going-to-moon');
+  }}
+>
+  Explore Now
+</Button>
+
       </div>
     </section>
   );
@@ -504,22 +513,29 @@ export const DataCenterSection = (): JSX.Element => {
       <p className="max-w-[420px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
         Redefining the Future of Computing
       </p>
-      <Button
-        variant="outline"
-        className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-[#0BFFD3] hover:text-white hover:border-[#0BFFD3]"
-        onClick={() => {
-          navigate("/vission");
-          // Scroll to the DATA CENTER IN SPACE card after navigation
-          setTimeout(() => {
-            const element = document.getElementById("data-center-space");
-            if (element) {
-              element.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-          }, 100);
-        }}
-      >
-        Explore Now
-      </Button>
+     <Button
+  variant="outline"
+  className="
+    px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm 
+    transition-all duration-300
+    hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
+    hover:border-transparent hover:text-white
+    hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
+    hover:scale-[1.03]
+  "
+  onClick={() => {
+    navigate('/vission');
+    setTimeout(() => {
+      const element = document.getElementById('data-center-space');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  }}
+>
+  Explore Now
+</Button>
+
     </DataCenterScrollReveal>
   );
 };
@@ -539,22 +555,29 @@ export const SpaceTourismSection = (): JSX.Element => {
         We believe space is not just for astronauts — it's for everyone.
         Space tourism is the next leap in human exploration, where ordinary people experience the extraordinary wonders of the cosmos.
       </p>
-      <Button
-        variant="outline"
-        className="px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm transition-colors hover:bg-[#0BFFD3] hover:text-black hover:border-[#0BFFD3]"
-        onClick={() => {
-          navigate("/vission");
-          // Scroll to the SPACE TOURISM card after navigation
-          setTimeout(() => {
-            const element = document.getElementById("space-tourism");
-            if (element) {
-              element.scrollIntoView({ behavior: "smooth", block: "start" });
-            }
-          }, 100);
-        }}
-      >
-        Explore Now
-      </Button>
+     <Button
+  variant="outline"
+  className="
+    px-5 py-1.5 rounded bg-transparent border border-white text-white text-xs md:text-sm 
+    transition-all duration-300
+    hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
+    hover:border-transparent hover:text-white
+    hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
+    hover:scale-[1.03]
+  "
+  onClick={() => {
+    navigate('/vission');
+    setTimeout(() => {
+      const element = document.getElementById('space-tourism');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  }}
+>
+  Explore Now
+</Button>
+
     </SpaceTourismScrollReveal>
   );
 };
@@ -686,12 +709,21 @@ eclipses.
         </p>
 
         <div className="mt-4 flex justify-end">
-          <button
-            className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-[10px] md:text-xs hover:bg-white hover:text-black transition"
-            onClick={() => navigate("/blogpage")}
-          >
-            Read
-          </button>
+       <button
+  className="
+    border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-[10px] md:text-xs 
+    transition-all duration-300
+    hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
+    hover:text-white
+    hover:border-transparent
+    hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
+    hover:scale-[1.03]
+  "
+  onClick={() => navigate("/blogpage")}
+>
+  Read
+</button>
+
         </div>
       </div>
     </div>
@@ -769,15 +801,20 @@ const AboutSection = () => {
             and lunar data centers, our projects are built to advance how humanity explores,
             communicates, and thrives in space.
           </p>
-          <button
-            type="button"
-            className="inline-block border border-white px-5 py-2 rounded text-white font-inter text-xs md:text-sm hover:bg-white hover:text-black transition-all"
-            onClick={() => {
-              navigate("/about");
-            }}
-          >
-            Explore Now
-          </button>
+   <button
+  type="button"
+  className="inline-block border border-white px-5 py-2 rounded text-white font-inter text-xs md:text-sm transition-all
+             hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
+             hover:border-transparent hover:text-white
+             hover:shadow-[0_0_35px_rgba(56,189,248,0.45)] hover:scale-[1.03]"
+  onClick={() => {
+    navigate("/about");
+  }}
+>
+  Explore Now
+</button>
+
+
         </div>
       </div>
     </section>
