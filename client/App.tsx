@@ -48,7 +48,7 @@ const App = () => {
           <ScrollToTop />
           <ScrollToTopButton />
           <Routes>
-            {/* <Route path="/" element={<Index />} /> */}
+            <Route path="/" element={<Index />} /> 
             <Route path="/vission" element={<Vission />} />
             <Route path="/product" element={<Product />} />
             <Route path="/solution" element={<Solution />} />
