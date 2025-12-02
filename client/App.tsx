@@ -13,15 +13,15 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import OurProductSection from "./pages/Ourproduct";
-import About from "./pages/About";
-import ContactUs from "./pages/ContactUs";
-import Solution from "./pages/Solution";
-import Blog from "./pages/Blog";
-import BlogPage from "./pages/BlogPage";
+import About from "./pages/about/About";
+import ContactUs from "./pages/contactus/ContactUs";
+import Solution from "./pages/solution/Solution";
+import Blog from "./pages/blog/Blog";
+import BlogPage from "./pages/blog/BlogPage";
 import Product from "./pages/product/Product";
-import Vission from "./pages/Vission";
+import Vission from "./pages/vission/Vission";
 import Mission from "./pages/Mission";
-import Career from "./pages/Career";
+import Career from "./pages/career/Career";
 import { useState, useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -48,21 +48,25 @@ const App = () => {
           <ScrollToTop />
           <ScrollToTopButton />
           <Routes>
+<<<<<<< HEAD
             <Route path="/" element={<Index />} /> 
+=======
+            <Route path="/" element={<Index />} />
+>>>>>>> cb14ee9e0323aa7ed8d63ce37128c704c244dc06
             <Route path="/vission" element={<Vission />} />
             <Route path="/product" element={<Product />} />
             <Route path="/solution" element={<Solution />} />
             <Route path="/mission" element={<Mission />} />
             <Route path="/vision" element={<PlaceholderPage title="Vision" description="Our vision for the future of space exploration and technology." />} />
-            <Route path="/about" element={<About /> } />
-            <Route path="/career" element={<Career/>} />
+            <Route path="/about" element={<About />} />
+            <Route path="/career" element={<Career />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
             <Route path="/blog" element={<Blog />} />
-            <Route path="/blogpage" element={<BlogPage/>} />
+            <Route path="/blogpage" element={<BlogPage />} />
 
 
-            <Route path="/contactus" element={<ContactUs /> } />
+            <Route path="/contactus" element={<ContactUs />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>

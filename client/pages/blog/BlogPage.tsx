@@ -1,5 +1,12 @@
-import React, { useState, useRef } from "react";
-import Navbar from "../components/Navbar";
+import React, { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import Navbar from "../../components/Navbar";
+// To resolve "Cannot find module '@react-spring/web' or its corresponding type declarations":
+// 1. Install the package in your project root with:
+//    pnpm add @react-spring/web
+// 2. If you use TypeScript and need types, install:
+//    pnpm add -D @types/react-spring__web
+import { useSpring, animated } from "@react-spring/web";
 
 // Utility function for conditional classNames (Tailwind-friendly)
 function cn(...args: (string | false | undefined | null)[]) {
@@ -107,17 +114,139 @@ const specialtiesData: Record<string, Array<{
   ],
 };
 
-const Blog = () => {
+const BlogPage = () => {
   const [selectedTab, setSelectedTab] = useState("space");
+
+  // Refs for GSAP animation
+  const heroRef = useRef<HTMLDivElement>(null);
+  const blogSectionRef = useRef<HTMLDivElement>(null);
+  const specialtiesRef = useRef<HTMLDivElement>(null);
+  const specialtiesCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const footerRef = useRef<HTMLDivElement>(null);
+
+  // React Spring for fade-in on blog section
+  const blogSpring = useSpring({
+    from: { opacity: 0, y: 60 },
+    to: { opacity: 1, y: 0 },
+    config: { tension: 120, friction: 30 },
+    delay: 200,
+  });
+
+  // React Spring for fade-in on specialties section
+  const specialtiesSpring = useSpring({
+    from: { opacity: 0, y: 60 },
+    to: { opacity: 1, y: 0 },
+    config: { tension: 120, friction: 30 },
+    delay: 400,
+  });
+
+  // GSAP scroll-triggered animations
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    // Animate hero section
+    if (heroRef.current) {
+      gsap.fromTo(
+        heroRef.current,
+        { opacity: 0, y: -60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+        }
+      );
+    }
+    // Animate blog section on scroll
+    if (blogSectionRef.current) {
+      gsap.fromTo(
+        blogSectionRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: blogSectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+    // Animate specialties section on scroll
+    if (specialtiesRef.current) {
+      gsap.fromTo(
+        specialtiesRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: specialtiesRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+    // Animate specialties cards staggered
+    if (specialtiesCardRefs.current && specialtiesCardRefs.current.length > 0) {
+      gsap.fromTo(
+        specialtiesCardRefs.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: specialtiesRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+    // Animate footer
+    if (footerRef.current) {
+      gsap.fromTo(
+        footerRef.current,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  }, [selectedTab]);
+
+  // Reset specialtiesCardRefs on tab change
+  useEffect(() => {
+    specialtiesCardRefs.current = [];
+  }, [selectedTab]);
 
   return (
     <div className="min-h-screen w-full bg-black text-white">
       <Navbar />
       {/* Hero Section */}
-      <div className="relative w-full min-h-[350px] md:min-h-[500px] h-[40vw] max-h-[600px] flex items-end justify-start overflow-hidden">
+      <div
+        ref={heroRef}
+        className="relative w-full min-h-[350px] md:min-h-[500px] h-[40vw] max-h-[600px] flex items-end justify-start overflow-hidden"
+      >
         <img
-            src="/assets/Our%20Product-2.png"
-            alt="Spacecraft in orbit"
+          src="/assets/Our Product-3.png"
+          alt="Spacecraft in orbit"
           className="absolute inset-0 w-full h-full object-cover object-center"
           draggable={false}
           style={{ minHeight: "350px", maxHeight: "600px" }}
@@ -135,93 +264,83 @@ const Blog = () => {
           </h1>
         </div>
       </div>
-      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-16 py-8 md:py-14 lg:py-20 bg-black">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Featured Blog Card */}
-          <div className="lg:col-span-5">
-            <div className="relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#FEC053] rounded-2xl shadow-xl overflow-hidden flex flex-col h-full">
-              <div className="relative w-full h-[220px] sm:h-[260px]">
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/8d131cf968ba9d25f16ec41d57b7bf0809d4b910?width=1420"
-                  alt="Total Lunar Eclipse Gala"
-                  className="w-full h-full object-cover"
-                  draggable={false}
-                />
-                <span className="absolute top-3 right-3 bg-[#23272F]/80 px-3 py-[6px] rounded-full text-white text-[11px] font-inter">
-                  Featured Event
-                </span>
-              </div>
-              <div className="flex-1 flex flex-col p-4 sm:p-6">
-                <div className="flex items-start justify-between gap-4 mb-2">
-                  <h3 className="font-reem text-lg sm:text-xl text-white">
-                    Total Lunar Eclipse Gala
-                  </h3>
-                  <div className="text-right">
-                    <p className="text-gray-400 text-xs leading-none mb-1">Date</p>
-                    <p className="text-white text-xs sm:text-[13px] leading-none">
-                      October 14, 2025
-                    </p>
-                  </div>
-                </div>
-                <p className="font-inter text-xs sm:text-sm text-gray-300 leading-5 mb-4 flex-1">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Risus
-                  commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Risus commodo viverra
-                  maecenas accumsan lacus vel facilisis.
-                </p>
-                <div className="flex justify-end">
-                  <button
-                    className="bg-gradient-to-r from-[#0DF7D4] to-[#2C7BDC] px-4 py-1.5 rounded-lg text-white font-inter text-xs border border-yellow-400/30 hover:from-[#0DF7D4]/85 hover:to-[#2C7BDC]/85 transition"
-                    onClick={() => window.location.href = "/blogpage"}
-                  >
-                    Explore more
-                  </button>
+
+      <animated.section
+        ref={blogSectionRef}
+        style={blogSpring}
+        className="w-full bg-black py-12 md:py-20 min-h-[90vh] flex justify-center items-center"
+      >
+        <div className="relative w-full max-w-7xl bg-gradient-to-b from-[#181A20] to-[#101214] rounded-2xl shadow-2xl border border-[#222] overflow-hidden">
+          {/* Banner image: edge-to-edge, no left/right padding */}
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/8d131cf968ba9d25f16ec41d57b7bf0809d4b910?width=1420"
+            alt="Total Lunar Eclipse Gala"
+            className="w-full max-h-[500px] object-fill rounded-t-2xl"
+            style={{
+              objectPosition: "center top",
+              boxShadow: "0 8px 32px 0 rgba(13,247,212,0.10)",
+            }}
+            draggable={false}
+          />
+          {/* Content below the image with horizontal padding */}
+          <div className="px-4 md:px-16 pt-0 pb-10 md:pb-14">
+            {/* Title and date */}
+            <div className="flex flex-col md:flex-row md:items-center justify-between mt-6 mb-2 px-1">
+              <h2 className="font-reem text-xl md:text-2xl text-white font-semibold mb-1 md:mb-0">
+                Total Lunar Eclipse Gala
+              </h2>
+              <span className="text-xs md:text-sm text-gray-400 font-inter">
+                October 14, 2025
+              </span>
+            </div>
+            {/* Main blog content */}
+            <div className="text-gray-200 font-inter text-[13px] md:text-[15px] leading-relaxed mb-6 px-1">
+              <p className="mb-5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique facilisis ultricies. Etiam sit amet magna dictum, rhoncus enim vitae, ullamcorper enim. Pellentesque scelerisque, urna nec dictum dictum, enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim.
+              </p>
+              <h3 className="font-reem text-lg text-white mt-8 mb-2">Total Lunar Eclipse Gala</h3>
+              <p className="mb-5">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique facilisis ultricies. Etiam sit amet magna dictum, rhoncus enim vitae, ullamcorper enim. Pellentesque scelerisque, urna nec dictum dictum, enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim.
+              </p>
+              <h3 className="font-reem text-lg text-white mt-8 mb-2">Total Lunar Eclipse Gala</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique facilisis ultricies. Etiam sit amet magna dictum, rhoncus enim vitae, ullamcorper enim. Pellentesque scelerisque, urna nec dictum dictum, enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim.
+              </p>
+              <h3 className="font-reem text-lg text-white mt-8 mb-2">Total Lunar Eclipse Gala</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique facilisis ultricies. Etiam sit amet magna dictum, rhoncus enim vitae, ullamcorper enim. Pellentesque scelerisque, urna nec dictum dictum, enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim.
+              </p>
+              <h3 className="font-reem text-lg text-white mt-8 mb-2">Total Lunar Eclipse Gala</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tristique facilisis ultricies. Etiam sit amet magna dictum, rhoncus enim vitae, ullamcorper enim. Pellentesque scelerisque, urna nec dictum dictum, enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim. Mauris dictum dictum enim, nec dictum enim erat dictum enim, nec dictum enim erat nec enim.
+              </p>
+            </div>
+            {/* Author card */}
+            <div className="flex items-center gap-4 bg-[#181A20]/80 border border-[#222] rounded-xl p-4 mt-8 shadow-lg max-w-md mx-auto">
+              <img
+                src="/assets/author-avatar.jpg"
+                alt="Mrs. Akashyn"
+                className="w-16 h-16 rounded-full object-cover border-2 border-[#0DF7D4]"
+                draggable={false}
+              />
+              <div>
+                <div className="font-reem text-white text-base font-semibold">Mrs. Akashyn</div>
+                <div className="text-xs text-gray-400 font-inter mb-1">Co-Founder of Spacemancraft</div>
+                <div className="text-xs text-gray-300 font-inter">
+                  Mrs. Akashyn is a visionary leader and co-founder of Spacemancraft, dedicated to advancing lunar exploration and technology.
                 </div>
               </div>
             </div>
           </div>
-          {/* Blog List */}
-          <div className="lg:col-span-7 flex flex-col gap-5">
-            {[
-              { date: 'May 22-25, 2025', icon: <img src="" alt="" className="w- h-8" /> },
-              { date: 'August 11-13, 2025', icon: <img src="" alt="" className="w-8 h-8" /> },
-              { date: 'September 5, 2025', icon: <img src="/assets/bar-graph-yellow.svg" alt="" className="w-8 h-8" /> },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-4 sm:p-5 shadow backdrop-blur-sm transition-colors duration-200 hover:border-[#FEC053] flex flex-col sm:flex-row items-start gap-4"
-              >
-                {/* Icon (show only if available, fallback to empty div for spacing) */}
-                <div className="flex-shrink-0 hidden sm:flex items-center justify-center w-12 h-12">
-                  {item.icon || <div className="w-8 h-8" />}
-                </div>
-                <div className="flex-1">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <h3 className="font-reem text-base md:text-lg text-white">
-                      Total Lunar Eclipse Gala
-                    </h3>
-                    <p className="text-gray-400 text-xs leading-none">{item.date}</p>
-                  </div>
-                  <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  </p>
-                  <div className="mt-4 flex justify-end">
-                    <button className="border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-xs hover:bg-white hover:text-black transition">
-                      Read
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
-      </section>
+      </animated.section>
 
       {/* Specialties Section */}
-      <section className="w-full max-w-7xl mx-auto mt-12 mb-16 px-4">
+      <animated.section
+        ref={specialtiesRef}
+        style={specialtiesSpring}
+        className="w-full max-w-7xl mx-auto mt-12 mb-16 px-4"
+      >
         <h2 className="font-reem text-2xl md:text-3xl text-white mb-6">Specialties</h2>
         {/* Tabs - Mobile Responsive */}
         <div className="flex gap-2 md:gap-4 mb-8 overflow-x-auto pb-2">
@@ -341,6 +460,7 @@ const Blog = () => {
             {specialtiesData[selectedTab].map((item, idx) => (
               <div
                 key={idx}
+                ref={el => specialtiesCardRefs.current[idx] = el}
                 className={cn(
                   "group relative bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-0 shadow backdrop-blur-sm transition-colors duration-200 hover:border-[#FEC053] flex flex-col snap-center",
                   idx === 0 ? "ml-2 md:ml-6" : "",
@@ -386,8 +506,8 @@ const Blog = () => {
             ))}
           </div>
         </div>
-      </section>
-      <footer className="relative overflow-hidden text-white">
+      </animated.section>
+      <footer ref={footerRef} className="relative overflow-hidden text-white">
         <div className="absolute inset-0">
           <img
             src="/assets/Footer.png"
@@ -478,4 +598,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default BlogPage;
