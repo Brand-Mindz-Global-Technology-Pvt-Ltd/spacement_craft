@@ -286,8 +286,8 @@ const VideoObservationSection = () => {
             {/* Popup Modal Content */}
             <div
               className={`relative z-10 flex flex-col md:flex-row w-[96vw] max-w-2xl bg-[#23272e] rounded-lg border border-gray-700/60 shadow-2xl overflow-hidden transition-all duration-200 ${isAnimating
-                  ? 'opacity-100 scale-100 translate-y-0'
-                  : 'opacity-0 scale-95 translate-y-4'
+                ? 'opacity-100 scale-100 translate-y-0'
+                : 'opacity-0 scale-95 translate-y-4'
                 }`}
               style={{
                 minHeight: '320px',
@@ -354,18 +354,20 @@ export const VisionStatementSection = (): JSX.Element => {
   return (
     <section className="relative w-full min-h-[1400px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
       {/* Background image as a true background, not an <img> */}
-      <div
-        className="absolute inset-0 lg:w-full lg:h-full w-[100%] h-[100%] lg:bg-no-repeat bg-cover lg:bg-center bg-right pointer-events-none select-none"
-        style={{
-          backgroundImage: "url('/assets/VisionBg.png')",
-          zIndex: 0,
-        }}
-        aria-hidden="true"
-      />
+      <video
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+        autoPlay
+        loop
+        muted
+        playsInline
+        style={{ zIndex: 0 }}
+      >
+        <source src="/assets/home/vissonvideo2.mp4" type="video/mp4" />
+      </video>
 
       {/* Top gradient overlay */}
       <div
-        className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-transparent pointer-events-none"
+        className="absolute inset-0 bg-gradient-to-b from-black via-black/0 to-transparent pointer-events-none"
         style={{ zIndex: 1 }}
         aria-hidden="true"
       />
@@ -790,7 +792,20 @@ export default function Index() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const scrollDurationInScreens = 7;
+  // Responsive scroll duration: 4 screens for mobile, 7 for desktop
+  const [scrollDurationInScreens, setScrollDurationInScreens] = useState(7);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScrollDurationInScreens(window.innerWidth < 768 ? 3 : 7);
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -799,6 +814,11 @@ export default function Index() {
       const { top } = container.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const scrollableDistance = windowHeight * (scrollDurationInScreens - 1);
+      // Avoid division by zero if scrollDurationInScreens is 1 (though unlikely here)
+      if (scrollableDistance <= 0) {
+        setScrollProgress(0);
+        return;
+      }
       const progress = Math.max(0, Math.min(1, -top / scrollableDistance));
       setScrollProgress(progress);
     };
@@ -821,7 +841,7 @@ export default function Index() {
       <div className="sticky top-0 z-[100] w-full">
         <Navbar />
       </div>
-      <div ref={containerRef} className="relative" style={{ height: containerHeight }}>
+      <div ref={containerRef} className="relative snap-start" style={{ height: containerHeight }}>
         <div className="sticky top-0 h-screen overflow-hidden">
           <EarthCanvas scrollProgress={scrollProgress} />
 
@@ -849,7 +869,10 @@ export default function Index() {
       </div>
 
       {/* --- Rest of the page flows normally below the container --- */}
-      <VideoObservationSection />
+      {/* Added snap-start and scrollSnapStop to force stop on mobile */}
+      <div className="snap-start" style={{ scrollSnapStop: "always" }}>
+        <VideoObservationSection />
+      </div>
       <VisionStatementSection />
       <VarshaAISection />
       <GoingToTheMoonSection />

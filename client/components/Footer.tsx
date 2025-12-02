@@ -17,7 +17,7 @@ const Footer = () => (
                 <img
                     src="/assets/01-logo.jpg"
                     alt="Spacemancraft"
-                    className="mx-auto mb-4 h-10 w-auto"
+                    className="mx-auto mb-4 lg:h-16 h-14 w-auto"
                 />
                 <p className="text-sm leading-relaxed text-white/80">
                     A revolutionary blend of spacecraft and passenger vehicle, powered by

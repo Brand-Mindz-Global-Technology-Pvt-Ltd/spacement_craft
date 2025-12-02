@@ -144,3 +144,9 @@
 .animate-fly-ship {
   animation: fly-ship 15s linear infinite;
 }
+
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+}

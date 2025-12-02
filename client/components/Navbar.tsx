@@ -57,7 +57,7 @@ const Navbar: React.FC = () => {
           className="flex flex-col items-start cursor-pointer z-[100]"
           onClick={handleLogoClick}
         >
-          <img src="/assets/01-logo.jpg" alt="Spacemancraft Logo" className="h-8 sm:h-10 lg:h-12 w-auto" />
+          <img src="/assets/01-logo.jpg" alt="Spacemancraft Logo" className="h-10 sm:h-10 lg:h-14 w-auto" />
         </div>
 
         {/* Desktop Navigation Menu */}

@@ -5,26 +5,25 @@ const HeroContent: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Wait 1 second before showing the hero content
+    // Wait 100ms before showing the hero content (Reduced from 1000ms)
     const timer = setTimeout(() => {
       setIsVisible(true);
-    }, 1000);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div 
-      className={`absolute inset-0 z-10 flex flex-col items-center text-white transition-opacity duration-2000 ${
-        isVisible ? 'opacity-100' : 'opacity-0'
-      }`}
+    <div
+      className={`absolute inset-0 z-10 flex flex-col items-center text-white transition-opacity duration-1000 ${isVisible ? 'opacity-100' : 'opacity-0'
+        }`}
     >
       {/* Container: 
           - Mobile: Starts lower at 22vh 
           - Laptop/Desktop: Retains your original 23vh 
       */}
       <div className="flex flex-col items-center text-center w-full pt-[22vh] sm:pt-[20vh] md:pt-[23vh] px-4 sm:px-6">
-        
+
         {/* Main Headline: 
             - Mobile: text-2xl (Smaller)
             - Tablet: text-7xl (Very Large)
@@ -40,8 +39,8 @@ const HeroContent: React.FC = () => {
             - Laptop: text-sm with px-4 padding
         */}
         <p className="w-full max-w-[100%] sm:max-w-2xl md:max-w-4xl mt-5 sm:mt-6 md:mt-8 text-xs sm:text-base md:text-sm lg:text-lg md:px-4 lg:px-0 font-light text-gray-300 font-inter leading-relaxed">
-          At Spaceman Craft Private Limited, we are on a mission to change the way   
-          humanity moves in space. With our breakthrough electric thruster technology, we 
+          At Spaceman Craft Private Limited, we are on a mission to change the way
+          humanity moves in space. With our breakthrough electric thruster technology, we
           are bringing a true revolution to orbital systems.
         </p>
 
