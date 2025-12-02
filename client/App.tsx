@@ -48,11 +48,7 @@ const App = () => {
           <ScrollToTop />
           <ScrollToTopButton />
           <Routes>
-<<<<<<< HEAD
-            <Route path="/" element={<Index />} /> 
-=======
             <Route path="/" element={<Index />} />
->>>>>>> cb14ee9e0323aa7ed8d63ce37128c704c244dc06
             <Route path="/vission" element={<Vission />} />
             <Route path="/product" element={<Product />} />
             <Route path="/solution" element={<Solution />} />
