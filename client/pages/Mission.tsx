@@ -37,7 +37,7 @@ const Mission: React.FC = () => {
     </div>
 
 {/* Mission Description */}
-<div className="max-w-5xl mx-auto px-4 mt-8">
+<div className="max-w-7xl mx-auto px-2 mt-8">
   <p className="text-white/80 text-xs md:text-sm font-inter mb-2">
     Lorem ipsum has been the industry's standard dummy text ever since the 1500s, 
     when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
@@ -46,60 +46,59 @@ const Mission: React.FC = () => {
 </div>
 
 {/* Timeline/Steps Section */}
-<div className="relative w-full flex flex-col items-center mt-16 mb-12">
+<div className="max-w-7xl mx-auto px-0 mt-8 relative">
   {/* Scrollable Container */}
-  <div className="overflow-hidden w-full max-w-6xl">
+  <div className="overflow-hidden w-full">
     <div
       className="flex items-center transition-transform duration-500"
-      style={{ transform: `translateX(${-currentIndex * 340}px)` }}
+      style={{ transform: `translateX(${-currentIndex * 360}px)` }} // Adjusted width for 3 boxes
     >
-      {/* Step 1 */}
-      <div className="relative flex-shrink-0 w-[300px] h-[160px] mx-4 bg-[#181c1b] border border-[#222826] rounded-lg shadow-lg text-left flex items-center justify-center group">
-        <span className="text-white/80 text-sm font-inter text-center px-4">
-          Incubated at Crescent Innovation and Incubation Council
-        </span>
-        {/* Dotted line */}
-        <div className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 w-10 border-t-2 border-dotted border-white/30 hidden md:block"></div>
-      </div>
+      {[
+        "Incubated at Crescent Innovation and Incubation Council",
+        "Mission Planning and Orbital Mechanics using simulation softwares available at IN-SPACe",
+        "Building mobile applications with existing satellite data from VEDAS & BHUVAN",
+        "Advanced satellite constellation deployment and orbital maintenance protocols",
+        "Commercial space operations and interplanetary mission capabilities"
+      ].map((text, index) => {
+        
+        const isActive = index === currentIndex;
 
-      {/* Step 2 (highlighted) */}
-      <div className="relative flex-shrink-0 w-[300px] h-[160px] mx-4 bg-gradient-to-br from-[#1de9b6]/30 via-[#00bfae]/20 to-[#181c1b] border border-teal-400/60 shadow-[0_0_24px_2px_rgba(29,233,182,0.25)] rounded-lg text-left flex items-center justify-center group">
-        <span className="text-teal-200 text-sm md:text-base font-semibold font-inter text-center px-4">
-          Mission Planning and Orbital Mechanics using simulation softwares available at IN-SPACe
-        </span>
-        {/* Dotted line */}
-        <div className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 w-10 border-t-2 border-dotted border-white/30 hidden md:block"></div>
-      </div>
+        return (
+          <div
+            key={index}
+            className={`
+              relative flex-shrink-0 w-[360px] h-[200px] mx-4
+              rounded-lg text-left flex items-center justify-center group
+              border shadow-lg
+              ${isActive
+                ? "bg-gradient-to-br from-[#1de9b6]/30 via-[#00bfae]/20 to-[#181c1b] border-teal-400/60 shadow-[0_0_24px_2px_rgba(29,233,182,0.25)]"
+                : "bg-[#181c1b] border-[#222826]"
+              }
+            `}
+          >
+            <div className="h-16 w-[3px] bg-white/40 ml-3 mr-4"></div>
 
-      {/* Step 3 */}
-      <div className="relative flex-shrink-0 w-[300px] h-[160px] mx-4 bg-[#181c1b] border border-[#222826] rounded-lg shadow-lg text-left flex items-center justify-center group">
-        <span className="text-white/80 text-sm font-inter text-center px-4">
-          Building mobile applications with existing satellite data from VEDAS & BHUVAN
-        </span>
-        {/* Dotted line */}
-        <div className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 w-10 border-t-2 border-dotted border-white/30 hidden md:block"></div>
-      </div>
+            <span
+              className={`
+                text-sm font-inter text-center px-4
+                ${isActive ? "text-teal-200 font-semibold md:text-base" : "text-white/80"}
+              `}
+            >
+              {text}
+            </span>
 
-      {/* Step 4 */}
-      <div className="relative flex-shrink-0 w-[300px] h-[160px] mx-4 bg-[#181c1b] border border-[#222826] rounded-lg shadow-lg text-left flex items-center justify-center group">
-        <span className="text-white/80 text-sm font-inter text-center px-4">
-          Advanced satellite constellation deployment and orbital maintenance protocols
-        </span>
-        {/* Dotted line */}
-        <div className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 w-10 border-t-2 border-dotted border-white/30 hidden md:block"></div>
-      </div>
-
-      {/* Step 5 */}
-      <div className="relative flex-shrink-0 w-[300px] h-[160px] mx-4 bg-[#181c1b] border border-[#222826] rounded-lg shadow-lg text-left flex items-center justify-center group">
-        <span className="text-white/80 text-sm font-inter text-center px-4">
-          Commercial space operations and interplanetary mission capabilities
-        </span>
-      </div>
+            {/* Dotted line */}
+            {index < 4 && (
+              <div className="absolute right-[-20px] top-1/2 transform -translate-y-1/2 w-10 border-t-2 border-dotted border-white/30 hidden md:block"></div>
+            )}
+          </div>
+        );
+      })}
     </div>
   </div>
 
-  {/* Navigation Buttons (Bottom-Right) */}
-  <div className="absolute bottom-0 right-4 flex gap-3 mt-6">
+  {/* Navigation Buttons */}
+  <div className="flex justify-end gap-3 mt-6">
     <button
       onClick={() => slideTimeline(-1)}
       className="w-10 h-10 flex items-center justify-center rounded-full bg-black border border-gray-500 text-gray-400 hover:border-teal-400"
@@ -118,6 +117,8 @@ const Mission: React.FC = () => {
     </button>
   </div>
 </div>
+
+
 
 
     <div className="w-full flex flex-col items-center justify-center mt-16">
