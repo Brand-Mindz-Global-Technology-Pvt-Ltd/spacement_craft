@@ -1,6 +1,6 @@
 import React from 'react';
 import ContactInfoSection from '../components/contact/ContactInfoSection';
-import { PhoneIcon, SmartphoneIcon, MapPinIcon, ClockIcon } from '../components/contact/ContactIcons';
+import { PhoneIcon, SmartphoneIcon, MapPinIcon, ClockIcon, EnvelopeIcon } from '../components/contact/ContactIcons';
 
 export const contactSections = [
     {
@@ -13,6 +13,10 @@ export const contactSections = [
             {
                 icon: <SmartphoneIcon />,
                 content: '+971 56 680 1583'
+            },
+            {
+                icon: <EnvelopeIcon />,
+                content: 'spacemancraftindia@gmail.com'
             }
         ]
     },

@@ -48,8 +48,8 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 w-full z-[100] px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-8 flex justify-between items-center transition-all duration-300 ${
-        isScrolled ? 'bg-black/90 backdrop-blur-md shadow-lg py-3 sm:py-4 lg:py-5' : 'bg-transparent'
+      <nav className={`fixed top-0 left-0 w-full z-[100] px-4 sm:px-8 lg:px-12 py-4 sm:py-6 lg:py-4 flex justify-between items-center transition-all duration-300 ${
+        isScrolled ? 'bg-transparent/10 backdrop-blur-md shadow-lg py-3 sm:py-4 lg:py-5' : 'bg-transparent'
       }`}>
         
         {/* Logo: Structure for image and text */}

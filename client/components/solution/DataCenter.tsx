@@ -11,7 +11,7 @@ const DataCenter = () => {
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* Main Title */}
         <div className="text-center mb-10 md:mb-16">
-          <h2 className="font-reem text-[1.5rem] xs:text-2xl md:text-3xl lg:text-4xl font-normal uppercase text-white tracking-wider drop-shadow-lg">
+          <h2 className="font-reem text-[21px] md:text-[38px] lg:text-[44px] font-normal uppercase text-white tracking-wider drop-shadow-lg">
             Data Centers in Space
           </h2>
         </div>
@@ -24,7 +24,7 @@ const DataCenter = () => {
               {/* VARSHA.AI Header */}
               <div className="w-full">
                 <h3
-                  className="font-reem text-[1.7rem] xs:text-[2.2rem] md:text-[2.7rem] font-normal uppercase text-white tracking-wide mb-3 md:mb-4 leading-tight drop-shadow-lg"
+                  className="font-reem text-[28px] md:text-[38px] lg:text-[44px] font-normal uppercase text-white tracking-wide mb-3 md:mb-4 leading-tight drop-shadow-lg"
                   style={{ letterSpacing: "0.08em" }}
                 >
                   Varsha.AI
@@ -37,7 +37,7 @@ const DataCenter = () => {
               <div className="w-full flex justify-center md:justify-start">
                 <div className="w-full max-w-xs md:max-w-full">
                   <div
-                    className="flex items-center justify-center rounded-[8px] bg-[#D6891A] text-white font-inter font-semibold text-base xs:text-[1.1rem] md:text-[1.2rem] uppercase tracking-wide shadow-lg drop-shadow-lg"
+                    className="flex items-center justify-center rounded-[8px] bg-[#D6891A] text-white font-inter font-semibold text-[14px] md:text-[18px] uppercase tracking-wide shadow-lg drop-shadow-lg"
                     style={{
                       height: "42px",
                       minHeight: "42px",
@@ -52,7 +52,7 @@ const DataCenter = () => {
               </div>
 
               {/* Description Content */}
-              <div className="text-white/90 font-inter text-[0.97rem] xs:text-sm md:text-base leading-relaxed space-y-2 md:space-y-4 text-left w-full drop-shadow-lg">
+              <div className="text-white/90 font-inter text-[12px] md:text-sm leading-relaxed space-y-2 md:space-y-4 text-left w-full drop-shadow-lg">
                 <p>
                   <span className="font-semibold">Varsha.AI – Space-Based Data Center</span>
                   <br className="hidden xs:block" />

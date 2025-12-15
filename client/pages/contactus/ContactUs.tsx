@@ -28,8 +28,8 @@ const ContactUs: React.FC = () => (
       {/* Content */}
       <div className="relative z-10">
         {/* Contact Info Sections */}
-        <div className="w-full py-12 px-4 md:px-0">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
+        <div className="w-full   py-12 px-4 md:px-0">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 lg:gap-48 gap-10 text-sm">
             {
               contactSections.map((section, index) => (
                 <ContactInfoSection

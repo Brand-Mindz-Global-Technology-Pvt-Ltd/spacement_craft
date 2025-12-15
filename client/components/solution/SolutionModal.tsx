@@ -20,18 +20,16 @@ const SolutionModal: React.FC<SolutionModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Dark semi-transparent background */}
       <div
-        className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-200 ${
-          isAnimating ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-200 ${isAnimating ? 'opacity-100' : 'opacity-0'
+          }`}
         onClick={onClose}
       />
       {/* Popup Modal Content */}
       <div
-        className={`relative z-10 flex flex-col md:flex-row w-[96vw] max-w-2xl bg-[#23272e] rounded-lg border border-gray-700/60 shadow-2xl overflow-hidden transition-all duration-200 ${
-          isAnimating
+        className={`relative z-10 flex flex-col md:flex-row w-[96vw] max-w-2xl bg-[#23272e] rounded-lg border border-gray-700/60 shadow-2xl overflow-hidden transition-all duration-200 ${isAnimating
             ? 'opacity-100 scale-100 translate-y-0'
             : 'opacity-0 scale-95 translate-y-4'
-        }`}
+          }`}
         style={{
           minHeight: '320px',
           maxHeight: '90vh',
@@ -64,11 +62,11 @@ const SolutionModal: React.FC<SolutionModalProps> = ({
             ×
           </button>
           {/* Title */}
-          <h3 className="font-reem text-lg md:text-xl font-semibold text-white mb-2 tracking-wide">
+          <h3 className="font-reem text-[18px] md:text-[20px] font-semibold text-white mb-2 tracking-wide">
             {selectedItem.title}
           </h3>
           {/* Description */}
-          <div className="text-white/90 font-inter text-xs md:text-sm leading-relaxed mb-4 flex-1 overflow-y-auto pr-1">
+          <div className="text-white/90 font-inter text-[12px] md:text-sm leading-relaxed mb-4 flex-1 overflow-y-auto pr-1">
             <p className="text-justify whitespace-pre-line">
               {selectedItem.desc}
             </p>

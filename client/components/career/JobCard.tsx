@@ -29,7 +29,7 @@ const JobCard: React.FC<JobCardProps> = ({
                         <h3 className="text-white text-[14px] md:text-[16px] lg:text-lg font-bold font-reem mb-2">
                             {job.title}
                         </h3>
-                        <p className="text-gray-400 text-[11px] md:text-sm leading-relaxed line-clamp-2 font-inter">
+                        <p className="text-gray-400 text-[11px] md:text-sm leading-relaxed lg:line-clamp-3 font-inter">
                             {job.description}
                         </p>
                         <p className="text-[#0BFFD3] text-[11px] md:text-sm font-bold font-inter mt-2">

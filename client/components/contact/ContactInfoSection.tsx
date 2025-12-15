@@ -13,17 +13,18 @@ interface ContactInfoSectionProps {
 const ContactInfoSection: React.FC<ContactInfoSectionProps> = ({ title, items }) => {
     return (
         <div>
-            <h3 className="mb-2 text-base font-semibold tracking-wide text-white/90 relative pb-2">
+            <h3 className="mb-2 text-sm md:text-base font-semibold font-reem tracking-wide text-white/90 relative pb-2 inline-block">
                 {title}
-                <span className="absolute left-0 bottom-0 w-12 h-[2px] bg-cyan-400"></span>
+                <span className="absolute left-0 bottom-0 h-[1px] bg-white w-full"></span>
             </h3>
-            <ul className="space-y-3 text-white/80 mt-4">
+
+            <ul className="space-y-3 text-white/80 text-xs md:text-sm mt-4">
                 {items.map((item, index) => (
-                    <li key={index} className="flex items-start gap-2">
+                    <li key={index} className="flex items-start  gap-2">
                         <span className="inline-block w-5 h-5 text-cyan-400 mt-0.5">
                             {item.icon}
                         </span>
-                        <div className="flex-1">{item.content}</div>
+                        <div className="flex-1 mt-1">{item.content}</div>
                     </li>
                 ))}
             </ul>

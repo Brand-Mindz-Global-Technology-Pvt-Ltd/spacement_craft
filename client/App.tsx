@@ -23,11 +23,23 @@ import Vission from "./pages/vission/Vission";
 import Mission from "./pages/mission/Mission";
 import Career from "./pages/career/Career";
 import { useState, useEffect } from "react";
+import { Toaster as HotToaster } from "react-hot-toast";
+// ADMIN BLOG PAGES
+import BlogList from "./pages/blog/admin/blogs/BlogList";
+import AddBlog from "./pages/blog/admin/blogs/AddBlog";
+import EditBlog from "./pages/blog/admin/blogs/EditBlog";
+import Login from "./pages/blog/admin/Login";
+import Dashboard from "./pages/blog/admin/Dashboard";
+// AUTH
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  // console.log("ENV TEST:", import.meta.env);
+
 
   useEffect(() => {
     // Hide preloader after it completes (2s logo + 6s loading + 600ms fade)
@@ -40,31 +52,45 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
+
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        {/* {isLoading && <Preloader />} */}
-        <BrowserRouter>
-          <ScrollToTop />
-          <ScrollToTopButton />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/vission" element={<Vission />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/solution" element={<Solution />} />
-            <Route path="/mission" element={<Mission />} />
-            <Route path="/vision" element={<PlaceholderPage title="Vision" description="Our vision for the future of space exploration and technology." />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/career" element={<Career />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blogpage" element={<BlogPage />} />
+        <HotToaster position="top-right" />
+        <AuthProvider>
+          {/* {isLoading && <Preloader />} */}
+          <BrowserRouter>
+            <ScrollToTop />
+            <ScrollToTopButton />
+            <Routes>
+              <Route path="/" element={<Index />} />
+              {/* ---------- PUBLIC PAGES ---------- */}
+              <Route path="/vission" element={<Vission />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/solution" element={<Solution />} />
+              <Route path="/mission" element={<Mission />} />
+              <Route path="/vision" element={<PlaceholderPage title="Vision" description="Our vision for the future of space exploration and technology." />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/career" element={<Career />} />
+              <Route path="/contactus" element={<ContactUs />} />
 
+              {/* ---------- BLOG ROUTES ---------- */}
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPage />} />
 
-            <Route path="/contactus" element={<ContactUs />} />
-          </Routes>
-        </BrowserRouter>
+              {/* ---------- ADMIN ROUTES FOR BLOG ---------- */}
+              <Route path="/admin/blog/login" element={<Login />} />
+              <Route path="/admin/blog/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/admin/blog/list" element={<ProtectedRoute><BlogList /></ProtectedRoute>} />
+              <Route path="/admin/blog/create" element={<ProtectedRoute><AddBlog /></ProtectedRoute>} />
+              <Route path="/admin/blog/edit/:id" element={<ProtectedRoute><EditBlog /></ProtectedRoute>} />
+
+              {/* ---------- CATCH ALL (Must be last) ---------- */}
+              <Route path="*" element={<NotFound />} />
+
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

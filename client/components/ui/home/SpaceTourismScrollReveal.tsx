@@ -29,6 +29,9 @@ const SpaceTourismScrollReveal = ({
 
     if (!section || !blackScreen || !content || !bgImage) return;
 
+    // Ensure content is visible on mobile even if ScrollTrigger doesn't fire
+    const isMobile = window.innerWidth < 768;
+
     // Create a master timeline
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -36,6 +39,9 @@ const SpaceTourismScrollReveal = ({
         start: 'top bottom', // Start when section enters viewport
         end: 'center center', // End when section center reaches viewport center
         scrub: 2, // Strong scrub for pronounced effect
+        refreshPriority: -1, // Lower priority for mobile
+        invalidateOnRefresh: true, // Recalculate on resize
+        anticipatePin: 1, // Help with mobile performance
         onUpdate: (self) => {
           const progress = self.progress;
           setScrollProgress(progress);
@@ -43,11 +49,17 @@ const SpaceTourismScrollReveal = ({
             onProgressChange(progress);
           }
         },
+        onEnter: () => {
+          // Fallback for mobile: ensure content is visible
+          if (isMobile) {
+            gsap.set([content, bgImage], { opacity: 1 });
+          }
+        },
       },
     });
 
     // Animation sequence:
-  
+
     tl.fromTo(
       blackScreen,
       {
@@ -55,7 +67,7 @@ const SpaceTourismScrollReveal = ({
         opacity: 0,
       },
       {
-      
+
         opacity: 1,
         duration: 0.3,
         ease: 'power3.out',
@@ -95,6 +107,28 @@ const SpaceTourismScrollReveal = ({
       0.6 // Start after content is visible
     );
 
+    // Mobile fallback: if ScrollTrigger doesn't work, show content after delay
+    if (isMobile) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.to([content, bgImage], {
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out',
+              });
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      if (section) {
+        observer.observe(section);
+      }
+    }
+
     return () => {
       tl.kill();
     };
@@ -110,7 +144,7 @@ const SpaceTourismScrollReveal = ({
     sm:min-h-[900px]   /* small screens */
     xs:min-h-[800px]   /* extra small */
     "
-   
+
     >
       {/* Background Image Layer (z-0) */}
       <div

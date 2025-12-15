@@ -190,89 +190,107 @@ const VideoObservationSection = () => {
           </div>
         </div>
 
-        {/* Cards */}
-        <div className="w-full flex flex-col md:flex-row gap-6 md:gap-8 justify-center items-center md:items-stretch">
-          {items.map((it, idx) => (
-            <a
-              key={idx}
-              href="#"
-              className="group relative bg-transparent rounded-[12px] overflow-hidden transition w-full max-w-[400px] min-w-[320px] min-h-[380px] shadow-none"
-              style={{
-                height: "380px",
-              }}
-              tabIndex={-1}
-              aria-hidden="true"
-              onClick={e => e.preventDefault()}
-            >
-              {/* Background layer below image (does not affect image brightness) */}
-              <div className="absolute inset-0 rounded-[12px] bg-black transition-colors duration-300 group-hover:bg-gray-700/50 pointer-events-none z-0" />
-              {/* Edge/border accents above image */}
-              <div className="absolute inset-0 rounded-[12px] border border-[#FEC053]/10 transition-all duration-300 pointer-events-none z-20">
-                {/* Decorative edge highlights on hover: top-left (horizontal) and bottom-right (vertical) */}
-                <div
-                  className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
-                  }}
-                />
-                {/* New: Top-left vertical down accent */}
-                <div
-                  className="pointer-events-none absolute top-0 left-0 w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
-                  }}
-                />
+        {/* Cards - Carousel on mobile, flex-row on desktop */}
+        <div className="w-full relative">
+          <style>
+            {`
+              .hide-scrollbar-video::-webkit-scrollbar {
+                display: none;
+              }
+            `}
+          </style>
+          <div
+            className="w-full flex flex-row gap-6 md:gap-8 justify-start md:justify-center items-center md:items-stretch overflow-x-auto md:overflow-x-visible hide-scrollbar-video pb-2 pl-4 pr-[5vw] md:px-0"
+            style={{
+              WebkitOverflowScrolling: "touch",
+              scrollSnapType: "x mandatory",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            {items.map((it, idx) => (
+              <a
+                key={idx}
+                href="#"
+                className="group relative bg-transparent rounded-[12px] overflow-hidden transition w-[90vw] md:w-full md:max-w-[400px] min-w-[320px] min-h-[380px] flex-shrink-0 shadow-none"
+                style={{
+                  height: "380px",
+                  scrollSnapAlign: "start",
+                }}
+                tabIndex={-1}
+                aria-hidden="true"
+                onClick={e => e.preventDefault()}
+              >
+                {/* Background layer below image (does not affect image brightness) */}
+                <div className="absolute inset-0 rounded-[12px] bg-black transition-colors duration-300 group-hover:bg-gray-700/50 pointer-events-none z-0" />
+                {/* Edge/border accents above image */}
+                <div className="absolute inset-0 rounded-[12px] border border-[#FEC053]/10 transition-all duration-300 pointer-events-none z-20">
+                  {/* Decorative edge highlights on hover: top-left (horizontal) and bottom-right (vertical) */}
+                  <div
+                    className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                    }}
+                  />
+                  {/* New: Top-left vertical down accent */}
+                  <div
+                    className="pointer-events-none absolute top-0 left-0 w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-tl-[12px]"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                    }}
+                  />
 
-                <div
-                  className="pointer-events-none absolute bottom-0  right-0  w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
-                  style={{
-                    background:
-                      "linear-gradient(0deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
-                  }}
-                />
-                {/* New: Top-right horizontal accent (towards center) */}
-                <div
-                  className="pointer-events-none absolute bottom-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
-                  style={{
-                    background:
-                      "linear-gradient(270deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
-                  }}
-                />
-              </div>
-              <div className="relative flex flex-col h-full z-10">
-                <div
-                  className=" w-full overflow-hidden  "
-                  style={{ height: "200px" }}
-                >
-                  <img
-                    src={it.img}
-                    alt={it.title}
-                    className="w-full h-full object-cover block"
-                    draggable={false}
+                  <div
+                    className="pointer-events-none absolute bottom-0  right-0  w-[2px] h-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
+                    style={{
+                      background:
+                        "linear-gradient(0deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                    }}
+                  />
+                  {/* New: Top-right horizontal accent (towards center) */}
+                  <div
+                    className="pointer-events-none absolute bottom-0 right-0 h-[2px] w-2/3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-br-[12px]"
+                    style={{
+                      background:
+                        "linear-gradient(270deg, rgba(254,192,83,0.9) 0%, rgba(254,192,83,0.0) 100%)",
+                    }}
                   />
                 </div>
-                <div className="px-4">
-                  <h3 className="mt-4 font-reem text-[18px] md:text-[20px] lg:text-[22px] text-white font-normal leading-tight">
-                    {it.title}
-                  </h3>
-                  <p className="mt-2 font-inter text-xs md:text-sm leading-[1.5] text-gray-300 line-clamp-3">
-                    {it.desc}
-                  </p>
-                </div>
-                <div className="mt-auto flex items-end p-4">
-                  <button
-                    type="button"
-                    onClick={() => openModal(it)}
-                    className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[10px] md:text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FFD7004D] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
+                <div className="relative flex flex-col h-full z-10">
+                  <div
+                    className=" w-full overflow-hidden  "
+                    style={{ height: "200px" }}
                   >
-                    View Details
-                  </button>
+                    <img
+                      src={it.img}
+                      alt={it.title}
+                      className="w-full h-full object-cover block"
+                      draggable={false}
+                    />
+                  </div>
+                  <div className="px-4">
+                    <h3 className="mt-4 font-reem text-[18px] md:text-[20px] lg:text-[22px] text-white font-normal leading-tight">
+                      {it.title}
+                    </h3>
+                    <p className="mt-2 font-inter text-xs md:text-sm leading-[1.5] text-gray-300 line-clamp-3">
+                      {it.desc}
+                    </p>
+                  </div>
+                  <div className="mt-auto flex items-end p-4">
+                    <button
+                      type="button"
+                      onClick={() => openModal(it)}
+                      className="inline-flex items-center justify-center rounded-[6px] border border-[#FEC053]/30 px-4 py-1.5 text-white text-[10px] md:text-[11px] font-inter transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-[#0BFFD3] group-hover:to-[#3070DE] group-hover:border-[#FFD7004D] group-hover:shadow-[0_8px_20px_rgba(11,255,211,0.25)] ml-auto"
+                    >
+                      View Details
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            ))}
+          </div>
         </div>
 
         {/* Modal Overlay (Solution-style, smaller) */}
@@ -385,6 +403,7 @@ export const VisionStatementSection = (): JSX.Element => {
           Our vision is to land on the Moon powered by our electric thruster
         </p>
       </div>
+      
     </section>
   );
 };
@@ -453,16 +472,21 @@ export const VarshaAISection = (): JSX.Element => {
 export const GoingToTheMoonSection = (): JSX.Element => {
   const navigate = useNavigate();
   return (
-    <section className="relative w-full min-h-[700px] flex items-stretch overflow-hidden" style={{ minHeight: "120vh" }}>
-      {/* Background image as a true background, not an <img> */}
-      <div
-        className="absolute inset-0 w-full h-full bg-no-repeat bg-cover bg-center pointer-events-none select-none"
-        style={{
-          backgroundImage: "url('/assets/GoingToMoon.png')",
-          zIndex: 0,
-        }}
-        aria-hidden="true"
-      />
+    <section className="relative w-full min-h-[600px] sm:min-h-[700px] md:min-h-[80vh] lg:min-h-[120vh] flex items-stretch overflow-hidden">
+      {/* Background video */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+        autoPlay
+        loop
+        muted
+        playsInline
+        webkit-playsinline="true"
+        x5-playsinline="true"
+        preload="auto"
+        style={{ zIndex: 0 }}
+      >
+        <source src="/assets/home/Rocket.mp4" type="video/mp4" />
+      </video>
 
       {/* Top gradient overlay */}
       <div
@@ -473,8 +497,8 @@ export const GoingToTheMoonSection = (): JSX.Element => {
 
       {/* Content */}
       <div
-        className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
-        style={{ paddingTop: "80px" }}
+        className="relative flex flex-col items-center justify-start w-full h-full px-4 pt-20 sm:pt-24 md:pt-28 lg:pt-32"
+        style={{ zIndex: 10 }}
       >
         <h1 className="font-reem text-white text-[23px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
           GOING TO THE MOON

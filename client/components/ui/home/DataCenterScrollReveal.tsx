@@ -29,13 +29,52 @@ const DataCenterScrollReveal = ({
 
     if (!section || !blackScreen || !content || !bgImage) return;
 
-    // Create a master timeline
+    // More reliable mobile detection using matchMedia
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+
+    // On mobile, ensure content is visible immediately
+    if (isMobile) {
+      // Set content visible immediately as a safety measure
+      gsap.set([content, bgImage], { opacity: 1, y: 0 });
+
+      // Also use IntersectionObserver for smooth fade-in if needed
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              gsap.to([content, bgImage], {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+              });
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '50px' }
+      );
+
+      observer.observe(section);
+
+      // Safety timeout: ensure content is visible after 500ms regardless
+      const safetyTimeout = setTimeout(() => {
+        gsap.set([content, bgImage], { opacity: 1, y: 0 });
+      }, 500);
+
+      return () => {
+        observer.disconnect();
+        clearTimeout(safetyTimeout);
+      };
+    }
+
+    // Desktop: Use ScrollTrigger animation
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top bottom', // Start when section enters viewport
-        end: 'center center', // End when section center reaches viewport center
-        scrub: 2, // Strong scrub for pronounced effect
+        start: 'top 80%',
+        end: 'center 40%',
+        scrub: 1,
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
           const progress = self.progress;
           setScrollProgress(progress);
@@ -46,8 +85,7 @@ const DataCenterScrollReveal = ({
       },
     });
 
-    // Animation sequence:
-    // 1. Black screen slides up from bottom to 50% of viewport
+    // Animation sequence for desktop
     tl.fromTo(
       blackScreen,
       {
@@ -55,7 +93,6 @@ const DataCenterScrollReveal = ({
         opacity: 0,
       },
       {
-       
         opacity: 1,
         duration: 0.3,
         ease: 'power3.out',
@@ -63,7 +100,6 @@ const DataCenterScrollReveal = ({
       0
     );
 
-    // 2. All content fades in together (not one by one)
     tl.fromTo(
       content,
       {
@@ -76,10 +112,9 @@ const DataCenterScrollReveal = ({
         duration: 0.4,
         ease: 'power3.out',
       },
-      0.25 // Start after black screen begins
+      0.25
     );
 
-    // 3. Background image fades in last
     tl.fromTo(
       bgImage,
       {
@@ -92,7 +127,7 @@ const DataCenterScrollReveal = ({
         duration: 0.35,
         ease: 'power2.inOut',
       },
-      0.6 // Start after content is visible
+      0.6
     );
 
     return () => {
@@ -110,7 +145,7 @@ const DataCenterScrollReveal = ({
     sm:min-h-[900px]   /* small screens */
     xs:min-h-[800px]   /* extra small */
     "
-  
+
     >
       {/* Background Image Layer (z-0) */}
       <div
@@ -119,7 +154,7 @@ const DataCenterScrollReveal = ({
         style={{
           backgroundImage: `url('${backgroundImage}')`,
           zIndex: 0,
-          opacity: 0, // Start invisible
+          opacity: typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 0, // Show immediately on mobile
         }}
         aria-hidden="true"
       />
@@ -149,7 +184,7 @@ const DataCenterScrollReveal = ({
         className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
         style={{
           paddingTop: '80px',
-          opacity: 0, // Start invisible
+          opacity: typeof window !== 'undefined' && window.innerWidth < 768 ? 1 : 0, // Show immediately on mobile
         }}
       >
         {children}
