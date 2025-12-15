@@ -148,7 +148,7 @@ const About = () => (
         {/* Left: CEO Image */}
         <div className="w-full md:w-[45%] flex-shrink-0 flex justify-center md:justify-start h-full mb-6 md:mb-0">
           <img
-            src="./assets/ceo.png"
+            src="./assets/ceo.png.jpeg"
             alt="CEO"
             className="
               rounded-sm object-cover shadow-lg border border-white/10

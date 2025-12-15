@@ -18,7 +18,16 @@ const MissionImage = () => {
             {/* Description Section */}
             <div className="w-full max-w-7xl mt-4 sm:mt-8 px-2 sm:px-4">
                 <p className="text-white/80 text-[12px] sm:text-sm md:text-base font-inter mb-2 leading-relaxed text-justify">
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    Our journey began with the successful launch of the EP LEO-01 experimental payload in 
+2026, a milestone that marked our entry into orbital missions. As we grow, our vision is to 
+deploy a constellation of satellites by 2030, strengthening global communication, Earth 
+observation, and deep-space data access. 
+
+As we move forward, our mission expands toward building the world’s first off-planet data 
+infrastructure, developing lunar landing systems, and enabling sustainable space 
+operations for future generations. Every mission we undertake is focused on strengthening 
+India’s presence in space and making space technology accessible, scalable, and impactful 
+for all 
                 </p>
             </div>
         </div>
