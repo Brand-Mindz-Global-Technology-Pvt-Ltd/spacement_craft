@@ -184,7 +184,7 @@ const VideoObservationSection = () => {
           {/* CTA Button in right corner, absolutely positioned */}
           <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
             <button
-              className="  border rounded-md transition-all duration-300  hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-xs md:text-sm  transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
+              className="  border  transition-all duration-300  hover:border-[#FFD7004D] hover:bg-gradient-to-r hover:from-[#0BFFD3] hover:to-[#3070DE] hover:text-white inline-block  border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-xs md:text-sm  shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]"
               onClick={() => navigate("/solution")}
             >
               Explore Full Archive
