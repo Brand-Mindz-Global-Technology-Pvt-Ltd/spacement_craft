@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { MapPin, Mail, Instagram, Twitter, Linkedin } from "lucide-react";
 
 const Footer = () => (
     <footer className="relative overflow-hidden text-white">
@@ -73,17 +74,29 @@ const Footer = () => (
                     <h3 className="mb-4 text-base font-semibold">Reach Out</h3>
                     <ul className="space-y-3 text-sm text-white/85">
                         <li className="flex items-start gap-3">
-                            <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-white/70" />
+                            <MapPin className="mt-0.5 h-4 w-4 text-white/70" />
                             <span>Tamil Nadu, India</span>
                         </li>
                         <li className="flex items-start gap-3 break-all">
-                            <span className="mt-0.5 inline-block h-2 w-2 rounded-full bg-white/70" />
+                            <Mail className="mt-0.5 h-4 w-4 text-white/70" />
                             <a
                                 href="mailto:spacemancraftindia@gmail.com"
                                 className="hover:text-white"
                             >
                                 spacemancraftindia@gmail.com
                             </a>
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <Instagram className="h-4 w-4 text-white/70" />
+                            <a href="https://www.instagram.com/spacemancraft.in?igsh=cmN5NWJrdzM2Y2hv" className="hover:text-white">Instagram</a>
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <Twitter className="h-4 w-4 text-white/70" />
+                            <a href="https://www.threads.com/@spacemancraft.in" className="hover:text-white">Twitter</a>
+                        </li>
+                        <li className="flex items-center gap-3">
+                            <Linkedin className="h-4 w-4 text-white/70" />
+                            <a href="https://www.linkedin.com/company/spaceman-craft/" className="hover:text-white">LinkedIn</a>
                         </li>
                     </ul>
                 </div>

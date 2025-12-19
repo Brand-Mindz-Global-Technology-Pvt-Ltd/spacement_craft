@@ -27,20 +27,19 @@ export const contactSections = [
                 icon: <MapPinIcon />,
                 content: (
                     <div>
-                        Jafza Shipyard, Shed H42<br />
-                        Dubai, United Arab Emirates
+                       Address: 17/60C, Main Road,<br/> Vivekanandapuram, Kanyakumari - 629702
                     </div>
                 )
             },
-            {
-                icon: <MapPinIcon />,
-                content: (
-                    <div>
-                        Jafza Shipyard, Shed H42<br />
-                        Dubai, United Arab Emirates
-                    </div>
-                )
-            }
+            // {
+            //     icon: <MapPinIcon />,
+            //     content: (
+            //         <div>
+            //             Jafza Shipyard, Shed H42<br />
+            //             Dubai, United Arab Emirates
+            //         </div>
+            //     )
+            // }
         ]
     },
     {

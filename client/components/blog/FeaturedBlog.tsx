@@ -11,13 +11,24 @@ const FeaturedBlog: React.FC<FeaturedBlogProps> = ({ blog }) => {
         <div className="lg:col-span-5">
             <div className="relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#FEC053] rounded-2xl shadow-xl overflow-hidden flex flex-col h-full">
                 {/* Featured Image */}
-                <div className="relative w-full h-[220px] sm:h-[260px]">
-                    <img
+                <div className="relative w-full h-[240px] sm:h-[260px]">
+                    {/* <img
                         src={blog.coverImage || "https://api.builder.io/api/v1/image/assets/TEMP/8d131cf968ba9d25f16ec41d57b7bf0809d4b910?width=1420"}
                         alt={blog.title || "Featured Blog"}
                         className="w-full h-full object-cover"
                         draggable={false}
-                    />
+                    /> */}
+                    {blog.coverImage ? (
+                        <img
+                            src={blog.coverImage}
+                            alt={blog.title}
+                            className="w-full h-full object-cover"
+                        />
+                    ) : (
+                        <div className="relative w-full h-full flex-shrink-0 rounded-xl bg-gray-900/50 flex items-center justify-center border border-white/5 z-10">
+                            <span className="text-gray-600 text-[10px]">No Image</span>
+                        </div>
+                    )}
                     <span className="absolute top-3 right-3 bg-[#23272F]/80 px-3 py-[6px] rounded-full text-white text-[11px] font-inter">
                         {blog.isFeatured ? 'Featured' : blog.isCuratedCore ? 'Curated Core' : 'Latest'}
                     </span>
@@ -37,7 +48,7 @@ const FeaturedBlog: React.FC<FeaturedBlogProps> = ({ blog }) => {
                         </div>
                     </div>
 
-                    <p className="font-inter text-[12px] sm:text-xs md:text-sm text-gray-300 leading-5 mb-4 flex-1 line-clamp-4">
+                    <p className="font-inter text-[12px] sm:text-xs md:text-sm text-gray-300 leading-5 mb-4 flex-1 line-clamp-5">
                         {blog.shortDescription || "No description available yet."}
                     </p>
 

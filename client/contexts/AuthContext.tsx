@@ -51,7 +51,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
             return;
         } catch (error: any) {
-            throw new Error(error.message || 'Failed to login');
+            throw error;
         }
     };
 
@@ -61,9 +61,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             localStorage.removeItem('rememberMe');
             sessionStorage.removeItem('sessionOnly');
         } catch (error: any) {
-            throw new Error(error.message || 'Failed to logout');
+            throw error;
         }
     };
+
+
 
     const value = {
         currentUser,

@@ -9,6 +9,7 @@ import {
   where,
   updateDoc,
   deleteDoc,
+  orderBy,
 } from "firebase/firestore";
 import { BlogData } from "../../types/BlogTypes";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
@@ -103,6 +104,47 @@ export const getAllBlogs = async () => {
   }
 };
 
+export const getPublishedBlogs = async () => {
+  try {
+    // Run two queries in parallel to catch all visible blogs:
+    // 1. All blogs marked explicitly as isPublished (covers legacy + standard published)
+    // 2. All blogs marked as scheduled (which might have passed their time)
+    const [publishedSnap, scheduledSnap] = await Promise.all([
+      getDocs(query(blogsRef, where("isPublished", "==", true))),
+      getDocs(query(blogsRef, where("status", "==", "scheduled")))
+    ]);
+
+    const blogsMap = new Map();
+
+    // Add published blogs
+    publishedSnap.docs.forEach((d) => {
+      blogsMap.set(d.id, { id: d.id, ...d.data() });
+    });
+
+    // Add scheduled blogs
+    scheduledSnap.docs.forEach((d) => {
+      blogsMap.set(d.id, { id: d.id, ...d.data() });
+    });
+
+    const allBlogs = Array.from(blogsMap.values()) as BlogData[];
+    const now = new Date();
+
+    // Filter: 
+    // - Keep if isPublished === true
+    // - Keep if status === 'scheduled' AND date passed
+    return allBlogs.filter(blog => {
+      if (blog.isPublished) return true;
+      if (blog.status === 'scheduled' && blog.scheduledDate) {
+        return new Date(blog.scheduledDate) <= now;
+      }
+      return false;
+    });
+  } catch (err) {
+    console.error("[getPublishedBlogs] Error:", err);
+    return [];
+  }
+};
+
 export const getBlogById = async (id: string) => {
   const snapshot = await getDoc(doc(db, "blogs", id));
   if (!snapshot.exists()) return null;
@@ -131,4 +173,40 @@ export const uploadAuthorImage = async (file: File) => {
   const fileRef = ref(storage, `blogs/authors/${Date.now()}_${file.name}`);
   await uploadBytes(fileRef, file);
   return await getDownloadURL(fileRef);
+};
+// --- CATEGORY SERVICES ---
+
+/**
+ * Fetches all categories from the 'blog-categories' collection.
+ */
+export const getBlogCategories = async () => {
+  try {
+    const categoriesRef = collection(db, "blog-categories");
+    const q = query(categoriesRef, orderBy("name", "asc"));
+    const querySnapshot = await getDocs(q);
+    return querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    })) as { id: string, name: string }[];
+  } catch (err) {
+    console.error("[getBlogCategories] Error:", err);
+    return [];
+  }
+};
+
+/**
+ * Adds a new category to the 'blog-categories' collection.
+ */
+export const addBlogCategory = async (name: string) => {
+  try {
+    const categoriesRef = collection(db, "blog-categories");
+    const docRef = await addDoc(categoriesRef, {
+      name: name.trim().toLowerCase(),
+      createdAt: new Date().toISOString()
+    });
+    return docRef.id;
+  } catch (err) {
+    console.error("[addBlogCategory] Error:", err);
+    throw err;
+  }
 };

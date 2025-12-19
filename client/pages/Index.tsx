@@ -11,7 +11,9 @@ import DataCenterScrollReveal from "../components/ui/home/DataCenterScrollReveal
 import SpaceTourismScrollReveal from "../components/ui/home/SpaceTourismScrollReveal";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import { eventsData } from "@/data/homeblog";
+import { getPublishedBlogs } from "@/lib/blog/blogService";
+import { BlogData } from "@/types/BlogTypes";
+import { Skeleton } from "@/components/ui/skeleton";
 
 // --- Always show Navbar at the top, outside the scrollable hero container ---
 
@@ -403,7 +405,7 @@ export const VisionStatementSection = (): JSX.Element => {
           Our vision is to land on the Moon powered by our electric thruster
         </p>
       </div>
-      
+
     </section>
   );
 };
@@ -608,9 +610,52 @@ export const SpaceTourismSection = (): JSX.Element => {
 
 const BlogsSection = () => {
   const navigate = useNavigate();
+  const [blogs, setBlogs] = useState<BlogData[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [hasFetched, setHasFetched] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasFetched) {
+          fetchBlogs();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasFetched]);
+
+  const fetchBlogs = async () => {
+    setLoading(true);
+    try {
+      const data = await getPublishedBlogs();
+      // Sort by date latest first and take top 4
+      const sorted = data.sort((a, b) => {
+        const dateA = new Date(a.date || a.createdAt || 0).getTime();
+        const dateB = new Date(b.date || b.createdAt || 0).getTime();
+        return dateB - dateA;
+      }).slice(0, 4);
+      setBlogs(sorted);
+      setHasFetched(true);
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const featuredBlog = blogs[0];
+  const sideBlogs = blogs.slice(1);
 
   return (
-    <section className="relative bg-black py-20 md:py-24 overflow-hidden">
+    <section ref={sectionRef} className="relative bg-black py-20 md:py-24 overflow-hidden">
       {/* Subtle center glow */}
       <div className="pointer-events-none absolute left-1/2 top-[46%] -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] rounded-full bg-[#0BFFD3] opacity-20 blur-[140px]" />
 
@@ -631,125 +676,167 @@ const BlogsSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Featured */}
           <div className="lg:col-span-5 flex">
-            <div
-              className="group relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#0BFFD3] rounded-2xl shadow-xl overflow-hidden transition-colors duration-200 w-full flex flex-col"
-              style={{
-                // Always show the left border with #0BFFD3, and on hover, all borders get #0BFFD3
-                borderLeftColor: "#0BFFD3",
-                borderLeftWidth: "2px",
-                borderWidth: "1px",
-                borderStyle: "solid",
-              }}
-            >
-              {/* Green glow on hover */}
-              <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/30 via-transparent to-transparent blur-2xl" />
-              </div>
-              <div className="relative w-full h-[240px] sm:h-[260px] z-10">
-                <img
-                  src="https://api.builder.io/api/v1/image/assets/TEMP/8d131cf968ba9d25f16ec41d57b7bf0809d4b910?width=1420"
-                  alt="Total Lunar Eclipse Gala"
-                  className="w-full h-full object-cover"
-                />
-                <span className="absolute top-3 right-3 bg-[#23272F]/80 px-3 py-[6px] rounded-full text-white text-[10px] md:text-[11px] font-inter">
-                  Featured Event
-                </span>
-              </div>
-              <div className="relative p-5 sm:p-6 z-10 transition-colors duration-200 group-hover:bg-gradient-to-br group-hover:from-[#0BFFD3]/10 group-hover:to-[#23272F]/60 flex-1 flex flex-col">
-                <div className="flex items-start justify-between gap-4 mb-2">
-                  <h3 className="font-reem text-[16px] md:text-[18px] lg:text-[20px] text-white">
-                    Total Lunar Eclipse Gala
-                  </h3>
-                  <div className="text-right">
-                    <p className="text-gray-400 text-xs leading-none mb-1">
-                      Date
-                    </p>
-                    <p className="text-white text-[10px] md:text-[12px] leading-none">
-                      October 14, 2025
-                    </p>
+            {loading ? (
+              <div className="w-full flex flex-col bg-[#181A20] border border-white/5 rounded-2xl overflow-hidden min-h-[500px]">
+                <Skeleton className="w-full h-[240px] sm:h-[260px]" />
+                <div className="p-5 sm:p-6 space-y-4">
+                  <div className="flex justify-between items-center">
+                    <Skeleton className="h-6 w-3/4" />
+                    <Skeleton className="h-4 w-1/4" />
+                  </div>
+                  <div className="space-y-2">
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-full" />
+                    <Skeleton className="h-4 w-2/3" />
+                  </div>
+                  <div className="flex justify-end pt-4">
+                    <Skeleton className="h-8 w-24 rounded-lg" />
                   </div>
                 </div>
-
-                <p className="font-inter text-[11px] md:text-xs text-gray-300 leading-5 flex-1">
-                  A breathtaking total lunar eclipse will grace the skies on October 14, 2025, visible across Asia,
-                  Africa, and parts of Europe. During this celestial event, the Moon will pass completely through Earth's
-                  shadow, glowing in deep red and copper hues — a true "Blood Moon."
-                  Join us for a live telescope session, astrophotography tips, and discussions about the science behind
-                  eclipses.
-                </p>
-
-                <div className="mt-4 flex justify-end">
-                  <button
-                    className="bg-gradient-to-r from-[#0DF7D4] to-[#2C7BDC] px-4 py-1.5 rounded-lg text-white font-inter text-[10px] md:text-xs border border-yellow-400/30 hover:from-[#0DF7D4]/85 hover:to-[#2C7BDC]/85 transition"
-                    onClick={() => navigate("/blog")}
-                  >
-                    Explore more
-                  </button>
-                </div>
               </div>
-              {/* On hover, make all borders #0BFFD3 */}
-              <style>
-                {`
-                  .group:hover {
-                    border-color: #0BFFD3 !important;
-                  }
-                `}
-              </style>
-            </div>
-          </div>
-
-          {/* Side list */}
-          <div className="lg:col-span-7 flex flex-col gap-5">
-            {eventsData.map((item) => (
+            ) : featuredBlog ? (
               <div
-                key={item.id}
-                className={`
-        group bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-5 shadow backdrop-blur-sm transition-colors duration-200
-        hover:border-[#0BFFD3]
-        hover:bg-gradient-to-br hover:from-[#0BFFD3]/15 hover:to-[#181A20]/80
-        relative
-      `}
+                className="group relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#0BFFD3] rounded-2xl shadow-xl overflow-hidden transition-colors duration-200 w-full flex flex-col"
+                style={{
+                  borderLeftColor: "#0BFFD3",
+                  borderLeftWidth: "2px",
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                }}
               >
-                {/* Green Glow */}
+                {/* Green glow on hover */}
                 <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/25 via-transparent to-transparent blur-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/30 via-transparent to-transparent blur-2xl" />
                 </div>
-
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="font-reem text-[14px] md:text-[16px] lg:text-[18px] text-white">
-                      {item.title}
+                <div className="relative w-full h-[240px] sm:h-[260px] z-10">
+                  {featuredBlog.coverImage ? (
+                    <img
+                      src={featuredBlog.coverImage}
+                      alt={featuredBlog.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="relative w-full h-full flex-shrink-0 rounded-xl bg-gray-900/50 flex items-center justify-center border border-white/5 z-10">
+                      <span className="text-gray-600 text-[10px]">No Image</span>
+                    </div>
+                  )}
+                  <span className="absolute top-3 right-3 bg-[#23272F]/80 px-3 py-[6px] rounded-full text-white text-[10px] md:text-[11px] font-inter">
+                    {featuredBlog.isFeatured ? 'Featured' : featuredBlog.isCuratedCore ? 'Curated Core' : 'Latest'}
+                  </span>
+                </div>
+                <div className="relative p-5 sm:p-6 z-10 transition-colors duration-200 group-hover:bg-gradient-to-br group-hover:from-[#0BFFD3]/10 group-hover:to-[#23272F]/60 flex-1 flex flex-col">
+                  <div className="flex items-start justify-between gap-4 mb-2">
+                    <h3 className="font-reem text-[16px] md:text-[18px] lg:text-[20px] text-white line-clamp-2">
+                      {featuredBlog.title}
                     </h3>
-
-                    <p className="text-gray-400 text-xs leading-none">
-                      {item.date}
-                    </p>
+                    <div className="text-right flex-shrink-0">
+                      <p className="text-gray-400 text-xs leading-none mb-1">
+                        Date
+                      </p>
+                      <p className="text-white text-[10px] md:text-[12px] leading-none">
+                        {featuredBlog.date ? new Date(featuredBlog.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Recent'}
+                      </p>
+                    </div>
                   </div>
 
-                  <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2">
-                    {item.description}
+                  <p className="font-inter text-[11px] md:text-xs text-gray-300 leading-5 flex-1 line-clamp-5">
+                    {featuredBlog.shortDescription || featuredBlog.content?.replace(/<[^>]*>?/gm, '').slice(0, 200)}
                   </p>
 
                   <div className="mt-4 flex justify-end">
                     <button
-                      className="
-    border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-[10px] md:text-xs 
-    transition-all duration-300
-    hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
-    hover:text-white
-    hover:border-transparent
-    hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
-    hover:scale-[1.03]
-  "
-                      onClick={() => navigate("/blogpage")}
+                      className="bg-gradient-to-r from-[#0DF7D4] to-[#2C7BDC] px-4 py-1.5 rounded-lg text-white font-inter text-[10px] md:text-xs border border-yellow-400/30 hover:from-[#0DF7D4]/85 hover:to-[#2C7BDC]/85 transition"
+                      onClick={() => navigate(`/blog/${featuredBlog.slug}`)}
                     >
-                      Read
+                      Explore more
                     </button>
-
                   </div>
                 </div>
+                <style>
+                  {`
+                    .group:hover {
+                      border-color: #0BFFD3 !important;
+                    }
+                  `}
+                </style>
               </div>
-            ))}
+            ) : null}
+          </div>
+
+          {/* Side list */}
+          <div className="lg:col-span-7 flex flex-col gap-5">
+            {loading ? (
+              Array.from({ length: 3 }).map((_, i) => (
+                <div key={i} className="bg-[#181A20] border border-white/5 rounded-2xl p-5 space-y-3">
+                  <div className="flex justify-between">
+                    <Skeleton className="h-5 w-1/2" />
+                    <Skeleton className="h-3 w-16" />
+                  </div>
+                  <div className="space-y-1">
+                    <Skeleton className="h-3 w-full" />
+                    <Skeleton className="h-3 w-5/6" />
+                  </div>
+                  <div className="flex justify-end pt-2">
+                    <Skeleton className="h-7 w-20 rounded-lg" />
+                  </div>
+                </div>
+              ))
+            ) : sideBlogs.length > 0 ? (
+              sideBlogs.map((item) => (
+                <div
+                  key={item.id}
+                  className={`
+                    group bg-[#181A20]/85 border border-yellow-400/10 rounded-2xl p-5 shadow backdrop-blur-sm transition-colors duration-200
+                    hover:border-[#0BFFD3]
+                    hover:bg-gradient-to-br hover:from-[#0BFFD3]/15 hover:to-[#181A20]/80
+                    relative
+                  `}
+                >
+                  {/* Green Glow */}
+                  <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0BFFD3]/25 via-transparent to-transparent blur-2xl" />
+                  </div>
+
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="font-reem text-[14px] md:text-[16px] lg:text-[18px] text-white line-clamp-1">
+                        {item.title}
+                      </h3>
+
+                      <div className="flex flex-col items-end gap-1 flex-shrink-0">
+                        <span className="bg-[#23272F]/80 px-2 py-[4px] rounded-full text-white text-[10px] font-inter">
+                          {item.isFeatured ? 'Featured' : item.isCuratedCore ? 'Curated' : 'Latest'}
+                        </span>
+                        <p className="text-gray-400 text-[10px] leading-none">
+                          {item.date ? new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <p className="font-inter text-xs md:text-sm text-gray-300 leading-5 mt-2 line-clamp-2">
+                      {item.shortDescription || item.content?.replace(/<[^>]*>?/gm, '').slice(0, 150)}
+                    </p>
+
+                    <div className="mt-4 flex justify-end">
+                      <button
+                        className="
+                          border border-yellow-400/30 px-3 py-1 rounded-lg text-gray-200 font-inter text-[10px] md:text-xs 
+                          transition-all duration-300
+                          hover:bg-gradient-to-b hover:from-[#0BFFD3] hover:via-cyan-400 hover:to-[#316BDE]
+                          hover:text-white
+                          hover:border-transparent
+                          hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]
+                          hover:scale-[1.03]
+                        "
+                        onClick={() => navigate(`/blog/${item.slug}`)}
+                      >
+                        Read
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : null}
           </div>
         </div>
       </div>

@@ -7,10 +7,10 @@ const MissionTimeline = () => {
 
     const timelineSteps = [
         "2026 – EP LEO-01 Experimental Payload Launch We successfully launched our first experimental payload, EP LEO-01, marking a major breakthrough in our journey toward next-generation space technology",
-        "Mission Planning and Orbital Mechanics using simulation softwares available at IN-SPACe",
-        "Building mobile applications with existing satellite data from VEDAS & BHUVAN",
-        "Advanced satellite constellation deployment and orbital maintenance protocols",
-        "Commercial space operations and interplanetary mission capabilities"
+        "2029 — Orbital deployment of satellites Deployment of multiple satellites constellations equipped with our propulsion platform",
+        "2031 - Lunar Landing Accomplish our first lunar landing, extending our capabilities beyond Earth orbit",
+        "2035 – Lunar Data Center Build and operate a Lunar Data Center, laying the digital foundation for future lunar industry",
+        // "Commercial space operations and interplanetary mission capabilities"
     ];
 
     // Measure card width correctly
