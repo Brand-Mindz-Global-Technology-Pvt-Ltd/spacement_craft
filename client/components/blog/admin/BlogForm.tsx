@@ -223,7 +223,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ mode, onSubmit, initialData }) => {
             ...blog,
             status: finalStatus,
             isPublished: finalPublished,
-            content: sanitizeContent(blog.content), // Ensure sanitized content is sent
+            content: sanitizeContent(blog.content),
+            publishedAt: (finalStatus === "published" && !blog.publishedAt) ? Date.now() : blog.publishedAt,
         };
 
         if (!sanitizeContent(blog.content)) {
@@ -388,7 +389,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ mode, onSubmit, initialData }) => {
 
 
             {/* Blog Date */}
-            <div className="mb-6">
+            {/* <div className="mb-6">
                 <label className="block mb-2 text-sm text-gray-300">Blog Date</label>
                 <input
                     type="date"
@@ -397,7 +398,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ mode, onSubmit, initialData }) => {
                     className="w-full h-10 px-4 py-2 rounded-lg bg-black border border-yellow-400/20 
                text-white focus:border-cyan-400 outline-none transition"
                 />
-            </div>
+            </div> */}
 
             {/* Blog Content (Rich Editor) */}
             <div className="mb-6">

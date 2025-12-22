@@ -6,10 +6,24 @@ import { BlogData } from "../../../../types/BlogTypes";
 import { Link } from "react-router-dom";
 
 const BlogList: React.FC = () => {
-  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<BlogData[]>([]);
   const [loading, setLoading] = useState(true);
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const formatDate = (date: any) => {
+    if (!date) return "N/A";
+    const d = new Date(date);
+    if (isNaN(d.getTime())) return "Invalid Date";
+    return d.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
 
   const fetchBlogs = async () => {
     setLoading(true);
@@ -75,7 +89,8 @@ const BlogList: React.FC = () => {
                 <tr>
                   <th className="p-3 text-left">Title</th>
                   <th className="p-3 text-left">Category</th>
-                  <th className="p-3 text-left">Published</th>
+                  <th className="p-3 text-left">Created At</th>
+                  <th className="p-3 text-left">Status</th>
                   <th className="p-3 text-left">Actions</th>
                 </tr>
               </thead>
@@ -88,15 +103,27 @@ const BlogList: React.FC = () => {
                   >
                     <td className="p-3">{blog.title}</td>
                     <td className="p-3 capitalize">{blog.category}</td>
+                    <td className="p-3 text-gray-400">
+                      {formatDate(blog.createdAt)}
+                    </td>
                     <td className="p-3">
                       {(blog.status === "published" ||
                         (blog.status === "scheduled" && blog.scheduledDate && new Date(blog.scheduledDate) <= new Date()) ||
                         (blog.isPublished && blog.status !== 'scheduled')) ? (
-                        <span className="text-green-400">Published</span>
+                        <div className="flex flex-col">
+                          <span className="text-green-400 font-medium">Published</span>
+                          <span className="text-[10px] text-gray-500">{formatDate(blog.publishedAt || blog.createdAt)}</span>
+                        </div>
                       ) : blog.status === "scheduled" ? (
-                        <span className="text-blue-400">Scheduled</span>
+                        <div className="flex flex-col">
+                          <span className="text-blue-400 font-medium">Scheduled</span>
+                          <span className="text-[10px] text-gray-500">{formatDate(blog.scheduledDate)}</span>
+                        </div>
                       ) : (
-                        <span className="text-yellow-400">Draft</span>
+                        <div className="flex flex-col">
+                          <span className="text-yellow-400 font-medium">Draft</span>
+                          <span className="text-[10px] text-gray-500">{formatDate(blog.updatedAt || blog.createdAt)}</span>
+                        </div>
                       )}
                     </td>
                     <td className="p-3 flex gap-3">

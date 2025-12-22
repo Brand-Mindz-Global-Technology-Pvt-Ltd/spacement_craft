@@ -152,7 +152,11 @@ export const getBlogById = async (id: string) => {
 };
 
 export const updateBlog = async (id: string, blog: BlogData) => {
-  return await updateDoc(doc(db, "blogs", id), blog);
+  const updatedBlog = {
+    ...blog,
+    updatedAt: Date.now(),
+  };
+  return await updateDoc(doc(db, "blogs", id), updatedBlog);
 };
 
 export const deleteBlog = async (id: string) => {

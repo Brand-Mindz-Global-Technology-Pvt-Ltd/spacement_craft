@@ -23,7 +23,10 @@ export interface BlogData {
   authorRole: string;
   authorImage: string;
   authorBio?: string;
-  
+
   status: 'draft' | 'published' | 'scheduled';
   scheduledDate?: string;
+  createdAt?: number;
+  publishedAt?: number;
+  updatedAt?: number;
 }
