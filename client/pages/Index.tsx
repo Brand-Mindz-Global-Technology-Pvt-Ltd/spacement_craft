@@ -374,7 +374,7 @@ const VideoObservationSection = () => {
 export const VisionStatementSection = (): JSX.Element => {
   return (
     <section className="relative w-full min-h-[1400px] flex items-stretch overflow-hidden" style={{ minHeight: "100vh" }}>
-      {/* Background image as a true background, not an <img> */}
+      {/* Background video */}
       <video
         className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
         autoPlay
@@ -393,7 +393,7 @@ export const VisionStatementSection = (): JSX.Element => {
         aria-hidden="true"
       />
 
-      {/* Content */}
+      {/* Main Content - center top */}
       <div
         className="relative z-10 flex flex-col items-center justify-start w-full h-full px-4"
         style={{ paddingTop: "80px" }}
@@ -406,6 +406,12 @@ export const VisionStatementSection = (): JSX.Element => {
         </p>
       </div>
 
+      {/* Bottom Center - Powered By */}
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10 w-full flex justify-center">
+        <div className="font-reem text-white text-[16px] md:text-2xl font-normal">
+          Powered By Our Electric Thruster
+        </div>
+      </div>
     </section>
   );
 };

@@ -94,25 +94,25 @@ const About = () => (
         overflow: "visible",
       }}
     >
-      <div className="relative w-full max-w-5xl flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center sm:gap-2 md:gap-8">
+      {/* <div className="relative w-full max-w-5xl flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center sm:gap-2 md:gap-8"> */}
         {/* Stat 1 */}
-        <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
+        {/* <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
           <span className="text-white text-[21px] md:text-[38px] font-bold font-inter">
             25<span className="align-super text-base font-normal">+</span>
           </span>
           <span className="text-white/80 text-[10px] md:text-xs mt-1 font-inter text-center">
             Years of Experience
           </span>
-        </div>
+        </div> */}
         {/* Stat 2 */}
-        <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
+        {/* <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
           <span className="text-white text-[21px] md:text-[38px] font-bold font-inter">25K</span>
           <span className="text-white/80 text-[10px] md:text-xs mt-1 font-inter text-center">
             Completed Projects
           </span>
-        </div>
+        </div> */}
         {/* Astronaut Image */}
-        <div className="flex flex-col items-center flex-1 min-w-[100px] relative h-[70px] xs:h-[80px] md:h-[120px] py-3">
+        {/* <div className="flex flex-col items-center flex-1 min-w-[100px] relative h-[70px] xs:h-[80px] md:h-[120px] py-3">
           <img
             src="/assets/ABOUTEX.png"
             alt="Astronaut"
@@ -124,22 +124,22 @@ const About = () => (
             }}
             draggable={false}
           />
-        </div>
+        </div> */}
         {/* Stat 3 */}
-        <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
+        {/* <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
           <span className="text-white text-[21px] md:text-[38px] font-bold font-inter">2K</span>
           <span className="text-white/80 text-[10px] md:text-xs mt-1 font-inter text-center">
             Our Specialists
           </span>
-        </div>
+        </div> */}
         {/* Stat 4 */}
-        <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
+        {/* <div className="flex flex-col items-center flex-1 min-w-[100px] py-3">
           <span className="text-white text-[21px] md:text-[38px] font-bold font-inter">5K</span>
           <span className="text-white/80 text-[10px] md:text-xs mt-1 font-inter text-center">
             Success Stories
           </span>
-        </div>
-      </div>
+        </div> */}
+      {/* </div> */}
     </section>
 
     {/* CEO Section - Responsive */}
@@ -174,7 +174,7 @@ const About = () => (
           </h2>
           <div className="space-y-3">
             <p className="font-inter text-white/80 leading-relaxed text-[12px] md:text-sm px-4 lg:px-0 text-justify">
-              International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically. International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems. Our mission? Help satellites travel farther, operate longer, and reduce space mission costs dramatically.
+            Praveen Kumar, Founder & CEO of Spaceman Craft Private Limited, is driven by a bold vision and nearly 12 years of hands-on experience in developing his own space technology inventions. Fueled by passion and purpose, he leads the mission to build world-class space innovations from India—with his sights firmly set on the Moon.
             </p>
             <p className="font-inter text-white/80 px-4 lg:px-0 leading-relaxed text-[12px] md:text-sm text-justify">
               International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems.
