@@ -48,6 +48,11 @@ const Footer = () => (
                             </a>
                         </li>
                         <li>
+                            <a href="/mission" className="hover:text-white">
+                                Mission
+                            </a>
+                        </li>
+                        <li>
                             <a href="/vission" className="hover:text-white">
                                 Vision
                             </a>
@@ -88,15 +93,33 @@ const Footer = () => (
                         </li>
                         <li className="flex items-center gap-3">
                             <Instagram className="h-4 w-4 text-white/70" />
-                            <a href="https://www.instagram.com/spacemancraft.in?igsh=cmN5NWJrdzM2Y2hv" className="hover:text-white">Instagram</a>
+                            <a
+                                href="https://www.instagram.com/spacemancraft.in?igsh=cmN5NWJrdzM2Y2hv"
+                                className="hover:text-white"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Instagram
+                            </a>
                         </li>
                         <li className="flex items-center gap-3">
                             <Twitter className="h-4 w-4 text-white/70" />
-                            <a href="https://www.threads.com/@spacemancraft.in" className="hover:text-white">Twitter</a>
+                            <a
+                                href="https://www.threads.com/@spacemancraft.in"
+                                className="hover:text-white"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Twitter
+                            </a>
                         </li>
                         <li className="flex items-center gap-3">
                             <Linkedin className="h-4 w-4 text-white/70" />
-                            <a href="https://www.linkedin.com/company/spaceman-craft/" className="hover:text-white">LinkedIn</a>
+                            <a
+                                href="https://www.linkedin.com/company/spaceman-craft/"
+                                className="hover:text-white"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                LinkedIn
+                            </a>
                         </li>
                     </ul>
                 </div>
