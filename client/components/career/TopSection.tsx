@@ -12,7 +12,7 @@ const TopSection = ()=> {
           SPACEMANCARFT
         </h1>
         <p className="px-12 text-xs md:text-sm text-white/80 font-inter text-justify mb-7 lg:tracking-wide lg:leading-relaxed">
-          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        At Spacemancraft, we are building the future of space technology through innovation, precision engineering, and bold ideas. Our team works on real-world space missions, satellite systems, and advanced research that push boundaries beyond Earth. We believe in curiosity, collaboration, and continuous learning. If you are passionate about space, technology, and impact-driven work, Spacemancraft offers the platform to grow, innovate, and shape tomorrow together with purpose, integrity, global vision, and responsibility.
         </p>
         <button
           className="rounded-lg bg-gradient-to-b from-[#0BFFD3] via-cyan-400 to-[#316BDE] px-5 py-2.5 text-xs md:text-sm font-normal font-reem text-white shadow-lg transition-transform duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(56,189,248,0.45)]"
