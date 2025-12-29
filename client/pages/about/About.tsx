@@ -144,7 +144,7 @@ const About = () => (
 
     {/* CEO Section - Responsive */}
     <section className="w-full bg-black flex flex-col items-center justify-center py-8 px-2 sm:py-10 md:py-12 md:px-6">
-      <div className="flex flex-col md:flex-row items-start justify-center w-full gap-6 sm:gap-8 md:gap-12 max-w-6xl">
+      <div className="flex flex-col md:flex-row items-center justify-center w-full gap-6 sm:gap-8 md:gap-12 max-w-6xl">
         {/* Left: CEO Image */}
         <div className="w-full md:w-[45%] flex-shrink-0 flex justify-center md:justify-start h-full mb-6 md:mb-0">
           <img
@@ -167,8 +167,7 @@ const About = () => (
         {/* Right: Content */}
         <div
           className="flex-1 flex flex-col justify-start w-full md:w-[55%] max-w-full"
-          style={{ minHeight: "unset", maxWidth: "850px" }}
-        >
+          style={{ minHeight: "unset", maxWidth: "850px" }}>
           <h2 className="font-reem text-[21px] md:text-[38px] font-normal text-white lg:px-0 px-4 mb-3 md:mb-4 mt-2 md:mt-0">
             Meet <span className="font-reem font-normal">Our CEO</span>
           </h2>
@@ -179,7 +178,6 @@ const About = () => (
             <p className="font-inter text-white/80 px-4 lg:px-0 leading-relaxed text-[12px] md:text-sm text-justify">
               International-based deep-tech rebel startup, founded in 2022, focused on building high-efficiency electric propulsion systems.
             </p>
-
           </div>
         </div>
       </div>
