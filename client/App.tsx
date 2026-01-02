@@ -24,6 +24,9 @@ import Mission from "./pages/mission/Mission";
 import Career from "./pages/career/Career";
 import { useState, useEffect } from "react";
 import { Toaster as HotToaster } from "react-hot-toast";
+import TermsConditions from "./pages/policies/TermsConditions";
+import PrivacyPolicy from "./pages/policies/PrivacyPolicy";
+import CookiePolicy from "./pages/policies/CookiePolicy";
 // ADMIN BLOG PAGES
 import BlogList from "./pages/blog/admin/blogs/BlogList";
 import AddBlog from "./pages/blog/admin/blogs/AddBlog";
@@ -73,6 +76,11 @@ const App = () => {
               <Route path="/about" element={<About />} />
               <Route path="/career" element={<Career />} />
               <Route path="/contactus" element={<ContactUs />} />
+
+              {/* ---------- POLICY PAGES ---------- */}
+              <Route path="/terms-and-conditions" element={<TermsConditions />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/cookie-policy" element={<CookiePolicy />} />
 
               {/* ---------- BLOG ROUTES ---------- */}
               <Route path="/blog" element={<Blog />} />

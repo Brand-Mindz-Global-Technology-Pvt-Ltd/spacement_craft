@@ -149,15 +149,15 @@ const Footer = () => (
                     | All rights reserved
                 </p>
                 <div className="mt-3 flex gap-4 md:mt-0">
-                    <a href="#" className="hover:text-white">
+                    <Link to="/terms-and-conditions" className="hover:text-white">
                         Terms & Conditions
-                    </a>
-                    <a href="#" className="hover:text-white">
+                    </Link>
+                    <Link to="/privacy-policy" className="hover:text-white">
                         Privacy Policy
-                    </a>
-                    <a href="#" className="hover:text-white">
-                        Refund Policy
-                    </a>
+                    </Link>
+                    <Link to="/cookie-policy" className="hover:text-white">
+                        Cookie Policy
+                    </Link>
                 </div>
             </div>
         </div>

@@ -644,8 +644,8 @@ const BlogsSection = () => {
       const data = await getPublishedBlogs();
       // Sort by date latest first and take top 4
       const sorted = data.sort((a, b) => {
-        const dateA = new Date(a.date || a.createdAt || 0).getTime();
-        const dateB = new Date(b.date || b.createdAt || 0).getTime();
+        const dateA = new Date(a.publishedAt || a.createdAt || 0).getTime();
+        const dateB = new Date(b.publishedAt || b.createdAt || 0).getTime();
         return dateB - dateA;
       }).slice(0, 4);
       setBlogs(sorted);
@@ -814,7 +814,7 @@ const BlogsSection = () => {
                           {item.isFeatured ? 'Featured' : item.isCuratedCore ? 'Curated' : 'Latest'}
                         </span>
                         <p className="text-gray-400 text-[10px] leading-none">
-                          {item.date ? new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent'}
+                          {new Date(item.publishedAt || item.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                         </p>
                       </div>
                     </div>

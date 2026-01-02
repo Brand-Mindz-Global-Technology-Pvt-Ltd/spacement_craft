@@ -48,7 +48,7 @@ const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
 
                         <div className="mt-4 flex items-center justify-between">
                             <p className="text-gray-400 text-[10px] md:text-xs">
-                                {item.date ? new Date(item.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent'}
+                                {new Date(item.publishedAt || item.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                             </p>
                             <button
                                 className="bg-gradient-to-r from-[#0DF7D4] to-[#2C7BDC] px-3 py-1 rounded-lg text-white font-inter text-xs border border-yellow-400/30 hover:from-[#0DF7D4]/85 hover:to-[#2C7BDC]/85 transition transform hover:scale-105"

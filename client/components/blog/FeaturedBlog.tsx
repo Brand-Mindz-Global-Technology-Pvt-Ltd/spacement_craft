@@ -9,7 +9,7 @@ const FeaturedBlog: React.FC<FeaturedBlogProps> = ({ blog }) => {
 
     return (
         <div className="lg:col-span-5">
-            <div className="relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#FEC053] rounded-2xl shadow-xl overflow-hidden flex flex-col h-full">
+            <div className="relative bg-gradient-to-br from-[#23272F] to-[#181A20] border border-[#FEC053] rounded-2xl shadow-xl overflow-hidden flex flex-col lg:h-[560px]">
                 {/* Featured Image */}
                 <div className="relative w-full h-[240px] sm:h-[260px]">
                     {/* <img
@@ -40,10 +40,10 @@ const FeaturedBlog: React.FC<FeaturedBlogProps> = ({ blog }) => {
                         <h3 className="font-reem text-[18px] sm:text-lg md:text-xl text-white">
                             {blog.title}
                         </h3>
-                        <div className="text-right">
+                        <div className="text-right flex-shrink-0">
                             <p className="text-gray-400 text-xs leading-none mb-1">Date</p>
                             <p className="text-white text-xs sm:text-[13px] leading-none">
-                                {blog.date}
+                                {new Date(blog.publishedAt || blog.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                             </p>
                         </div>
                     </div>

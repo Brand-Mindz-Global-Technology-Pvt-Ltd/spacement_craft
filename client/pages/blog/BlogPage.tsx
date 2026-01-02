@@ -31,7 +31,11 @@ const BlogPage = () => {
       setBlog(blogData);
 
       const publishedBlogs = blogsData
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        .sort((a, b) => {
+          const dateA = new Date(a.publishedAt || a.createdAt || 0).getTime();
+          const dateB = new Date(b.publishedAt || b.createdAt || 0).getTime();
+          return dateB - dateA;
+        });
       setAllBlogs(publishedBlogs);
       setLoading(false);
     };
@@ -220,7 +224,7 @@ const BlogPage = () => {
                       <div className="flex flex-col items-end">
                         <span className="text-xs text-gray-500 font-inter">Date</span>
                         <span className="text-sm text-gray-300 font-inter whitespace-nowrap">
-                          {blog?.date}
+                          {new Date(blog?.publishedAt || blog?.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                         </span>
                       </div>
                     </div>
