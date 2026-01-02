@@ -29,11 +29,11 @@ const EarthObservation: React.FC<EarthObservationProps> = ({ openModal }) => {
             Break barriers in space. Unlock reliable, sustainable satellite operations.
           </p>
           {/* CTA Button in right corner, absolutely positioned */}
-          <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
+          {/* <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2">
             <button className="border border-[#FEC053]/30 px-5 py-2.5 rounded-[6px] text-white font-inter text-[12px] hover:bg-[#FEC053]/10 transition-all shadow-[0_2px_8px_0_rgba(254,192,83,0.10)]">
               Explore Full Archive
             </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Horizontally scrollable cards with invisible scrollbar */}

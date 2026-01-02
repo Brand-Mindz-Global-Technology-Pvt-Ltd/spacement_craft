@@ -17,6 +17,12 @@ const JobCard: React.FC<JobCardProps> = ({
     job,
     emailTo = "careers@spacemancraft.in"
 }) => {
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${emailTo}&su=${encodeURIComponent(
+        `Job Application: ${job.title} - ${job.location}`
+    )}&body=${encodeURIComponent(
+        `Dear Hiring Manager,\n\nI am interested in the ${job.title} position at Spacemancraft.\n\n[Add your details here]\n\nSincerely,\n[Your Name]`
+    )}`;
+
     return (
         <div className="flex items-start space-x-4 p-4 rounded-xl transition-all duration-300 hover:bg-black/25 group">
             <div className="w-0.5 h-32 bg-[#ffffff] rounded-full flex-shrink-0"></div>
@@ -37,7 +43,9 @@ const JobCard: React.FC<JobCardProps> = ({
                         </p>
                     </div>
                     <a
-                        href={`mailto:${emailTo}`}
+                        href={gmailUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="mt-4 lg:mt-0 lg:ml-6 bg-transparent border border-white text-white group-hover:bg-gradient-to-r group-hover:from-[#1de9b6] group-hover:to-blue-600 group-hover:border-transparent px-6 py-2 rounded-md text-[11px] md:text-sm font-semibold transition-all duration-200 inline-block text-center"
                     >
                         <span className="group-hover:hidden font-reem">APPLY NOW</span>
