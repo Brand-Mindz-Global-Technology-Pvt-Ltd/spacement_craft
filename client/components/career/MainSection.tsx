@@ -56,7 +56,7 @@ const MainSection = () => {
             <div className="lg:w-2/5 relative lg:py-9 lg:px-1 lg:pl-5 p-4 flex-shrink-0">
               <div className="relative h-full min-h-[300px] md:min-h-[400px] lg:min-h-0 flex items-center justify-center overflow-hidden">
                 <img
-                  src="/assets/career/career.webp"
+                  src="/assets/career/careers.jpeg"
                   alt="Person working at desk"
                   className="absolute inset-0 w-full h-full object-cover object-center"
                   draggable={false}

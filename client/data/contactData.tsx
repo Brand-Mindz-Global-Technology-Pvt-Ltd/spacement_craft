@@ -6,14 +6,14 @@ export const contactSections = [
     {
         title: 'CONNECT WITH US',
         items: [
-            {
-                icon: <PhoneIcon />,
-                content: '+971 54 589 7690'
-            },
-            {
-                icon: <SmartphoneIcon />,
-                content: '+971 56 680 1583'
-            },
+            // {
+            //     icon: <PhoneIcon />,
+            //     content: '+971 54 589 7690'
+            // },
+            // {
+            //     icon: <SmartphoneIcon />,
+            //     content: '+971 56 680 1583'
+            // },
             {
                 icon: <EnvelopeIcon />,
                 content: 'spacemancraftindia@gmail.com'
