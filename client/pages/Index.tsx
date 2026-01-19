@@ -1,8 +1,11 @@
-import { useState, useEffect, useRef, forwardRef } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import EarthCanvas from "./EarthCanvas";
+
+// Lazy Load EarthCanvas
+const EarthCanvas = lazy(() => import("./EarthCanvas"));
+
 import HeroContent from "./HeroContent";
 import Navbar from "../components/Navbar";
 import ScrollFloat from "../components/ui/scroll/ScrollFloat";
@@ -381,9 +384,11 @@ export const VisionStatementSection = (): JSX.Element => {
         loop
         muted
         playsInline
+        preload="metadata"
         style={{ zIndex: 0 }}
       >
-        <source src="/assets/home/vissonvideo2.mp4" type="video/mp4" />
+        <source src="/assets/home/vissonvideo2.webm" type="video/webm" />
+        <source src="/assets/home/hero-video-compress.mp4" type="video/mp4" />
       </video>
 
       {/* Top gradient overlay */}
@@ -490,10 +495,11 @@ export const GoingToTheMoonSection = (): JSX.Element => {
         playsInline
         webkit-playsinline="true"
         x5-playsinline="true"
-        preload="auto"
+        preload="metadata"
         style={{ zIndex: 0 }}
       >
-        <source src="/assets/home/Rocket.mp4" type="video/mp4" />
+        <source src="/assets/home/Rocket.webm" type="video/webm" />
+        <source src="/assets/home/Rocket-compressed.mp4" type="video/mp4" />
       </video>
 
       {/* Top gradient overlay */}
@@ -538,7 +544,7 @@ export const DataCenterSection = (): JSX.Element => {
   const navigate = useNavigate();
 
   return (
-    <DataCenterScrollReveal backgroundImage="/assets/10-data-center-moon.jpg">
+    <DataCenterScrollReveal backgroundImage="/assets/10-data-center-moon.webp">
       <h1 className="font-reem text-white text-[23px] md:text-[38px] lg:text-[44px] font-normal text-center tracking-wide mb-3">
         Data Centers in Moon and Space
       </h1>
@@ -576,7 +582,7 @@ export const SpaceTourismSection = (): JSX.Element => {
   const navigate = useNavigate();
 
   return (
-    <SpaceTourismScrollReveal backgroundImage="/assets/11-space-tourism.jpg">
+    <SpaceTourismScrollReveal backgroundImage="/assets/11-space-tourism.webp">
       <h1 className="font-reem text-white text-[21px] md:text-[38px] lg:text-[46px] font-normal text-center tracking-wide ">
         Space Tourism
       </h1>
@@ -997,7 +1003,9 @@ export default function Index() {
       </div>
       <div ref={containerRef} className="relative snap-start" style={{ height: containerHeight }}>
         <div className="sticky top-0 h-screen overflow-hidden">
-          <EarthCanvas scrollProgress={scrollProgress} />
+          <Suspense fallback={<div className="absolute inset-0 bg-black" />}>
+            <EarthCanvas scrollProgress={scrollProgress} />
+          </Suspense>
 
           <div
             className="absolute inset-0 z-20"
@@ -1009,8 +1017,6 @@ export default function Index() {
             <Hero />
           </div>
 
-          {/* This wrapper's ONLY job is to handle interactivity. */}
-          {/* The component inside will handle its own animations. */}
           <div
             className="absolute inset-0 z-10 flex justify-center items-start pt-28"
             style={{
@@ -1023,7 +1029,6 @@ export default function Index() {
       </div>
 
       {/* --- Rest of the page flows normally below the container --- */}
-      {/* Added snap-start and scrollSnapStop to force stop on mobile */}
       <div className="snap-start" style={{ scrollSnapStop: "always" }}>
         <VideoObservationSection />
       </div>

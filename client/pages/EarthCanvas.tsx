@@ -7,11 +7,11 @@ import { useMemo } from "react";
 // ==================================================================
 // YOUR ORIGINAL TEXTURE PATHS - UNCHANGED
 // ==================================================================
-const earthDayMapUrl = "/1_earth_8k.jpg";
-const earthBumpMapUrl = "/earth-bump-map.png";
-const earthSpecularMapUrl = "/earth-specular-map.jpg";
-const earthNightMapUrl = "/earth-nightmap.jpg";
-const earthCloudsMapUrl = "/earth-clouds.jpg";
+const earthDayMapUrl = "/textures/1_earth_8k.webp";
+const earthBumpMapUrl = "/textures/earth-bump-map.png";
+const earthSpecularMapUrl = "/textures/earth-specular-map.jpg";
+const earthNightMapUrl = "/textures/earth-nightmap.jpg";
+const earthCloudsMapUrl = "/textures/earth-clouds.jpg";
 
 // ==================================================================
 // YOUR ORIGINAL ATMOSPHERE COMPONENT - UNCHANGED
