@@ -407,7 +407,7 @@ export const VisionStatementSection = (): JSX.Element => {
           OUR VISION
         </h1>
         <p className="max-w-[700px] text-center text-white/90 text-[12px] md:text-sm font-inter mb-5 leading-relaxed">
-          Our vision is to land on the Moon powered by our electric thruster
+          Our vision is to land on the Moon 
         </p>
       </div>
 
